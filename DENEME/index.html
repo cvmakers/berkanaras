@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>360 Çekim (Kamerasız) - Web MVP</title>
-  <meta name="description" content="Telefonla adım adım fotoğraf çekip 360 panorama üretmek için web tabanlı çekim arayüzü."/>
+  <title>Guided 360 Capture - Otomatik Çekim</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     :root{
@@ -15,25 +14,12 @@
     body{ background:var(--bg); color:var(--text); }
     .glass{ background:var(--card); border:1px solid var(--border); border-radius:16px; backdrop-filter: blur(10px); }
     .video-wrap{ position:relative; overflow:hidden; border-radius:18px; border:1px solid var(--border); background:#050912; }
-    video{ width:100%; height:60vh; min-height:340px; object-fit:cover; display:block; }
-    .hud{
-      position:absolute; inset:0; pointer-events:none;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .reticle{
-      width:140px; height:140px; border-radius:999px;
-      border:2px dashed rgba(255,255,255,.35);
-      display:flex; align-items:center; justify-content:center;
-      box-shadow: 0 0 0 9999px rgba(0,0,0,.20);
-    }
-    .dot{
-      width:14px; height:14px; border-radius:999px;
-      background: rgba(255,255,255,.5);
-      box-shadow: 0 0 0 10px rgba(255,255,255,.10);
-    }
-    .statusbar{
-      position:absolute; left:12px; right:12px; top:12px;
-      display:flex; gap:10px; align-items:center; justify-content:space-between;
+    video{ width:100%; height:66vh; min-height:380px; object-fit:cover; display:block; }
+
+    /* HUD */
+    .topbar{
+      position:absolute; left:12px; right:12px; top:12px; z-index:5;
+      display:flex; gap:10px; justify-content:space-between; align-items:center; flex-wrap:wrap;
       pointer-events:auto;
     }
     .pill{
@@ -44,20 +30,45 @@
     .lamp{ width:10px; height:10px; border-radius:999px; background:var(--warn); }
     .lamp.ok{ background:var(--ok); box-shadow:0 0 0 6px rgba(38,208,124,.18); }
     .lamp.bad{ background:var(--bad); }
+
+    /* Targets */
+    .hud{ position:absolute; inset:0; pointer-events:none; display:grid; place-items:center; }
+    .rings{ position:relative; width:min(320px, 72vw); height:min(320px, 72vw); }
+    .target-ring{
+      position:absolute; left:50%; top:50%;
+      width:180px; height:180px; transform:translate(-50%,-50%);
+      border-radius:999px;
+      border:2px dashed rgba(255,255,255,.32);
+      box-shadow: 0 0 0 9999px rgba(0,0,0,.22);
+    }
+    .target-dot{
+      position:absolute; left:50%; top:50%;
+      width:14px; height:14px; transform:translate(-50%,-50%);
+      border-radius:999px;
+      background:rgba(255,255,255,.45);
+      box-shadow:0 0 0 10px rgba(255,255,255,.10);
+    }
+
+    /* moving dot (your device aim) */
+    .aim-dot{
+      position:absolute;
+      width:16px; height:16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.9);
+      box-shadow:0 0 0 12px rgba(255,255,255,.12);
+      left:50%; top:50%;
+      transform:translate(-50%,-50%);
+      transition: transform .06s linear; /* smooth */
+    }
+
+    /* progress */
     .thumbs{ display:flex; gap:10px; overflow:auto; padding:10px; }
-    .thumb{
-      width:110px; height:80px; border-radius:12px; overflow:hidden;
-      border:1px solid var(--border); background:#0b1220; flex:0 0 auto;
-      position:relative;
-    }
+    .thumb{ width:110px; height:80px; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:#0b1220; flex:0 0 auto; position:relative; }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .thumb .n{
-      position:absolute; left:6px; top:6px;
-      background:rgba(0,0,0,.45); border:1px solid var(--border);
-      padding:2px 7px; border-radius:10px; font-size:.8rem;
-    }
-    .smallmuted{ color:var(--muted); font-size:.92rem; }
+    .thumb .n{ position:absolute; left:6px; top:6px; background:rgba(0,0,0,.45); border:1px solid var(--border); padding:2px 7px; border-radius:10px; font-size:.8rem; }
+
     canvas{ display:none; }
+    .smallmuted{ color:var(--muted); font-size:.92rem; }
   </style>
 </head>
 <body>
@@ -66,8 +77,8 @@
   <div class="glass p-3 mb-3">
     <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
       <div>
-        <h1 class="h4 mb-1">Kamerasız 360 Çekim (Web)</h1>
-        <div class="smallmuted">Telefonu hedef açıya getir → çek → sonunda tüm kareleri stitch için gönderebilirsin.</div>
+        <h1 class="h4 mb-1">Otomatik Yönlendirmeli Çekim (Web)</h1>
+        <div class="smallmuted">Hedef daire içine getirince otomatik çekim yapar ve sıradaki hedefe geçer.</div>
       </div>
       <div class="d-flex gap-2">
         <button id="btnStart" class="btn btn-primary">Kamerayı Aç</button>
@@ -77,10 +88,14 @@
   </div>
 
   <div class="video-wrap mb-3">
-    <div class="statusbar">
+    <div class="topbar">
       <div class="pill">
         <span class="lamp" id="lamp"></span>
-        <span id="targetText">Hedef: —</span>
+        <span id="hintText">Başlamak için Kamera + Gyro izni ver.</span>
+      </div>
+      <div class="pill">
+        <span>Hedef:</span><span id="targetText">—</span>
+        <span class="ms-2">İlerleme:</span><span id="progressText">0/0</span>
       </div>
       <div class="pill">
         <span>Yaw:</span><span id="yawVal">—</span>
@@ -91,8 +106,10 @@
     <video id="video" autoplay playsinline muted></video>
 
     <div class="hud">
-      <div class="reticle">
-        <div class="dot" id="dot"></div>
+      <div class="rings">
+        <div class="target-ring" id="targetRing"></div>
+        <div class="target-dot"></div>
+        <div class="aim-dot" id="aimDot"></div>
       </div>
     </div>
   </div>
@@ -100,121 +117,143 @@
   <div class="glass p-3 mb-3">
     <div class="row g-3 align-items-end">
       <div class="col-lg-3">
-        <label class="form-label">Adım (Yaw derece)</label>
+        <label class="form-label">Yaw adımı (derece)</label>
         <input id="stepYaw" type="number" class="form-control" value="30" min="10" max="60">
-        <div class="smallmuted mt-1">30° = 12 kare (360/30)</div>
+        <div class="smallmuted mt-1">30° = 12 hedef</div>
       </div>
       <div class="col-lg-3">
         <label class="form-label">Tolerans (± derece)</label>
-        <input id="tol" type="number" class="form-control" value="6" min="2" max="15">
-        <div class="smallmuted mt-1">Hedefe yaklaşınca yeşil olur</div>
+        <input id="tol" type="number" class="form-control" value="5" min="2" max="12">
+        <div class="smallmuted mt-1">Küçük = daha hassas</div>
       </div>
       <div class="col-lg-3">
-        <label class="form-label">Katman (Pitch)</label>
-        <select id="layer" class="form-select">
-          <option value="0">Orta (0°)</option>
-          <option value="30">Yukarı (+30°)</option>
-          <option value="-30">Aşağı (-30°)</option>
+        <label class="form-label">Pitch katmanları</label>
+        <select id="layers" class="form-select">
+          <option value="single" selected>Tek katman (0°) - hızlı</option>
+          <option value="triple">3 katman (0°, +30°, -30°) - daha iyi</option>
         </select>
-        <div class="smallmuted mt-1">MVP için tek katman da yeter</div>
       </div>
       <div class="col-lg-3 d-grid">
-        <button id="btnCapture" class="btn btn-success btn-lg">Foto Çek</button>
+        <button id="btnBuild" class="btn btn-success btn-lg">Hedefleri Oluştur</button>
       </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <button id="btnReset" class="btn btn-outline-danger">Sıfırla</button>
+      <button id="btnSkip" class="btn btn-outline-light">Hedef Atla</button>
+      <button id="btnDownload" class="btn btn-outline-info">Kareleri İndir</button>
+      <span class="smallmuted align-self-center">İpucu: telefonu yavaş çevir, hedefe gelince 0.8sn sabit tut.</span>
     </div>
   </div>
 
   <div class="glass">
     <div class="p-3 border-bottom" style="border-color: rgba(255,255,255,.12)!important;">
-      <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
-        <div>
-          <div class="fw-bold">Çekimler</div>
-          <div class="smallmuted" id="progressText">0 kare</div>
-        </div>
-        <div class="d-flex gap-2">
-          <button id="btnNextTarget" class="btn btn-outline-light">Sonraki Hedef</button>
-          <button id="btnClear" class="btn btn-outline-danger">Temizle</button>
-          <button id="btnDownload" class="btn btn-outline-info">Hepsini İndir</button>
-          <button id="btnUpload" class="btn btn-warning">Sunucuya Gönder</button>
-        </div>
-      </div>
+      <div class="fw-bold">Çekilen Kareler</div>
+      <div class="smallmuted">Sonradan stitching için sunucuya gönderebilirsin (bu sayfa sadece çekimi toplar).</div>
     </div>
-
     <div class="thumbs" id="thumbs"></div>
   </div>
 
   <canvas id="canvas"></canvas>
-
-  <div class="smallmuted mt-3">
-    <b>Not:</b> Tarayıcı içinde kaliteli 360 stitch ağırdır. MVP’de kareleri sunucuya yollayıp
-    sunucuda tek bir <b>2:1 equirectangular</b> panorama üretmek en mantıklısıdır.
-  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+  // ----------------- State
   const state = {
     stream: null,
     yaw: null,
     pitch: null,
-    targetYaw: 0,
+
     stepYaw: 30,
-    tol: 6,
-    layerPitch: 0,
-    shots: [] // {dataUrl, yaw, pitch, ts}
+    tol: 5,
+    pitchTargets: [0],
+
+    targets: [],     // [{yaw, pitch}]
+    targetIndex: 0,
+
+    shots: [],       // {dataUrl, yaw, pitch, target:{yaw,pitch}, ts}
+    autoEnabled: true,
+    cooldownMs: 1100,
+    lastShotAt: 0,
+
+    // “hedefe girince sabitle” hissi için: N frame üst üste OK olmalı
+    holdFramesNeed: 10,
+    holdFramesOk: 0
   };
 
-  // -------- Utilities
+  // ----------------- Helpers
   function normDeg(d){
     let x = d % 360;
     if (x < 0) x += 360;
     return x;
   }
   function angDiff(a, b){
-    // minimal difference between angles (0..180)
     let d = Math.abs(normDeg(a) - normDeg(b));
     return Math.min(d, 360 - d);
   }
 
-  function updateUI(){
+  function currentTarget(){
+    return state.targets[state.targetIndex] || null;
+  }
+
+  function setHint(text){ $("#hintText").text(text); }
+  function setLamp(mode){
+    $("#lamp").removeClass("ok bad");
+    if (mode === "ok") $("#lamp").addClass("ok");
+    if (mode === "bad") $("#lamp").addClass("bad");
+  }
+
+  function updateTopUI(){
     $("#yawVal").text(state.yaw == null ? "—" : Math.round(state.yaw));
     $("#pitchVal").text(state.pitch == null ? "—" : Math.round(state.pitch));
-    $("#targetText").text(`Hedef: ${Math.round(state.targetYaw)}° | Katman: ${state.layerPitch}°`);
 
-    const ok = (state.yaw != null) && (angDiff(state.yaw, state.targetYaw) <= state.tol) &&
-               (state.pitch != null) && (Math.abs(state.pitch - state.layerPitch) <= 12);
-
-    $("#lamp").toggleClass("ok", ok);
-    $("#lamp").toggleClass("bad", state.yaw == null);
-
-    $("#progressText").text(`${state.shots.length} kare`);
+    const t = currentTarget();
+    $("#targetText").text(t ? `${Math.round(t.yaw)}° / ${t.pitch}°` : "—");
+    $("#progressText").text(`${Math.min(state.targetIndex, state.targets.length)}/${state.targets.length}`);
   }
 
-  function nextTarget(){
+  function buildTargets(){
     state.stepYaw = Number($("#stepYaw").val());
     state.tol = Number($("#tol").val());
-    state.layerPitch = Number($("#layer").val());
+    const mode = $("#layers").val();
+    state.pitchTargets = (mode === "triple") ? [0, 30, -30] : [0];
 
-    state.targetYaw = normDeg(state.targetYaw + state.stepYaw);
-    updateUI();
+    state.targets = [];
+    const n = Math.round(360 / state.stepYaw);
+    for (const p of state.pitchTargets){
+      for (let i=0; i<n; i++){
+        state.targets.push({ yaw: normDeg(i * state.stepYaw), pitch: p });
+      }
+    }
+
+    // Sırayı daha “doğal” yap: önce 0° katmanı tamamla, sonra diğerleri
+    state.targetIndex = 0;
+    state.shots = [];
+    state.holdFramesOk = 0;
+
+    renderThumbs();
+    updateTopUI();
+    setHint("Hazır ✅ Hedef daireye getir: Otomatik çekecek.");
   }
 
-  function renderThumbs(){
-    const $t = $("#thumbs").empty();
-    state.shots.forEach((s, i) => {
-      const $el = $(`
-        <div class="thumb" title="Yaw: ${Math.round(s.yaw)} | Pitch: ${Math.round(s.pitch)}">
-          <div class="n">${i+1}</div>
-          <img alt="shot ${i+1}" src="${s.dataUrl}">
-        </div>
-      `);
-      $t.append($el);
-    });
+  function advanceTarget(){
+    state.targetIndex++;
+    state.holdFramesOk = 0;
+    if (state.targetIndex >= state.targets.length){
+      setHint("Bitti ✅ Tüm hedefler tamamlandı. Şimdi kareleri indir veya sunucuya gönder.");
+      setLamp("ok");
+    } else {
+      const t = currentTarget();
+      setHint(`Sıradaki hedef: ${Math.round(t.yaw)}° / ${t.pitch}°`);
+      setLamp(null);
+    }
+    updateTopUI();
   }
 
-  // -------- Camera
+  // ----------------- Camera
   async function startCamera(){
     try{
       const constraints = {
@@ -230,15 +269,22 @@
       const video = document.getElementById("video");
       video.srcObject = stream;
       await video.play();
+      setHint("Kamera açık ✅ Gyro izni verip hedefleri oluştur.");
     } catch(e){
       alert("Kamera açılamadı: " + e.message);
     }
   }
 
-  function stopCamera(){
-    if(state.stream){
-      state.stream.getTracks().forEach(t => t.stop());
-      state.stream = null;
+  async function requestGyroPermissionIfNeeded(){
+    try{
+      if (typeof DeviceOrientationEvent !== "undefined" &&
+          typeof DeviceOrientationEvent.requestPermission === "function") {
+        const res = await DeviceOrientationEvent.requestPermission();
+        if(res !== "granted") throw new Error("İzin verilmedi");
+      }
+      setHint("Gyro hazır ✅ 'Hedefleri Oluştur' deyip çekime başla.");
+    } catch(e){
+      alert("Gyro izni alınamadı: " + e.message);
     }
   }
 
@@ -247,143 +293,170 @@
     const canvas = document.getElementById("canvas");
     const w = video.videoWidth || 1280;
     const h = video.videoHeight || 720;
-    canvas.width = w;
-    canvas.height = h;
 
+    canvas.width = w; canvas.height = h;
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0, w, h);
 
-    // JPG kalite: 0.85
-    const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.88);
+    const t = currentTarget();
 
     state.shots.push({
       dataUrl,
       yaw: state.yaw ?? 0,
       pitch: state.pitch ?? 0,
+      target: t ? { ...t } : null,
       ts: Date.now()
     });
 
+    state.lastShotAt = Date.now();
     renderThumbs();
-    updateUI();
   }
 
-  // -------- Gyro / orientation
-  async function requestGyroPermissionIfNeeded(){
-    // iOS 13+ requires permission call in user gesture
-    try{
-      if (typeof DeviceOrientationEvent !== "undefined" &&
-          typeof DeviceOrientationEvent.requestPermission === "function") {
-        const res = await DeviceOrientationEvent.requestPermission();
-        if(res !== "granted") throw new Error("İzin verilmedi");
-      }
-      alert("Gyro/Orientation hazır ✅ (telefonu çevirince yaw/pitch güncellenecek)");
-    } catch(e){
-      alert("Gyro izni alınamadı: " + e.message);
+  // ----------------- Aim dot mapping (visual)
+  function updateAimDot(){
+    const t = currentTarget();
+    const dot = document.getElementById("aimDot");
+    if(!t || state.yaw == null || state.pitch == null){
+      dot.style.transform = `translate(-50%,-50%)`;
+      return;
     }
+
+    // difference -> pixels mapping inside ring
+    const dxDeg = ((normDeg(state.yaw) - normDeg(t.yaw) + 540) % 360) - 180; // -180..180
+    const dyDeg = (state.pitch - t.pitch); // pitch diff
+
+    // map degrees to px
+    // smaller tol should feel tighter; use tol*10 as ring "radius"
+    const ringRadius = 70; // px (visual)
+    const scaleX = ringRadius / Math.max(1, state.tol * 2.2);
+    const scaleY = ringRadius / Math.max(1, 10); // pitch is noisier; keep stable
+
+    let x = dxDeg * scaleX;
+    let y = dyDeg * scaleY;
+
+    // clamp inside ring area
+    const max = ringRadius;
+    x = Math.max(-max, Math.min(max, x));
+    y = Math.max(-max, Math.min(max, y));
+
+    dot.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
   }
 
-  window.addEventListener("deviceorientation", (ev) => {
-    // alpha: z axis rotation (0..360) ~ yaw
-    // beta: x axis rotation (-180..180) ~ pitch
-    if(ev.alpha == null) return;
-    state.yaw = normDeg(ev.alpha);
-    state.pitch = ev.beta;
-    updateUI();
-  }, true);
+  // ----------------- Auto capture logic
+  function tickAuto(){
+    const t = currentTarget();
+    if(!t || state.targetIndex >= state.targets.length) return;
 
-  // -------- Download single images
+    if(state.yaw == null || state.pitch == null){
+      setLamp("bad");
+      setHint("Gyro verisi yok. iPhone ise 'Gyro İzin' tıkla.");
+      return;
+    }
+
+    const okYaw = angDiff(state.yaw, t.yaw) <= state.tol;
+    const okPitch = Math.abs(state.pitch - t.pitch) <= 10; // pitch tolerans sabit (sensör daha oynak)
+
+    const ok = okYaw && okPitch;
+
+    updateAimDot();
+
+    if(ok){
+      state.holdFramesOk++;
+      setLamp("ok");
+      setHint(`Hedefe geldin ✅ (${state.holdFramesOk}/${state.holdFramesNeed}) Sabit tut...`);
+    } else {
+      state.holdFramesOk = 0;
+      setLamp(null);
+      setHint(`Daire içine getir: ${Math.round(t.yaw)}° / ${t.pitch}°`);
+    }
+
+    const now = Date.now();
+    const cooldownOk = (now - state.lastShotAt) > state.cooldownMs;
+
+    if(state.autoEnabled && ok && cooldownOk && state.holdFramesOk >= state.holdFramesNeed){
+      captureFrame();
+      setHint("Çekildi ✅ Sıradaki hedefe geçiliyor...");
+      advanceTarget();
+    }
+
+    updateTopUI();
+  }
+
+  // ----------------- Thumbs & download
+  function renderThumbs(){
+    const $t = $("#thumbs").empty();
+    state.shots.forEach((s, i) => {
+      const title = s.target ? `Target ${Math.round(s.target.yaw)}/${s.target.pitch}` : "shot";
+      const $el = $(`
+        <div class="thumb" title="${title}">
+          <div class="n">${i+1}</div>
+          <img alt="shot ${i+1}" src="${s.dataUrl}">
+        </div>
+      `);
+      $t.append($el);
+    });
+    $("#progressText").text(`${Math.min(state.targetIndex, state.targets.length)}/${state.targets.length}`);
+  }
+
   function downloadAll(){
     if(!state.shots.length){ alert("İndirilecek kare yok."); return; }
     state.shots.forEach((s, idx) => {
       const a = document.createElement("a");
       a.href = s.dataUrl;
-      a.download = `shot_${String(idx+1).padStart(2,"0")}_yaw${Math.round(s.yaw)}_pitch${Math.round(s.pitch)}.jpg`;
+      const ty = s.target ? `T${Math.round(s.target.yaw)}_${s.target.pitch}` : "T";
+      a.download = `shot_${String(idx+1).padStart(3,"0")}_${ty}_yaw${Math.round(s.yaw)}_pitch${Math.round(s.pitch)}.jpg`;
       document.body.appendChild(a);
       a.click();
       a.remove();
     });
   }
 
-  // -------- Upload stub (you will implement backend)
-  async function uploadToServer(){
-    if(!state.shots.length){ alert("Gönderilecek kare yok."); return; }
+  // ----------------- Orientation input
+  window.addEventListener("deviceorientation", (ev) => {
+    if(ev.alpha == null) return;
+    state.yaw = normDeg(ev.alpha);
+    state.pitch = ev.beta; // -180..180
+  }, true);
 
-    // MVP: JSON (base64) göndermek ağır olabilir.
-    // Daha iyisi: dataURL'leri Blob yapıp FormData ile göndermek.
-    const fd = new FormData();
-    state.shots.forEach((s, idx) => {
-      const blob = dataURLtoBlob(s.dataUrl);
-      fd.append("images", blob, `shot_${idx+1}.jpg`);
-      fd.append("meta", JSON.stringify({index: idx+1, yaw: s.yaw, pitch: s.pitch, ts: s.ts}));
-    });
-
-    // TODO: kendi endpoint’in
-    const endpoint = "/api/stitch"; // örnek
-
-    try{
-      $("#btnUpload").prop("disabled", true).text("Gönderiliyor...");
-      const res = await fetch(endpoint, { method: "POST", body: fd });
-      if(!res.ok) throw new Error("Sunucu hata: " + res.status);
-
-      // Sunucu tek panorama döndü diyelim:
-      // const blob = await res.blob();
-      // const url = URL.createObjectURL(blob);
-      // window.open(url, "_blank");
-
-      alert("Gönderildi ✅ (backend endpoint’ini bağlaman gerekiyor)");
-    } catch(e){
-      alert("Upload başarısız: " + e.message + "\nNot: /api/stitch endpoint’i sende olmalı.");
-    } finally{
-      $("#btnUpload").prop("disabled", false).text("Sunucuya Gönder");
-    }
-  }
-
-  function dataURLtoBlob(dataUrl){
-    const parts = dataUrl.split(",");
-    const mime = parts[0].match(/:(.*?);/)[1];
-    const bstr = atob(parts[1]);
-    let n = bstr.length;
-    const u8 = new Uint8Array(n);
-    while(n--) u8[n] = bstr.charCodeAt(n);
-    return new Blob([u8], {type: mime});
-  }
-
-  // -------- Events
+  // ----------------- Events
   $(function(){
-    updateUI();
+    updateTopUI();
+    setHint("Kamera + Gyro izni ver, sonra hedefleri oluştur.");
 
     $("#btnStart").on("click", startCamera);
     $("#btnGyro").on("click", requestGyroPermissionIfNeeded);
 
-    $("#btnCapture").on("click", () => {
-      // hedefe yakın değilse yine de çeksin ama uyarı verelim
-      const okYaw = (state.yaw != null) && (angDiff(state.yaw, state.targetYaw) <= state.tol);
-      if(!okYaw){
-        const go = confirm("Hedef açıya tam yakın değilsin. Yine de çekilsin mi?");
-        if(!go) return;
-      }
-      captureFrame();
+    $("#btnBuild").on("click", () => {
+      buildTargets();
+      updateTopUI();
     });
 
-    $("#btnNextTarget").on("click", nextTarget);
-
-    $("#btnClear").on("click", () => {
-      if(!confirm("Tüm çekimleri silmek istiyor musun?")) return;
+    $("#btnReset").on("click", () => {
+      if(!confirm("Hedefler ve çekimler sıfırlansın mı?")) return;
+      state.targets = [];
+      state.targetIndex = 0;
       state.shots = [];
-      state.targetYaw = 0;
+      state.holdFramesOk = 0;
       renderThumbs();
-      updateUI();
+      updateTopUI();
+      setHint("Sıfırlandı. 'Hedefleri Oluştur' ile tekrar başla.");
+    });
+
+    $("#btnSkip").on("click", () => {
+      if(!state.targets.length) return;
+      advanceTarget();
     });
 
     $("#btnDownload").on("click", downloadAll);
-    $("#btnUpload").on("click", uploadToServer);
 
-    $("#stepYaw, #tol, #layer").on("change input", () => {
-      state.stepYaw = Number($("#stepYaw").val());
-      state.tol = Number($("#tol").val());
-      state.layerPitch = Number($("#layer").val());
-      updateUI();
+    $("#stepYaw, #tol, #layers").on("change input", () => {
+      // kullanıcı ayar değiştirince sadece uyar
+      setHint("Ayar değişti. 'Hedefleri Oluştur' ile yeniden başlatman iyi olur.");
     });
+
+    // Auto loop
+    setInterval(tickAuto, 60); // ~16fps
   });
 </script>
 </body>
