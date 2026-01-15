@@ -1,0 +1,223 @@
+/* PAGE HERO */
+.page-hero {
+    background: linear-gradient(180deg, rgba(55, 66, 97, .25), rgba(55, 66, 97, .45)),
+        url("../img/dis-hekimligi.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 310px 0 90px;
+    color: #fff;
+}
+
+.page-kicker {
+    font-weight: 900;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    opacity: .9;
+}
+
+.page-title {
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 900;
+}
+
+.page-subtitle {
+    max-width: 520px;
+    opacity: .9;
+}
+
+/* SERVICES */
+.service-detail {
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(55, 66, 97, .15);
+}
+
+.service-detail h2 {
+    font-weight: 900;
+    color: #0f172a;
+}
+
+.service-detail p {
+    color: #334155;
+    line-height: 1.7;
+}
+
+.service-detail ul {
+    padding-left: 18px;
+    color: #334155;
+}
+
+.service-image {
+    height: 320px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(55, 66, 97, .15), rgba(55, 66, 97, .05));
+}
+
+/* BUTTONS */
+.btn-primary-service {
+    background: #374261;
+    color: #fff;
+    font-weight: 900;
+    border-radius: 14px;
+    padding: .6rem 1.1rem;
+    border: none;
+}
+
+.btn-cta-large {
+    background: #374261;
+    color: #fff;
+    font-weight: 900;
+    border-radius: 18px;
+    padding: .9rem 1.6rem;
+    border: none;
+}
+
+/* CTA */
+.services-page-cta {
+    background: rgba(55, 66, 97, .06);
+    border: 1px solid rgba(55, 66, 97, .18);
+    border-radius: 26px;
+    padding: 40px 20px;
+}
+
+/* Logo placeholder (istersen resim koy) */
+.brand-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .18);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: var(--header-text);
+    flex: 0 0 auto;
+}
+
+.brand-text {
+    line-height: 1.1;
+}
+
+.brand-text strong {
+    display: block;
+    font-size: 14px;
+    letter-spacing: .2px;
+}
+
+.brand-text small {
+    display: block;
+    font-size: 12px;
+    color: var(--header-muted);
+    margin-top: 2px;
+}
+
+/* Nav links */
+.dent-navbar .nav-link {
+    color: var(--header-muted) !important;
+    font-weight: 500;
+    padding: .6rem .75rem;
+    border-radius: 12px;
+    transition: 150ms ease;
+}
+
+.dent-navbar .nav-link:hover,
+.dent-navbar .nav-link:focus {
+    color: var(--header-text) !important;
+    background: rgba(255, 255, 255, .10);
+}
+
+.dent-navbar .nav-link.active {
+    color: var(--header-text) !important;
+    background: rgba(255, 255, 255, .14);
+}
+
+/* Toggler */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, .25) !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .15);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+    opacity: .9;
+}
+
+/* CTA */
+.btn-randevu {
+    background: var(--cta);
+    color: var(--cta-text);
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 14px;
+    padding: .55rem .9rem;
+    font-weight: 700;
+    transition: 150ms ease;
+    white-space: nowrap;
+}
+
+.btn-randevu:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+/* Mobile spacing */
+@media (max-width: 991.98px) {
+    .dent-navbar .navbar-collapse {
+        padding-top: .75rem;
+    }
+
+    .dent-navbar .nav-link {
+        padding: .7rem .75rem;
+    }
+
+    .btn-randevu {
+        width: 100%;
+        justify-content: center;
+        margin-top: .4rem;
+    }
+}
+
+:root {
+    --heroText: #ffffff;
+    --heroMuted: rgba(255, 255, 255, .82);
+}.dent-navbar .nav-link{
+  font-weight: 700;
+}
+
+.dent-navbar .nav-link.active{
+  color: #374261 !important;
+  font-weight: 900;
+  position: relative;
+}
+
+.dent-navbar .nav-link.active::after{
+  content:"";
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -8px;
+  height: 2px;
+  background: #374261;
+  border-radius: 99px;
+  opacity: .9;
+}
+.service-image{
+  height: 320px;              /* sende zaten vardı, kalsın */
+  border-radius: 22px;
+  overflow: hidden;           /* taşmayı engeller */
+  background: rgba(55,66,97,.06);
+  border: 1px solid rgba(55,66,97,.18);
+}
+
+.service-image img{
+  width: 100%;
+  height: 100%;
+  display: block;             /* alt boşluğu alır */
+  object-fit: cover;          /* kırpar ama taşmaz */
+  object-position: center;
+}
+@media (max-width: 576px){
+  .service-image{ height: 220px; }
+}
+

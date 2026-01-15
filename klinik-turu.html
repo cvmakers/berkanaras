@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>360° Klinik Turu | Berkan Aras Diş Hekimliği</title>
+  <meta name="description" content="Klinik ortamını 360° sanal tur ve fotoğraf galeri ile keşfedin. Konfor, hijyen ve modern yaklaşımımızı yakından inceleyin.">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Pannellum -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+
+  <!-- Ortak CSS'in varsa -->
+  <link rel="stylesheet" href="css/index.css">
+
+  <style>
+    /* ===== PAGE THEME ===== */
+    :root{
+      --brand:#374261;
+      --ink:#0f172a;
+      --muted:#334155;
+      --card: rgba(255,255,255,.78);
+      --line: rgba(55,66,97,.18);
+      --soft: rgba(55,66,97,.06);
+    }
+
+    body{ background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%); }
+
+    /* ===== HERO ===== */
+    .tour-hero{
+      position: relative;
+      padding: 64px 0 34px;
+      overflow:hidden;
+    }
+    .tour-hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(900px 320px at 18% 0%, rgba(55,66,97,.22), transparent 60%),
+        radial-gradient(700px 260px at 85% 15%, rgba(55,66,97,.14), transparent 62%);
+      pointer-events:none;
+    }
+    .tour-hero .container{ position: relative; z-index:2; }
+
+    .kicker{
+      display:inline-block;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      color: var(--brand);
+      background: rgba(55,66,97,.10);
+      border: 1px solid rgba(55,66,97,.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+    .hero-title{
+      color: var(--ink);
+      font-weight: 950;
+      letter-spacing:.2px;
+      font-size: clamp(30px, 4.2vw, 46px);
+      margin: 10px 0 10px;
+    }
+    .hero-sub{
+      color: var(--muted);
+      line-height:1.7;
+      max-width: 840px;
+      margin: 0;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .btn-primary-soft{
+      background: var(--brand);
+      color:#fff;
+      border-radius: 14px;
+      font-weight: 900;
+      padding: .72rem 1.05rem;
+      border: 1px solid rgba(55,66,97,.25);
+    }
+    .btn-outline-soft{
+      background:#fff;
+      color: var(--brand);
+      border-radius: 14px;
+      font-weight: 900;
+      padding: .72rem 1.05rem;
+      border: 1px solid rgba(55,66,97,.25);
+    }
+
+    .hero-badges{
+      display:flex; gap: 10px; flex-wrap: wrap;
+      list-style:none; padding:0; margin: 16px 0 0;
+    }
+    .hero-badges li{
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(15,23,42,.92);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(55,66,97,.18);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title{
+      font-weight: 950;
+      color: var(--ink);
+      letter-spacing:.2px;
+      margin: 8px 0 6px;
+    }
+    .section-sub{
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 760px;
+    }
+
+    /* ===== 360 VIEWER ===== */
+    .tour-view-wrap{
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #0b1020;
+      box-shadow: 0 18px 45px rgba(0,0,0,.10);
+    }
+    .tour-viewer{
+      width:100%;
+      height: 560px;
+    }
+    .tour-loading{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,.92);
+      background: rgba(10,12,16,.55);
+      backdrop-filter: blur(10px);
+      font-weight: 900;
+      letter-spacing:.2px;
+      z-index: 2;
+    }
+    .tour-tools{
+      position:absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      z-index: 3;
+    }
+    .tool-pill{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(55,66,97,.18);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      color: var(--brand);
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tool-pill:hover{ filter: brightness(1.02); }
+
+    .tour-side{
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 18px;
+      height: 100%;
+    }
+    .tour-side .mini{
+      color: rgba(51,65,85,.80);
+      font-size: 13px;
+      line-height:1.55;
+    }
+    .tour-tips{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .tour-hr{ border-color: var(--line); margin: 14px 0; }
+
+    /* ===== PHOTO SHOWCASE: DRAGGABLE STRIP ===== */
+    .gallery-card{
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+    .gallery-head{
+      padding: 18px;
+      border-bottom: 1px solid rgba(55,66,97,.14);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .gallery-hint{
+      font-size: 13px;
+      color: rgba(51,65,85,.78);
+      margin:0;
+    }
+
+    .drag-strip{
+      display:flex;
+      gap: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      user-select: none;
+    }
+    .drag-strip:active{ cursor: grabbing; }
+
+    .shot{
+      flex: 0 0 auto;
+      width: 320px;
+      height: 220px;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(55,66,97,.18);
+      background: rgba(55,66,97,.06);
+      scroll-snap-align: start;
+      position: relative;
+    }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transition: transform .25s ease;
+    }
+    .shot:hover img{ transform: scale(1.03); }
+
+    .shot .cap{
+      position:absolute;
+      left: 10px; right: 10px; bottom: 10px;
+      background: rgba(10,12,16,.55);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding: 8px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ===== FEATURES ===== */
+    .feature-card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      height: 100%;
+      transition: 180ms ease;
+    }
+    .feature-card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.10);
+    }
+    .feature-ico{
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: rgba(55,66,97,.10);
+      border: 1px solid rgba(55,66,97,.18);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .feature-title{ font-weight: 950; color: var(--ink); margin: 0 0 6px; }
+    .feature-desc{ margin:0; color: var(--muted); line-height:1.65; font-size: 14px; }
+
+    /* ===== EXPERIENCE STEPS ===== */
+    .steps{
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 18px;
+    }
+    .step{
+      display:flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(55,66,97,.14);
+    }
+    .step:last-child{ border-bottom: 0; }
+    .step-num{
+      width: 36px; height: 36px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(55,66,97,.18);
+      font-weight: 950;
+      color: var(--brand);
+      flex: 0 0 auto;
+    }
+    .step h3{ margin: 0 0 4px; font-weight: 950; color: var(--ink); font-size: 16px; }
+    .step p{ margin:0; color: var(--muted); line-height:1.65; font-size: 14px; }
+
+    /* ===== CTA BAND ===== */
+    .cta-band{
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(10px);
+      padding: 22px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cta-band h3{
+      margin:0;
+      font-weight: 950;
+      color: var(--ink);
+      letter-spacing:.2px;
+    }
+    .cta-band p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height:1.6;
+    }
+
+    /* ===== FOOTER (mini) ===== */
+    .site-footer{ background:#374261; color: rgba(255,255,255,.85); padding: 22px 0; margin-top: 22px; }
+    .footer-bottom{ display:flex; justify-content: space-between; align-items:center; flex-wrap:wrap; gap: 10px; }
+    .footer-copy{ font-size: 12px; font-weight: 700; }
+    .footer-legal{ display:flex; gap: 10px; align-items:center; }
+    .footer-legal-link{ color: rgba(255,255,255,.78); text-decoration:none; font-size: 12px; font-weight: 800; }
+    .footer-legal-link:hover{ color:#fff; text-decoration: underline; }
+    .footer-dot{ opacity: .6; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 576px){
+      .tour-viewer{ height: 360px; }
+      .shot{ width: 260px; height: 190px; }
+      .footer-bottom{ flex-direction: column; align-items:flex-start; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER (çok sayfalı menü) ===== -->
+<header class="dent-header" id="top">
+  <nav class="navbar navbar-expand-lg dent-navbar">
+    <div class="container">
+
+      <a class="navbar-brand" href="index.html">
+        <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png"
+             alt="Berkan Aras Diş Hekimliği"
+             width="100" height="50">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+          <li class="nav-item"><a class="nav-link" href="klinik-turu.html">360° Klinik Turu</a></li>
+          <li class="nav-item"><a class="nav-link" href="neden-biz.html">Neden Biz</a></li>
+          <li class="nav-item"><a class="nav-link" href="sss.html">SSS</a></li>
+          <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a class="btn btn-primary-soft" href="randevu.html">Randevu Al</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="tour-hero">
+  <div class="container">
+    <span class="kicker">Klinik Tanıtım</span>
+    <h1 class="hero-title">360° Klinik Turu + Görsel Sunum</h1>
+    <p class="hero-sub">
+      Kliniğimizin atmosferini gelmeden önce keşfedin: 360° sanal tur ile ortamı gezebilir,
+      fotoğraf sunum alanında bölümleri inceleyebilirsiniz. Konfor, hijyen ve modern yaklaşımımızı öne çıkarıyoruz.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary-soft" href="#viewer360">360° Turu Başlat</a>
+      <a class="btn btn-outline-soft" href="#galeri">Fotoğraf Sunumu</a>
+      <a class="btn btn-outline-soft" href="iletisim.html">Konum / Yol Tarifi</a>
+    </div>
+
+    <ul class="hero-badges" aria-label="Öne çıkanlar">
+      <li>Modern Klinik</li>
+      <li>Hijyen & Sterilizasyon</li>
+      <li>Konforlu Bekleme Alanı</li>
+      <li>Şeffaf Süreç</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 360 SECTION ===== -->
+<section id="viewer360" class="py-5">
+  <div class="container">
+    <span class="kicker">360° Klinik Turu</span>
+    <h2 class="section-title">Kliniği 360° Gez</h2>
+    <p class="section-sub">
+      Fareyle sürükle / mobilde parmakla çevir. Mouse tekeriyle yakınlaştır. Tam ekran ile daha rahat gezebilirsin.
+    </p>
+
+    <div class="row g-4 align-items-stretch mt-2">
+      <div class="col-lg-8 d-flex">
+        <div class="tour-view-wrap w-100">
+          <div id="panorama360" class="tour-viewer" aria-label="360 Klinik Turu"></div>
+          <div class="tour-loading" id="tourLoading">360° tur yükleniyor…</div>
+
+          <!-- küçük araçlar -->
+          <div class="tour-tools" aria-label="Tur araçları">
+            <div class="tool-pill" id="btnFullscreen">⛶ Tam Ekran</div>
+            <div class="tool-pill" id="btnReset">↺ Sıfırla</div>
+            <div class="tool-pill" id="btnZoomOut">− Uzaklaş</div>
+            <div class="tool-pill" id="btnZoomIn">+ Yakınlaş</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 d-flex">
+        <aside class="tour-side w-100">
+          <h3 class="h5 mb-2" style="font-weight:950; color:var(--ink);">Bu Turda Neler Var?</h3>
+          <p class="mini mb-2">
+            Karşılama alanı, bekleme bölümü ve klinik düzeni hakkında hızlı bir fikir edin.
+          </p>
+
+          <ul class="tour-tips">
+            <li><strong>Sürükle:</strong> Sağa/sola çevir</li>
+            <li><strong>Yakınlaştır:</strong> Mouse tekeri / pinch</li>
+            <li><strong>Detay:</strong> Aydınlatma, düzen, temizlik</li>
+          </ul>
+
+          <hr class="tour-hr">
+
+          <div class="cta-band">
+            <div>
+              <h3 class="h6">Hızlı Randevu</h3>
+              <p class="mini mb-0">Uygun saatleri birlikte planlayalım.</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+              <a class="btn btn-primary-soft" href="randevu.html">Randevu Al</a>
+              <a class="btn btn-outline-soft" href="iletisim.html">İletişim</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHOTO SHOWCASE ===== -->
+<section id="galeri" class="pb-5">
+  <div class="container">
+    <span class="kicker">Fotoğraf Sunumu</span>
+    <h2 class="section-title">Klinikten Kareler</h2>
+    <p class="section-sub">
+      Bu alan sadece fotoğraflar için: sürükleyerek yatay şekilde gezebilir, bölümleri hızlıca inceleyebilirsin.
+    </p>
+
+    <div class="gallery-card mt-3">
+      <div class="gallery-head">
+        <div>
+          <div style="font-weight:950; color:var(--ink);">Sürükle & Gezin</div>
+          <p class="gallery-hint">Masaüstü: tıkla-sürükle • Mobil: kaydır</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-outline-soft" type="button" id="scrollLeft">←</button>
+          <button class="btn btn-outline-soft" type="button" id="scrollRight">→</button>
+        </div>
+      </div>
+
+      <div class="drag-strip" id="dragStrip" aria-label="Klinik fotoğraf şeridi">
+        <!-- ✅ Buradaki img’leri kendi fotoğraflarınla değiştir -->
+        <div class="shot">
+          <img src="img/klinik-1.jpg" alt="Karşılama Alanı" loading="lazy">
+          <div class="cap">Karşılama</div>
+        </div>
+        <div class="shot">
+          <img src="img/klinik-2.jpg" alt="Bekleme Alanı" loading="lazy">
+          <div class="cap">Bekleme Alanı</div>
+        </div>
+        <div class="shot">
+          <img src="img/klinik-3.jpg" alt="Tedavi Odası" loading="lazy">
+          <div class="cap">Tedavi Odası</div>
+        </div>
+        <div class="shot">
+          <img src="img/klinik-4.jpg" alt="Sterilizasyon / Hijyen" loading="lazy">
+          <div class="cap">Sterilizasyon</div>
+        </div>
+        <div class="shot">
+          <img src="img/klinik-5.jpg" alt="Klinik Detay" loading="lazy">
+          <div class="cap">Detay</div>
+        </div>
+        <div class="shot">
+          <img src="img/klinik-6.jpg" alt="Genel Görünüm" loading="lazy">
+          <div class="cap">Genel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="pb-5">
+  <div class="container">
+    <span class="kicker">Klinik Standartları</span>
+    <h2 class="section-title">Neyi Farklı Yapıyoruz?</h2>
+    <p class="section-sub">
+      Kliniğimizde konfor, hijyen ve modern yaklaşımı bir araya getiriyoruz. Bu bölüm, güven inşası için çok güçlüdür.
+    </p>
+
+    <div class="row g-4 mt-2">
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-ico">🧼</div>
+          <div class="feature-title">Hijyen</div>
+          <p class="feature-desc">Sterilizasyon protokolleri ve düzenli dezenfeksiyon ile güvenli ortam.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-ico">🦷</div>
+          <div class="feature-title">Modern Yaklaşım</div>
+          <p class="feature-desc">Planlı tedavi, doğru bilgilendirme ve güncel yöntemlerle süreç yönetimi.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-ico">🪑</div>
+          <div class="feature-title">Konfor</div>
+          <p class="feature-desc">Bekleme alanı, düzen ve hasta deneyimi odaklı klinik tasarım.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-ico">🧾</div>
+          <div class="feature-title">Şeffaf Süreç</div>
+          <p class="feature-desc">Tedavi planı, süre ve seçenekler net biçimde paylaşılır.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE STEPS ===== -->
+<section class="pb-5">
+  <div class="container">
+    <span class="kicker">Klinik Deneyimi</span>
+    <h2 class="section-title">Kliniğe Geldiğinizde Nasıl İlerler?</h2>
+    <p class="section-sub">Ziyaretinizin akışını önceden bilmek, güven ve konfor sağlar.</p>
+
+    <div class="steps mt-3">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Karşılama</h3>
+          <p>Güler yüzlü karşılama ve kısa ön bilgilendirme ile başlar.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Muayene & Değerlendirme</h3>
+          <p>İhtiyaca göre muayene ve süreç planlaması yapılır.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Tedavi Planı</h3>
+          <p>Alternatifler, süre ve plan net biçimde anlatılır.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Takip & Destek</h3>
+          <p>İşlem sonrası yönlendirme ve gerekli durumlarda hızlı iletişim.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band mt-4">
+      <div>
+        <h3>Kliniği gezdiniz, şimdi bir adım daha</h3>
+        <p>Size uygun zamanı seçelim. Randevu için hızlıca ilerleyin.</p>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <a class="btn btn-primary-soft" href="randevu.html">Randevu Al</a>
+        <a class="btn btn-outline-soft" href="iletisim.html">İletişim</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © <span id="footerYear"></span> Berkan Aras Diş Hekimliği. Tüm hakları saklıdır.
+      </div>
+      <div class="footer-legal">
+        <a href="#" class="footer-legal-link">KVKK</a>
+        <span class="footer-dot">•</span>
+        <a href="#" class="footer-legal-link">Gizlilik</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Pannellum -->
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+<script>
+  // Footer year
+  (function(){
+    const el = document.getElementById('footerYear');
+    if(el) el.textContent = new Date().getFullYear();
+  })();
+
+  // Active menu
+  (function(){
+    const links = document.querySelectorAll('.navbar-nav .nav-link');
+    const path = location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a=>{
+      const cleanHref = (a.getAttribute('href') || '').split('#')[0];
+      if(cleanHref === path){
+        a.classList.add('active');
+        a.setAttribute('aria-current','page');
+      }
+    });
+  })();
+
+  // 360 init
+  (function(){
+    // ✅ Burayı kendi 2:1 360 fotoğrafınla değiştir
+    const PANORAMA_IMAGE_URL = "img/2025-06-30.webp";
+
+    const loading = document.getElementById('tourLoading');
+    let viewer;
+
+    function showLoading(msg){
+      if(!loading) return;
+      loading.style.display = 'flex';
+      if(msg) loading.textContent = msg;
+    }
+    function hideLoading(){
+      if(!loading) return;
+      loading.style.display = 'none';
+    }
+
+    try{
+      viewer = pannellum.viewer('panorama360', {
+        type: 'equirectangular',
+        panorama: PANORAMA_IMAGE_URL,
+        autoLoad: true,
+        showControls: true,
+        showFullscreenCtrl: true,
+        hfov: 120,
+        minHfov: 70,
+        maxHfov: 130
+      });
+
+      viewer.on('load', hideLoading);
+      viewer.on('error', function(){
+        showLoading("360° görüntü yüklenemedi. Fotoğraf yolu/formatını kontrol edin.");
+      });
+    }catch(e){
+      showLoading("360° tur başlatılamadı. Fotoğraf 2:1 (equirectangular) olmalı.");
+    }
+
+    // Tools
+    const btnFs = document.getElementById('btnFullscreen');
+    const btnReset = document.getElementById('btnReset');
+    const btnIn = document.getElementById('btnZoomIn');
+    const btnOut = document.getElementById('btnZoomOut');
+
+    btnFs && btnFs.addEventListener('click', ()=>{
+      const internal = document.querySelector('#panorama360 .pnlm-fullscreen-toggle-button');
+      internal && internal.click();
+    });
+
+    btnReset && btnReset.addEventListener('click', ()=>{
+      if(!viewer) return;
+      viewer.setYaw(0); viewer.setPitch(0); viewer.setHfov(120);
+    });
+
+    btnIn && btnIn.addEventListener('click', ()=>{
+      if(!viewer) return;
+      const hf = viewer.getHfov();
+      viewer.setHfov(Math.max(70, hf - 8));
+    });
+
+    btnOut && btnOut.addEventListener('click', ()=>{
+      if(!viewer) return;
+      const hf = viewer.getHfov();
+      viewer.setHfov(Math.min(130, hf + 8));
+    });
+  })();
+
+  // Draggable photo strip (drag-to-scroll)
+  (function(){
+    const strip = document.getElementById('dragStrip');
+    if(!strip) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    strip.addEventListener('mousedown', (e)=>{
+      isDown = true;
+      strip.classList.add('dragging');
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', ()=>{
+      isDown = false;
+      strip.classList.remove('dragging');
+    });
+
+    strip.addEventListener('mouseleave', ()=>{
+      isDown = false;
+      strip.classList.remove('dragging');
+    });
+
+    strip.addEventListener('mousemove', (e)=>{
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - strip.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      strip.scrollLeft = scrollLeft - walk;
+    });
+
+    // Buttons
+    const left = document.getElementById('scrollLeft');
+    const right = document.getElementById('scrollRight');
+    left && left.addEventListener('click', ()=> strip.scrollBy({ left: -420, behavior:'smooth' }));
+    right && right.addEventListener('click', ()=> strip.scrollBy({ left: 420, behavior:'smooth' }));
+  })();
+</script>
+
+</body>
+</html>

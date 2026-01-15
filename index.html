@@ -1,2534 +1,1139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <!-- ===== HEADER START ===== -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-<style>
-  :root{
-    --header-bg:#374261;
-    --header-text:#ffffff;
-    --header-muted:rgba(255,255,255,.75);
-    --header-border:rgba(255,255,255,.12);
-    --cta:#ffffff;
-    --cta-text:#374261;
-  }
-
-  /* Header base */
-  .dent-header{
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--header-border);
-    position: sticky;
-    top: 0;
-    z-index: 1030; /* bootstrap navbar z-index */
-  }
-
-  .dent-navbar .navbar-brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color: var(--header-text) !important;
-    text-decoration:none;
-  }
-
-  /* Logo placeholder (istersen resim koy) */
-  .brand-logo{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background: rgba(255,255,255,.14);
-    border: 1px solid rgba(255,255,255,.18);
-    display:grid;
-    place-items:center;
-    font-weight:700;
-    color: var(--header-text);
-    flex: 0 0 auto;
-  }
-
-  .brand-text{
-    line-height: 1.1;
-  }
-  .brand-text strong{
-    display:block;
-    font-size: 14px;
-    letter-spacing:.2px;
-  }
-  .brand-text small{
-    display:block;
-    font-size: 12px;
-    color: var(--header-muted);
-    margin-top: 2px;
-  }
-
-  /* Nav links */
-  .dent-navbar .nav-link{
-    color: var(--header-muted) !important;
-    font-weight: 500;
-    padding: .6rem .75rem;
-    border-radius: 12px;
-    transition: 150ms ease;
-  }
-  .dent-navbar .nav-link:hover,
-  .dent-navbar .nav-link:focus{
-    color: var(--header-text) !important;
-    background: rgba(255,255,255,.10);
-  }
-  .dent-navbar .nav-link.active{
-    color: var(--header-text) !important;
-    background: rgba(255,255,255,.14);
-  }
-
-  /* Toggler */
-  .navbar-toggler{
-    border-color: rgba(255,255,255,.25) !important;
-  }
-  .navbar-toggler:focus{
-    box-shadow: 0 0 0 .2rem rgba(255,255,255,.15);
-  }
-  .navbar-toggler-icon{
-    filter: invert(1);
-    opacity: .9;
-  }
-
-  /* CTA */
-  .btn-randevu{
-    background: var(--cta);
-    color: var(--cta-text);
-    border: 1px solid rgba(255,255,255,.35);
-    border-radius: 14px;
-    padding: .55rem .9rem;
-    font-weight: 700;
-    transition: 150ms ease;
-    white-space: nowrap;
-  }
-  .btn-randevu:hover{
-    transform: translateY(-1px);
-    filter: brightness(1.03);
-  }
-
-  /* Mobile spacing */
-  @media (max-width: 991.98px){
-    .dent-navbar .navbar-collapse{
-      padding-top: .75rem;
-    }
-    .dent-navbar .nav-link{
-      padding: .7rem .75rem;
-    }
-    .btn-randevu{
-      width: 100%;
-      justify-content: center;
-      margin-top: .4rem;
-    }
-  }
-    :root{
-    --heroText:#ffffff;
-    --heroMuted:rgba(255,255,255,.82);
-  }
-/* Yatay taşmayı tamamen engelle */
-html, body{
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Hero ve media katmanı taşmasın */
-.hero{
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-media,
-.hero-fallback{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Videolar viewport dışına taşmasın */
-.hero-video,
-.hero-video-fallback{
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 100% !important;
-  object-fit: cover;
-}
-
-/* iOS/Safari bazen video’yu min-width ile taşır, bunu kilitle */
-.hero-video,
-.hero-video-fallback{
-  min-width: 0 !important;
-}
-
-/* Mobilde ekstra güvenlik */
-@media (max-width: 768px){
-  .hero-media{ left: 0; right: 0; }
-}
-
-  .hero{
-    position: relative;
-    min-height: clamp(620px, 100vh, 760px);
-    display: grid;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .hero-media{
-    position:absolute;
-    inset:0;
-  }
-
-  .hero-video{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    transform: scale(1.02);
-    filter: saturate(1.05) contrast(1.02);
-  }
-
-  .hero-fallback{
-    position:absolute;
-    inset:0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 220ms ease;
-  }
-
-  .hero-overlay{
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(900px 500px at 20% 35%, rgba(124,92,255,.28), transparent 55%),
-      radial-gradient(800px 520px at 80% 45%, rgba(50,212,255,.18), transparent 60%),
-      linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.62));
-    pointer-events:none;
-  }
-
-  .hero-content{
-    position: relative;
-    z-index: 2;
-    padding: 44px 0;
-  }
-
-  .hero-card{
-    width: min(620px, 92vw);
-    background: rgba(10,12,16,.42);
-    border: 1px solid rgba(255,255,255,.14);
-    border-radius: 22px;
-    padding: 22px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 16px 50px rgba(0,0,0,.35);
-  }
-
-  .hero-kicker{
-    margin: 0 0 8px;
-    color: rgba(255,255,255,.78);
-    font-weight: 600;
-    letter-spacing: .3px;
-    font-size: 13px;
-  }
-
-  .hero-title{
-    margin: 0 0 10px;
-    color: var(--heroText);
-    font-size: clamp(26px, 4vw, 40px);
-    line-height: 1.1;
-    letter-spacing: .2px;
-  }
-
-  .hero-subtitle{
-    margin: 0 0 16px;
-    color: var(--heroMuted);
-    font-size: 15px;
-    line-height: 1.55;
-  }
-
-  .hero-actions{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items:center;
-    margin-bottom: 14px;
-  }
-
-  .btn-randevu-hero{
-    background: #ffffff;
-    color: #374261;
-    border: 1px solid rgba(255,255,255,.35);
-    border-radius: 14px;
-    padding: .6rem 1rem;
-    font-weight: 800;
-    text-decoration: none;
-    transition: 160ms ease;
-  }
-  .btn-randevu-hero:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-
-  .btn-hero-outline{
-    color:#ffffff;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 14px;
-    padding: .6rem 1rem;
-    font-weight: 700;
-    text-decoration:none;
-    transition: 160ms ease;
-  }
-  .btn-hero-outline:hover{ background: rgba(255,255,255,.12); }
-.appointment-section{
-  background:
-    radial-gradient(600px 200px at 20% 0%, rgba(55,66,97,.18), transparent 60%),
-    linear-gradient(180deg, #f1f5f9, #e5e7eb);
-}
-
-
-  .appt-kicker{
-    display:inline-block;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    color: #374261;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    padding: 6px 10px;
-    border-radius: 999px;
-  }
-
-  .appt-title{ color:#0f172a; }
-  .appt-subtitle{
-    color:#334155;
-    max-width: 720px;
-    line-height: 1.65;
-    margin-bottom: 0;
-  }
-
-  .appt-info{
-    border-radius: 22px;
-    padding: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(55,66,97,.06);
-  }
-  .appt-item{
-    display:flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 10px 0;
-  }
-  .appt-label{
-    font-size: 12px;
-    color: rgba(51,65,85,.70);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-  }
-  .appt-value{
-    color:#0f172a;
-    text-decoration:none;
-    font-weight: 800;
-  }
-  .appt-value:hover{ text-decoration: underline; }
-
-  .appt-hr{ border-color: rgba(55,66,97,.18); margin: 14px 0; }
-
-  .appt-bullets{
-    padding-left: 18px;
-    color:#334155;
-    line-height: 1.6;
-    margin: 0;
-  }
-.why-section{
-    background: linear-gradient(180deg, rgba(55,66,97,.04), rgba(55,66,97,.08));
-  }
-
-  .why-kicker{
-    display:inline-block;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    color: #374261;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  .why-title{
-    color:#0f172a;
-    letter-spacing:.2px;
-  }
-
-  .why-subtitle{
-    max-width: 720px;
-    color:#334155;
-    line-height:1.65;
-  }
-
-  .why-card{
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(55,66,97,.18);
-    border-radius: 22px;
-    padding: 22px;
-    height: 100%;
-    transition: 180ms ease;
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: transform, opacity;
-  }
-
-  .why-card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 18px 45px rgba(0,0,0,.10);
-  }
-
-  .why-icon{
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    display:grid;
-    place-items:center;
-    font-size: 20px;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.20);
-    margin-bottom: 12px;
-  }
-
-  .why-name{
-    font-size: 18px;
-    margin-bottom: 8px;
-    color:#0f172a;
-  }
-
-  .why-desc{
-    font-size: 14px;
-    color:#334155;
-    line-height:1.6;
-    margin-bottom: 0;
-  }
-
-  /* Animasyon yönleri */
-  .why-card.from-left{ transform: translateX(-60px); }
-  .why-card.from-right{ transform: translateX(60px); }
-  .why-card.from-bottom{ transform: translateY(60px); }
-
-  .why-card.is-visible{
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-    transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,.61,.36,1);
-  }
-
-  /* Alt bant */
-  .why-strip{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(55,66,97,.06);
-    overflow:hidden;
-  }
-  .why-strip-inner{
-    display:flex;
-    justify-content: space-around;
-    gap: 16px;
-    padding: 18px;
-    flex-wrap: wrap;
-  }
-  .why-strip-item{
-    text-align:center;
-    font-size: 14px;
-    color:#334155;
-  }
-  .why-strip-item strong{
-    display:block;
-    color:#374261;
-    font-weight: 900;
-  }
-
-  @media (max-width: 576px){
-    .why-strip-inner{ flex-direction: column; }
-  }
-  .appt-card{
-    border-radius: 22px;
-    padding: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(255,255,255,.75);
-    backdrop-filter: blur(10px);
-  }
-
-  .appt-input{
-    border-radius: 14px;
-    border-color: rgba(55,66,97,.18);
-  }
-  .appt-input:focus{
-    border-color: rgba(55,66,97,.35);
-    box-shadow: 0 0 0 .2rem rgba(55,66,97,.12);
-  }
-
-  .appt-btn-primary{
-    background:#374261;
-    color:#fff;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .65rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .appt-btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-
-  .appt-btn-outline{
-    background:#fff;
-    color:#374261;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .65rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .appt-btn-outline:hover{ filter: brightness(1.02); transform: translateY(-1px); }
-
-  .appt-small{ align-self:center; }
-
-  .appt-success{
-    margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: rgba(34,197,94,.10);
-    border: 1px solid rgba(34,197,94,.22);
-    color: #0f172a;
-    font-weight: 700;
-  }
-
-  @media (max-width: 576px){
-    .appt-card, .appt-info{ padding: 18px; }
-    .appt-btn-primary, .appt-btn-outline{ width: 100%; }
-    .appt-small{ width:100%; text-align:center; }
-  }
-  .hero-badges{
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .hero-badges li{
-    font-size: 12px;
-    color: rgba(255,255,255,.86);
-    padding: 8px 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.12);
-  }
-
-  /* Reduced motion: videoyu kapat, fallback göster */
-  @media (prefers-reduced-motion: reduce){
-    .hero-video{ display:none; }
-    .hero-fallback{ opacity: 1; }
-  }
-
-  /* Mobilde kart daha sade */
-  @media (max-width: 520px){
-    .hero-card{ padding: 18px; }
-  }
-  /* Scroll mouse indicator */
-.scroll-indicator{
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  opacity: .85;
-}
-
-.scroll-text{
-  font-size: 11px;
-  letter-spacing: .3px;
-  color: rgba(255,255,255,.75);
-}
-
-.mouse{
-  width: 24px;
-  height: 38px;
-  border: 2px solid rgba(255,255,255,.8);
-  border-radius: 14px;
-  position: relative;
-}
-
-.mouse .wheel{
-  width: 4px;
-  height: 8px;
-  background: #ffffff;
-  border-radius: 2px;
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: wheelMove 1.4s infinite ease-in-out;
-}
-
-@keyframes wheelMove{
-  0%{
-    opacity: 0;
-    transform: translate(-50%, 0);
-  }
-  30%{
-    opacity: 1;
-  }
-  100%{
-    opacity: 0;
-    transform: translate(-50%, 12px);
-  }
-}
-
-/* Mobilde biraz küçült */
-@media (max-width: 576px){
-  .mouse{
-    width: 20px;
-    height: 32px;
-  }
-}
-.tour360-wrap{
-    position: relative;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 1px solid rgba(55,66,97,.22);
-    box-shadow: 0 16px 50px rgba(0,0,0,.12);
-    background: #0b1020;
-  }
-  .tour360-viewer{
-    width: 100%;
-    height: 460px;
-  }
-  .tour360-loading{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color: rgba(255,255,255,.9);
-    background: rgba(10,12,16,.55);
-    backdrop-filter: blur(10px);
-    font-weight: 700;
-    letter-spacing:.2px;
-  }
-  @media (max-width: 576px){
-    .tour360-viewer{ height: 340px; }
-  }
-   .services-section{
-    background: linear-gradient(180deg, rgba(55,66,97,.03), rgba(55,66,97,.01));
-  }
-
-  .services-kicker{
-    display:inline-block;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    color: #374261;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    padding: 6px 10px;
-    border-radius: 999px;
-  }
-
-  .services-title{
-    color:#0f172a;
-    letter-spacing: .2px;
-  }
-
-  .services-subtitle{
-    color:#334155;
-    max-width: 720px;
-    line-height: 1.65;
-    margin-bottom: 0;
-  }
-.contact-section{
-    background:
-      radial-gradient(900px 300px at 15% 0%, rgba(55,66,97,.16), transparent 60%),
-      linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  }
-
-  .contact-kicker{
-    display:inline-block;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    color: #374261;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  .contact-title{ color:#0f172a; }
-  .contact-subtitle{
-    max-width: 760px;
-    color:#334155;
-    line-height:1.65;
-    margin-bottom: 0;
-  }
-  .contact-mini{ color: rgba(51,65,85,.75); line-height:1.55; font-size: 13px; }
-
-  /* Sol kart */
-  .contact-map-card{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(255,255,255,.75);
-    backdrop-filter: blur(10px);
-    overflow:hidden;
-    display:flex;
-    flex-direction: column;
-  }
-  .contact-map-top{
-    padding: 18px;
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    border-bottom: 1px solid rgba(55,66,97,.14);
-  }
-  .contact-actions{
-    display:flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
-  .contact-map-wrap{
-    position: relative;
-    flex: 1;
-    min-height: 420px;
-  }
-  .contact-map-wrap iframe{
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-  }
-
-  .contact-map-strip{
-    position:absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    display:flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 12px;
-    border-radius: 18px;
-    background: rgba(10,12,16,.55);
-    border: 1px solid rgba(255,255,255,.14);
-    backdrop-filter: blur(12px);
-    color: rgba(255,255,255,.92);
-  }
-  .strip-item{
-    flex: 1 1 160px;
-    min-width: 160px;
-  }
-  .strip-item strong{ display:block; font-weight: 900; font-size: 12px; letter-spacing:.3px; }
-  .strip-item span{ display:block; font-size: 12px; opacity: .9; }
-
-  /* Sağ panel */
-  .contact-side{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(55,66,97,.06);
-    padding: 18px;
-    display:flex;
-    flex-direction: column;
-  }
-
-  .contact-info-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .info-card{
-    display:flex;
-    gap: 10px;
-    align-items:flex-start;
-    padding: 12px;
-    border-radius: 18px;
-    background: rgba(255,255,255,.65);
-    border: 1px solid rgba(55,66,97,.16);
-  }
-  .info-icon{
-    width: 38px; height: 38px;
-    border-radius: 14px;
-    display:grid; place-items:center;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    font-size: 16px;
-    flex: 0 0 auto;
-  }
-  .info-label{
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: .35px;
-    text-transform: uppercase;
-    color: rgba(51,65,85,.70);
-    margin-bottom: 2px;
-  }
-  .info-value{
-    font-weight: 900;
-    color:#0f172a;
-    text-decoration:none;
-    font-size: 13px;
-    line-height: 1.3;
-  }
-  .info-value:hover{ text-decoration: underline; }
-
-  .contact-form-card{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(255,255,255,.75);
-    backdrop-filter: blur(10px);
-    padding: 16px;
-    margin-top: 12px;
-  }
-
-  .contact-input{
-    border-radius: 14px;
-    border-color: rgba(55,66,97,.18);
-  }
-  .contact-input:focus{
-    border-color: rgba(55,66,97,.35);
-    box-shadow: 0 0 0 .2rem rgba(55,66,97,.12);
-  }
-
-  .contact-btn-primary{
-    background:#374261;
-    color:#fff;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .65rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .contact-btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-
-  .contact-btn-outline{
-    background:#fff;
-    color:#374261;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .55rem .9rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .contact-btn-outline:hover{ filter: brightness(1.02); transform: translateY(-1px); }
-
-  .contact-btn-ghost{
-    background: rgba(55,66,97,.08);
-    color:#374261;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .55rem .9rem;
-    border: 1px solid rgba(55,66,97,.18);
-  }
-  .contact-btn-ghost:hover{ filter: brightness(1.03); transform: translateY(-1px); }
-
-  .contact-success{
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: rgba(34,197,94,.10);
-    border: 1px solid rgba(34,197,94,.22);
-    color: #0f172a;
-    font-weight: 800;
-  }
-
-  .contact-bottom{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(255,255,255,.65);
-    backdrop-filter: blur(10px);
-  }
-  .contact-bottom-inner{
-    padding: 16px;
-    display:flex;
-    justify-content: space-around;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .bottom-item{
-    text-align:center;
-    flex: 1 1 220px;
-    min-width: 220px;
-    color:#334155;
-  }
-  .bottom-item strong{
-    display:block;
-    color:#374261;
-    font-weight: 900;
-  }
-  .bottom-item span{
-    display:block;
-    font-size: 13px;
-    opacity: .9;
-    margin-top: 2px;
-  }
-
-  /* Scroll animasyon */
-  .from-left, .from-right{
-    opacity: 0;
-    transform: translateX(60px);
-    transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,.61,.36,1);
-    will-change: transform, opacity;
-  }
-  .from-left{ transform: translateX(-60px); }
-  .is-visible{
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-
-  @media (max-width: 576px){
-    .contact-info-grid{ grid-template-columns: 1fr; }
-    .contact-map-wrap{ min-height: 320px; }
-  }
-  .service-card{
-    background: rgba(55,66,97,.06);
-    border: 1px solid rgba(55,66,97,.18);
-    border-radius: 22px;
-    padding: 18px;
-    transition: 180ms ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    background: radial-gradient(520px 220px at 25% 0%, rgba(55,66,97,.18), transparent 55%);
-    opacity: .65;
-    pointer-events:none;
-  }
-.site-footer{
-    background: #374261;
-    color: rgba(255,255,255,.88);
-    border-top: 1px solid rgba(255,255,255,.12);
-    padding: 40px 0 22px;
-  }
-
-  .footer-top{
-    display:flex;
-    gap: 22px;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(255,255,255,.12);
-  }
-
-  .footer-brand{
-    display:flex;
-    gap: 12px;
-    align-items: center;
-    max-width: 420px;
-  }
-
-  .footer-logo{
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display:grid;
-    place-items:center;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.16);
-    font-weight: 900;
-    color:#fff;
-    flex: 0 0 auto;
-  }
-
-  .footer-name{
-    font-weight: 900;
-    letter-spacing: .2px;
-    color:#fff;
-  }
-
-  .footer-desc{
-    margin-top: 4px;
-    font-size: 13px;
-    color: rgba(255,255,255,.78);
-    line-height: 1.5;
-  }
-
-  .footer-nav{
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-    min-width: 180px;
-  }
-  .footer-nav a{
-    color: rgba(255,255,255,.84);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-  }
-  .footer-nav a:hover{
-    color:#fff;
-    text-decoration: underline;
-  }
-
-  .footer-contact{
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-    min-width: 220px;
-  }
-  .footer-contact-title{
-    font-weight: 900;
-    color:#fff;
-    letter-spacing: .2px;
-  }
-  .footer-contact a{
-    color: rgba(255,255,255,.84);
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 13px;
-  }
-  .footer-contact a:hover{
-    color:#fff;
-    text-decoration: underline;
-  }
-  .footer-mini{
-    font-size: 12px;
-    color: rgba(255,255,255,.72);
-  }
-
-  .footer-bottom{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding-top: 16px;
-  }
-
-  .footer-copy{
-    font-size: 12px;
-    color: rgba(255,255,255,.78);
-    font-weight: 700;
-  }
-
-  .footer-legal{
-    display:flex;
-    align-items:center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .footer-legal-link{
-    font-size: 12px;
-    color: rgba(255,255,255,.78);
-    text-decoration:none;
-    font-weight: 800;
-  }
-  .footer-legal-link:hover{
-    color:#fff;
-    text-decoration: underline;
-  }
-  .footer-dot{
-    opacity: .6;
-  }
-
-  @media (max-width: 576px){
-    .footer-nav{ width: 100%; }
-    .footer-contact{ width: 100%; }
-    .footer-brand{ width: 100%; }
-    .footer-bottom{ flex-direction: column; align-items: flex-start; }
-  }
-  .service-card:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 18px 45px rgba(0,0,0,.10);
-    border-color: rgba(55,66,97,.26);
-  }
-  .faq-section{
-    background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  }
-
-  .faq-kicker{
-    display:inline-block;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    color: #374261;
-    background: rgba(55,66,97,.10);
-    border: 1px solid rgba(55,66,97,.18);
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  .faq-title{ color:#0f172a; }
-  .faq-subtitle{
-    max-width: 760px;
-    color:#334155;
-    line-height:1.65;
-    margin-bottom: 0;
-  }
-
-  .faq-card{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(255,255,255,.75);
-    backdrop-filter: blur(10px);
-    padding: 14px;
-  }
-
-  .faq-accordion .accordion-item{
-    border: 0;
-    background: transparent;
-  }
-
-  .faq-accordion .accordion-button{
-    border-radius: 16px !important;
-    background: rgba(55,66,97,.06);
-    border: 1px solid rgba(55,66,97,.14);
-    font-weight: 900;
-    color: #0f172a;
-    box-shadow: none;
-  }
-
-  .faq-accordion .accordion-button:not(.collapsed){
-    background: rgba(55,66,97,.10);
-    border-color: rgba(55,66,97,.22);
-    color: #0f172a;
-  }
-
-  .faq-accordion .accordion-body{
-    color:#334155;
-    line-height: 1.7;
-    padding: 12px 8px 18px;
-  }
-
-  .faq-accordion .accordion-collapse{
-    border: 0;
-  }
-
-  .faq-accordion .accordion-button:focus{
-    box-shadow: 0 0 0 .2rem rgba(55,66,97,.12);
-  }
-
-  .faq-side{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(55,66,97,.06);
-    padding: 18px;
-  }
-
-  .faq-btn-primary{
-    background:#374261;
-    color:#fff;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .65rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .faq-btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-
-  .faq-btn-outline{
-    background:#fff;
-    color:#374261;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .65rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .faq-btn-outline:hover{ filter: brightness(1.02); transform: translateY(-1px); }
-  .service-icon{
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display:grid;
-    place-items:center;
-    background: rgba(255,255,255,.65);
-    border: 1px solid rgba(55,66,97,.18);
-    font-size: 18px;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-  }
-@media (max-width: 768px){
-  .hero-content{
-    justify-content: center;       /* yatay ortala */
-    padding-left: 16px;
-    padding-right: 16px;
-    text-align: center;
-  }
-
-  .hero-card{
-    margin: 0 auto;
-    max-width: 520px;
-  }
-
-  .hero-actions{
-    justify-content: center;
-  }
-
-  .hero-badges{
-    justify-content: center;
-  }
-}
-/* ===== FOOTER MOBILE FIX ===== */
-@media (max-width: 768px){
-
-  .site-footer{
-    padding: 32px 0 20px;
-    text-align: center;
-  }
-
-  .footer-top{
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    padding-bottom: 22px;
-  }
-
-  .footer-brand{
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .footer-logo{
-    margin-bottom: 6px;
-  }
-
-  .footer-desc{
-    max-width: 320px;
-  }
-
-  .footer-nav{
-    align-items: center;
-    gap: 12px;
-  }
-
-  .footer-nav a{
-    font-size: 14px;
-  }
-
-  .footer-contact{
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .footer-contact a{
-    font-size: 14px;
-  }
-
-  .footer-bottom{
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-    padding-top: 18px;
-  }
-
-  .footer-legal{
-    justify-content: center;
-    gap: 8px;
-  }
-}
-
-  .service-name{
-    font-size: 18px;
-    margin: 0 0 8px;
-    color: #0f172a;
-    position: relative;
-    z-index: 1;
-  }
-
-  .service-desc{
-    margin: 0 0 12px;
-    color: #334155;
-    line-height: 1.6;
-    font-size: 14px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .service-link{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-weight: 800;
-    color: #374261;
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
-  }
-  .service-link:hover{ text-decoration: underline; }
-
-  .services-cta{
-    border-radius: 22px;
-    border: 1px solid rgba(55,66,97,.18);
-    background: rgba(55,66,97,.06);
-    overflow:hidden;
-  }
-  .services-cta-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 16px;
-    padding: 18px;
-  }
-  .services-cta-title{
-    font-size: 18px;
-    color:#0f172a;
-    font-weight: 900;
-  }
-  .services-cta-text{
-    color:#334155;
-    line-height: 1.55;
-  }
-  .services-cta-actions{
-    display:flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .services-btn-primary{
-    background:#374261;
-    color:#fff;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .6rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .services-btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-
-  .services-btn-outline{
-    background:#fff;
-    color:#374261;
-    border-radius:14px;
-    font-weight: 900;
-    padding: .6rem 1rem;
-    border: 1px solid rgba(55,66,97,.25);
-  }
-  .services-btn-outline:hover{ filter: brightness(1.02); transform: translateY(-1px); }
-
-  @media (max-width: 576px){
-    .services-cta-inner{ flex-direction: column; align-items: stretch; }
-    .services-cta-actions .btn{ width: 100%; text-align:center; }
-  }
-</style>
-
+<link rel="stylesheet" href="css/index.css">
 <header class="dent-header" id="top">
   <nav class="navbar navbar-expand-lg dent-navbar">
     <div class="container">
-      <!-- BRAND / LOGO -->
-      <a class="navbar-brand" href="#top">
-        <!-- Logo resmin varsa: <img src="logo.png" alt="Logo" width="42" height="42" class="rounded-3"> -->
-        <div>     <img style="width: 100px; height: 50px;" src="Berkan Aras (100 x 50 piksel) (3).png" alt=""></div>
-      
+      <!-- LOGO -->
+      <a class="navbar-brand" href="index.html">
+        <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Berkan Aras Diş Hekimliği" width="100"
+          height="50">
       </a>
-
       <!-- TOGGLER -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-              aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <!-- NAV -->
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="#top">Anasayfa</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hizmetler">Hizmetler</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tur360">360° Klinik Turu</a></li>
-          <li class="nav-item"><a class="nav-link" href="#nedenbiz">Neden Biz</a></li>
-          <li class="nav-item"><a class="nav-link" href="#sss">SSS</a></li>
-          <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+          <li class="nav-item"><a class="nav-link" href="klinik-turu.html">360° Klinik Turu</a></li>
+          <li class="nav-item"><a class="nav-link" href="neden-biz.html">Neden Biz</a></li>
+          <li class="nav-item"><a class="nav-link" href="sss.html">SSS</a></li>
+          <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
         </ul>
-
+        <!-- CTA -->
         <!-- CTA -->
         <div class="d-flex align-items-center gap-2">
-          <a class="btn btn-randevu" href="#randevu" id="btnRandevu">Randevu Al</a>
+          <a class="btn btn-randevu" href="index.html#randevu">
+            Randevu Al
+          </a>
         </div>
       </div>
     </div>
   </nav>
 </header>
-<script>
-  // Videoyu hız için "lazy" başlat: kaynakları sayfa yüklendikten sonra ekle
-  (function(){
-    const v = document.getElementById('heroVideo');
-    if(!v) return;
-
-    const showFallback = () => {
-      const fb = document.querySelector('.hero-fallback');
-      if (fb) fb.style.opacity = '1';
-    };
-
-    // Reduced motion ise fallback
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { showFallback(); return; }
-
-    // Mobil data saver / düşük bağlantı varsa video yükleme
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const saveData = conn && conn.saveData;
-    const slow = conn && (conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g');
-    if (saveData || slow) { showFallback(); return; }
-
-    // Kaynakları sonradan set et
-    const sources = v.querySelectorAll('source[data-src]');
-    sources.forEach(s => { s.src = s.getAttribute('data-src'); s.removeAttribute('data-src'); });
-
-    // Metadata yükle, oynatmayı dene
-    v.preload = 'metadata';
-    v.load();
-
-    const tryPlay = () => v.play().catch(() => showFallback());
-    v.addEventListener('canplay', tryPlay, { once: true });
-
-    // Eğer 2 saniyede video açılmazsa fallback
-    setTimeout(() => {
-      if (v.readyState < 2) showFallback();
-    }, 2000);
-
-    // Video hata verirse fallback
-    v.addEventListener('error', showFallback, { once: true });
-  })();
-</script>
-<script>
-  // jQuery ile aktif link + mobil menü tıklandıktan sonra kapanma
-  $(function () {
-    // Navbar linklerine tıklanınca mobil menüyü kapat
-    $('.dent-navbar .nav-link, #btnRandevu').on('click', function () {
-      const $navbar = $('#mainNavbar');
-      if ($navbar.hasClass('show')) {
-        const bsCollapse = bootstrap.Collapse.getOrCreateInstance($navbar[0]);
-        bsCollapse.hide();
-      }
-    });
-
-    // Scroll'a göre aktif link (basit)
-    const sections = ['top','hizmetler','tur360','nedenbiz','sss','iletisim','randevu']
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
-
-    function setActive() {
-      let currentId = 'top';
-      const y = window.scrollY + 130;
-      for (const sec of sections) {
-        if (sec.offsetTop <= y) currentId = sec.id;
-      }
-      $('.dent-navbar .nav-link').removeClass('active');
-      $('.dent-navbar .nav-link[href="#' + currentId + '"]').addClass('active');
-      if (currentId === 'top') $('.dent-navbar .nav-link[href="#top"]').addClass('active');
-    }
-
-    $(window).on('scroll', setActive);
-    setActive();
-  });
-</script>
-<!-- ===== HEADER END ===== -->
 
 <body>
-
-<section class="hero" id="anasayfa" aria-label="Ana banner">
-  <div class="hero-media" aria-hidden="true">
-
-    <!-- ANA VIDEO -->
-    <video
-      id="heroVideo"
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=60"
-    >
-      <source src="https://siteadresin.com/video/klinik.webm" type="video/webm">
-      <source src="https://siteadresin.com/video/klinik.mp4" type="video/mp4">
-    </video>
-
-    <!-- FALLBACK VIDEO (ana video açılmazsa) -->
-    <div class="hero-fallback">
-      <video
-        class="hero-video-fallback"
-        muted
-        loop
-        playsinline
-        preload="none"
-      >
-        <source data-src="banner.mp4" type="video/mp4">
+  <section class="hero" id="anasayfa" aria-label="Ana banner">
+    <div class="hero-media" aria-hidden="true">
+      <!-- ANA VIDEO -->
+      <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata"
+        poster="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=60">
+        <source src="https://siteadresin.com/video/klinik.webm" type="video/webm">
+        <source src="https://siteadresin.com/video/klinik.mp4" type="video/mp4">
       </video>
-    </div>
-
-    <div class="hero-overlay"></div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container hero-content">
-    <div class="hero-card">
-      <p class="hero-kicker">Mersin Yenişehir</p>
-
-      <!-- SEO için TEK H1 -->
-      <h1 class="hero-title">Berkan Aras Diş Hekimliği</h1>
-
-      <p class="hero-subtitle">
-        İmplant, zirkonyum, estetik diş hekimliği ve genel tedavilerde
-        güvenli, modern ve konforlu yaklaşım.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-randevu-hero" href="#randevu">Randevu Al</a>
-        <a class="btn btn-hero-outline" href="#tur360">360° Klinik Turu</a>
+      <!-- FALLBACK VIDEO (ana video açılmazsa) -->
+      <div class="hero-fallback">
+        <video class="hero-video-fallback" muted loop playsinline preload="none">
+          <source data-src="banner.mp4" type="video/mp4">
+        </video>
       </div>
-
-      <ul class="hero-badges" aria-label="Öne çıkanlar">
-        <li>Modern Klinik</li>
-        <li>Şeffaf Fiyatlandırma</li>
-        <li>Hızlı Randevu</li>
-      </ul>
+      <div class="hero-overlay"></div>
     </div>
-  </div>
-  <!-- Scroll Indicator -->
-<div class="scroll-indicator" aria-hidden="true">
-  <div class="mouse">
-    <span class="wheel"></span>
-  </div>
-  <span class="scroll-text">Kaydır</span>
-</div>
-</section>
-<!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
-<section id="tur360" class="py-5">
-  <div class="container">
-  <div class="row align-items-stretch g-4">
-
-      <div class="col-lg-7">
-        <!-- 360 Viewer alanı -->
-        <div class="tour360-wrap w-100 h-100">
-          <div id="panorama360" class="tour360-viewer" aria-label="360 klinik turu"></div>
-
-          <!-- Yükleniyor katmanı -->
-          <div class="tour360-loading" id="tour360Loading">
-            360° tur yükleniyor…
-          </div>
+    <!-- CONTENT -->
+    <div class="container hero-content">
+      <div class="hero-card">
+        <p class="hero-kicker">Mersin Yenişehir</p>
+        <!-- SEO için TEK H1 -->
+        <h1 class="hero-title">Berkan Aras Diş Hekimliği</h1>
+        <p class="hero-subtitle">
+          İmplant, zirkonyum, estetik diş hekimliği ve genel tedavilerde
+          güvenli, modern ve konforlu yaklaşım.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-randevu-hero" href="#randevu">Randevu Al</a>
+          <a class="btn btn-hero-outline" href="#tur360">360° Klinik Turu</a>
         </div>
-      </div>
-
-<div class="col-lg-5 d-flex">
-  <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
-       style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
-
-    <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
-      360° Klinik Turu
-    </p>
-
-    <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
-
-    <p class="mb-3" style="color:#334155; line-height:1.6;">
-      Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
-      bekleme bölümü ve çalışma düzenini inceleyin.
-    </p>
-
-    <!-- Butonları alta sabitle -->
-    <div class="mt-auto d-flex flex-wrap gap-2">
-      <a href="#randevu"
-         class="btn btn-randevu"
-         style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
-        Randevu Al
-      </a>
-
-      <button id="tour360Fullscreen"
-              class="btn"
-              style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
-        Tam Ekran
-      </button>
-    </div>
-
-  </div>
-</div>
-
-    </div>
-  </div>
-</section>
-<!-- ===== 360 KLINIK TURU END ===== -->
-<section id="hizmetler" class="services-section py-5">
-  <div class="container">
-    <div class="services-head text-center mb-4">
-      <p class="services-kicker mb-2">Hizmetler</p>
-      <h2 class="services-title mb-2">Diş Sağlığınız İçin Kapsamlı Çözümler</h2>
-      <p class="services-subtitle mx-auto">
-        Modern yöntemler ve hasta odaklı yaklaşım ile güvenli, konforlu ve estetik sonuçlar hedefliyoruz.
-      </p>
-    </div>
-
-    <div class="row g-4">
-      <!-- 1 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">🦷</div>
-          <h3 class="service-name">Genel Diş Muayenesi</h3>
-          <p class="service-desc">
-            Detaylı kontrol, ihtiyaç analizi ve kişiye özel tedavi planlaması ile güvenli başlangıç.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="Genel diş muayenesi için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      </div>
-
-      <!-- 2 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">✨</div>
-          <h3 class="service-name">Estetik Diş Hekimliği</h3>
-          <p class="service-desc">
-            Gülüş tasarımı, bonding ve estetik uygulamalarla doğal ve dengeli görünüm.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="Estetik diş hekimliği için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      </div>
-
-      <!-- 3 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">🦴</div>
-          <h3 class="service-name">İmplant Tedavisi</h3>
-          <p class="service-desc">
-            Eksik dişlerin fonksiyon ve estetiğini geri kazandıran modern implant çözümleri.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="İmplant için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      </div>
-
-      <!-- 4 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">🧩</div>
-          <h3 class="service-name">Zirkonyum & Porselen</h3>
-          <p class="service-desc">
-            Dayanıklı, estetik ve uzun ömürlü kaplama seçenekleriyle gülüşünüzü güçlendirin.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="Zirkonyum ve porselen için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      </div>
-
-      <!-- 5 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">🧼</div>
-          <h3 class="service-name">Diş Taşı Temizliği</h3>
-          <p class="service-desc">
-            Düzenli temizlik ile diş eti sağlığını destekleyin, ağız hijyenini koruyun.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="Diş taşı temizliği için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      </div>
-
-      <!-- 6 -->
-      <div class="col-md-6 col-lg-4">
-        <article class="service-card h-100">
-          <div class="service-icon" aria-hidden="true">🛡️</div>
-          <h3 class="service-name">Kanal Tedavisi</h3>
-          <p class="service-desc">
-            Ağrıyı azaltan, dişi koruyan kanal tedavisi ile güvenli ve kalıcı çözümler.
-          </p>
-          <a class="service-link" href="#randevu" aria-label="Kanal tedavisi için randevu al">
-            Randevu Al <span aria-hidden="true">→</span>
-          </a>
-        </article>
+        <ul class="hero-badges" aria-label="Öne çıkanlar">
+          <li>Modern Klinik</li>
+          <li>Şeffaf Fiyatlandırma</li>
+          <li>Hızlı Randevu</li>
+        </ul>
       </div>
     </div>
-
-    <!-- Alt mini CTA -->
-    <div class="services-cta mt-5">
-      <div class="services-cta-inner">
-        <div>
-          <h3 class="services-cta-title mb-1">Hangi tedavi size uygun?</h3>
-          <p class="services-cta-text mb-0">Hızlı ön görüşme için randevu oluşturun, size en doğru planı çıkaralım.</p>
-        </div>
-        <div class="services-cta-actions">
-          <a class="btn services-btn-primary" href="#randevu">Randevu Al</a>
-          <a class="btn services-btn-outline" href="#iletisim">İletişim</a>
-        </div>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="mouse">
+        <span class="wheel"></span>
       </div>
+      <span class="scroll-text">Kaydır</span>
     </div>
-  </div>
-</section>
-<section id="randevu" class="appointment-section py-5">
-  <div class="container">
-    <div class="text-center mb-4">
-      <p class="appt-kicker mb-2">Randevu</p>
-      <h2 class="appt-title mb-2">Hızlı Randevu Oluşturun</h2>
-      <p class="appt-subtitle mx-auto">
-        Formu doldurun, randevu talebiniz WhatsApp üzerinden iletilsin. En kısa sürede dönüş yapalım.
-      </p>
-    </div>
-
-    <div class="row g-4 align-items-stretch">
-      <!-- Sol: Bilgi kartı -->
-      <div class="col-lg-5 d-flex">
-        <div class="appt-info h-100 w-100">
-          <h3 class="h5 mb-3">İletişim Bilgileri</h3>
-
-          <div class="appt-item">
-            <span class="appt-label">Telefon</span>
-            <a class="appt-value" href="tel:+905451223302">0 (545) 122 33 02</a>
-          </div>
-
-          <div class="appt-item">
-            <span class="appt-label">WhatsApp</span>
-            <a class="appt-value" target="_blank" rel="noopener"
-               href="https://wa.me/905451223302?text=Merhaba%20randevu%20almak%20istiyorum.">Mesaj Gönder</a>
-          </div>
-
-          <div class="appt-item">
-            <span class="appt-label">Adres</span>
-            <span class="appt-value">Mersin, Yenişehir</span>
-          </div>
-
-          <hr class="appt-hr">
-
-          <ul class="appt-bullets mb-0">
-            <li>Randevu onayı WhatsApp/telefon ile yapılır.</li>
-            <li>Gerekirse uygun saat alternatifleri sunulur.</li>
-            <li>Form gönderimi sadece talep oluşturur.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Sağ: Form -->
-      <div class="col-lg-7 d-flex">
-        <div class="appt-card h-100 w-100">
-          <form id="apptForm" novalidate>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label" for="apptName">Ad Soyad *</label>
-                <input class="form-control appt-input" id="apptName" name="name" type="text" required
-                       placeholder="Örn: Berkan Aras">
-                <div class="invalid-feedback">Lütfen ad soyad girin.</div>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="apptPhone">Telefon *</label>
-                <input class="form-control appt-input" id="apptPhone" name="phone" type="tel" required
-                       inputmode="tel" placeholder="05XX XXX XX XX">
-                <div class="invalid-feedback">Lütfen geçerli telefon girin.</div>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="apptDate">Tarih *</label>
-                <input class="form-control appt-input" id="apptDate" name="date" type="date" required>
-                <div class="invalid-feedback">Lütfen tarih seçin.</div>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="apptTime">Saat</label>
-                <input class="form-control appt-input" id="apptTime" name="time" type="time">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="apptService">Hizmet</label>
-                <select class="form-select appt-input" id="apptService" name="service">
-                  <option value="">Seçiniz</option>
-                  <option>Genel Muayene</option>
-                  <option>İmplant</option>
-                  <option>Zirkonyum / Kaplama</option>
-                  <option>Kanal Tedavisi</option>
-                  <option>Diş Taşı Temizliği</option>
-                  <option>Estetik Diş Hekimliği</option>
-                </select>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="apptContact">Tercih Edilen İletişim</label>
-                <select class="form-select appt-input" id="apptContact" name="contact">
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Telefon">Telefon</option>
-                </select>
-              </div>
-
-              <div class="col-12">
-                <label class="form-label" for="apptNote">Not</label>
-                <textarea class="form-control appt-input" id="apptNote" name="note" rows="4"
-                          placeholder="Örn: Akşam saatleri uygunum."></textarea>
-              </div>
-
-              <div class="col-12 d-flex flex-wrap gap-2 mt-2">
-                <button type="submit" class="btn appt-btn-primary" id="apptSubmit">
-                  WhatsApp’tan Randevu Al
-                </button>
-                <a class="btn appt-btn-outline" href="tel:+905451223302">Hemen Ara</a>
-                <span class="appt-small text-muted">* Zorunlu alanlar</span>
-              </div>
-            </div>
-          </form>
-
-          <div class="appt-success" id="apptSuccess" hidden>
-            <strong>Hazır!</strong> WhatsApp ekranına yönlendiriliyorsunuz…
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="nedenbiz" class="why-section py-5">
-  <div class="container">
-
-    <!-- Başlık -->
-    <div class="text-center mb-5">
-      <p class="why-kicker mb-2">Neden Biz?</p>
-      <h2 class="why-title mb-2">Güven, Konfor ve Modern Yaklaşım</h2>
-      <p class="why-subtitle mx-auto">
-        Tedavi sürecinizi sadece sonuç odaklı değil, konforlu ve şeffaf bir deneyim olarak ele alıyoruz.
-      </p>
-    </div>
-
-    <!-- Kartlar -->
-    <div class="row g-4">
-      <!-- 1 -->
-      <div class="col-md-6 col-lg-3">
-        <article class="why-card from-left">
-          <div class="why-icon">🦷</div>
-          <h3 class="why-name">Uzman Yaklaşım</h3>
-          <p class="why-desc">
-            Güncel tedavi protokolleri ve kişiye özel planlama ile güvenli çözümler sunarız.
-          </p>
-        </article>
-      </div>
-
-      <!-- 2 -->
-      <div class="col-md-6 col-lg-3">
-        <article class="why-card from-bottom">
-          <div class="why-icon">🧼</div>
-          <h3 class="why-name">Hijyen & Sterilizasyon</h3>
-          <p class="why-desc">
-            Uluslararası standartlara uygun sterilizasyon ve hijyen protokolleri uygularız.
-          </p>
-        </article>
-      </div>
-
-      <!-- 3 -->
-      <div class="col-md-6 col-lg-3">
-        <article class="why-card from-bottom">
-          <div class="why-icon">⏱️</div>
-          <h3 class="why-name">Hızlı Randevu</h3>
-          <p class="why-desc">
-            Online randevu ve WhatsApp iletişim ile zaman kaybetmeden hizmet alırsınız.
-          </p>
-        </article>
-      </div>
-
-      <!-- 4 -->
-      <div class="col-md-6 col-lg-3">
-        <article class="why-card from-right">
-          <div class="why-icon">😊</div>
-          <h3 class="why-name">Hasta Memnuniyeti</h3>
-          <p class="why-desc">
-            Tedavi sürecinin her aşamasında açık iletişim ve memnuniyet odaklı yaklaşım.
-          </p>
-        </article>
-      </div>
-    </div>
-
-    <!-- Alt güven bandı -->
-    <div class="why-strip mt-5">
-      <div class="why-strip-inner">
-        <div class="why-strip-item">
-          <strong>✔ Modern Klinik</strong>
-          <span>Teknoloji destekli tedavi</span>
-        </div>
-        <div class="why-strip-item">
-          <strong>✔ Şeffaf Süreç</strong>
-          <span>Net bilgilendirme</span>
-        </div>
-        <div class="why-strip-item">
-          <strong>✔ Konforlu Deneyim</strong>
-          <span>Hasta odaklı yaklaşım</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-<section id="sss" class="faq-section py-5">
-  <div class="container">
-
-    <div class="text-center mb-4">
-      <p class="faq-kicker mb-2">SSS</p>
-      <h2 class="faq-title mb-2">Sık Sorulan Sorular</h2>
-      <p class="faq-subtitle mx-auto">
-        Randevu, tedavi süreci ve klinik deneyimiyle ilgili en çok merak edilenleri burada cevapladık.
-      </p>
-    </div>
-
-    <div class="row g-4 align-items-stretch">
-      <!-- Sol: Accordion -->
-      <div class="col-lg-8 d-flex">
-        <div class="faq-card w-100 h-100">
-          <div class="accordion faq-accordion" id="faqAccordion">
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q1">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1"
-                        aria-expanded="true" aria-controls="a1">
-                  Randevu nasıl alabilirim?
-                </button>
-              </h3>
-              <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <strong>Randevu</strong> bölümündeki formu doldurup WhatsApp üzerinden talebinizi gönderebilirsiniz.
-                  Dilerseniz telefonla arayarak da hızlıca randevu oluşturabilirsiniz.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q2">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2"
-                        aria-expanded="false" aria-controls="a2">
-                  İlk muayenede neler yapılır?
-                </button>
-              </h3>
-              <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Şikâyetiniz dinlenir, ağız içi muayene yapılır ve ihtiyaç görülürse görüntüleme ile değerlendirilir.
-                  Ardından size uygun <strong>tedavi planı</strong> ve süreç bilgisi paylaşılır.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q3">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3"
-                        aria-expanded="false" aria-controls="a3">
-                  İmplant tedavisi ne kadar sürer?
-                </button>
-              </h3>
-              <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Süre; kemik yapısı, ek işlemler ve planlanan tedaviye göre değişir. İlk muayenede
-                  size özel süreç ve tahmini zaman planı netleştirilir.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q4">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4"
-                        aria-expanded="false" aria-controls="a4">
-                  Zirkonyum kaplama mı porselen mi?
-                </button>
-              </h3>
-              <div id="a4" class="accordion-collapse collapse" aria-labelledby="q4" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Seçim; estetik beklenti, diş yapısı ve kapanış ilişkisine göre yapılır.
-                  Muayenede avantaj–dezavantajları anlatarak en uygun seçeneği belirleriz.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q5">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5"
-                        aria-expanded="false" aria-controls="a5">
-                  Kanal tedavisi ağrılı mıdır?
-                </button>
-              </h3>
-              <div id="a5" class="accordion-collapse collapse" aria-labelledby="q5" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Modern anestezi ve tekniklerle işlem sırasında ağrı minimuma indirilir.
-                  İşlem sonrası kısa süreli hassasiyet görülebilir; hekim yönlendirmeleriyle kontrol altına alınır.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="q6">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6"
-                        aria-expanded="false" aria-controls="a6">
-                  360° klinik turu nasıl çalışır?
-                </button>
-              </h3>
-              <div id="a6" class="accordion-collapse collapse" aria-labelledby="q6" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  360° fotoğraf üzerinde fareyle sürükleyerek (mobilde parmakla) kliniği gezebilirsiniz.
-                  Görüntüleyici bölüm ekrana gelince yüklenir; bu sayede site hızını korur.
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Sağ: mini CTA -->
-      <div class="col-lg-4 d-flex">
-        <div class="faq-side w-100 h-100">
-          <h3 class="h5 mb-2">Sorunuz mu var?</h3>
-          <p class="mb-3" style="color:#334155; line-height:1.6;">
-            Cevabını bulamadığınız bir konu varsa WhatsApp’tan yazın, hızlıca yardımcı olalım.
-          </p>
-
-          <div class="d-grid gap-2">
-            <a class="btn faq-btn-primary" href="#randevu">Randevu Al</a>
-            <a class="btn faq-btn-outline"
-               target="_blank" rel="noopener"
-               href="https://wa.me/905451223302?text=Merhaba%2C%20bir%20sorum%20olacakt%C4%B1.">
-              WhatsApp’tan Sor
-            </a>
-          </div>
-
-          <hr style="border-color: rgba(55,66,97,.18);" class="my-4">
-
-          <div class="faq-mini">
-            <div><strong>Çalışma Saatleri</strong></div>
-            <div style="color:#334155;">Hafta içi: 09:00 – 18:00</div>
-            <div style="color:#334155;">Cumartesi: 10:00 – 16:00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-<section id="iletisim" class="contact-section py-5">
-  <div class="container">
-
-    <div class="text-center mb-4">
-      <p class="contact-kicker mb-2">İletişim</p>
-      <h2 class="contact-title mb-2">Bize Ulaşın</h2>
-      <p class="contact-subtitle mx-auto">
-        Randevu ve sorularınız için hızlıca arayın, WhatsApp’tan yazın veya konumdan yol tarifi alın.
-      </p>
-    </div>
-
-    <div class="row g-4 align-items-stretch">
-      <!-- SOL: Map + Quick Actions -->
-      <div class="col-lg-7 d-flex">
-        <div class="contact-map-card w-100 h-100 from-left">
-          <div class="contact-map-top">
-            <div>
-              <h3 class="h5 mb-1">Klinik Konumu</h3>
-              <p class="mb-0 contact-mini">Mersin, Yenişehir (adres alanını seninle netleştiririz)</p>
-            </div>
-
-            <div class="contact-actions">
-              <a class="btn contact-btn-primary" href="tel:+905451223302">Hemen Ara</a>
-              <a class="btn contact-btn-outline" target="_blank" rel="noopener"
-                 href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
-                WhatsApp
-              </a>
-              <!-- Yol tarifi: buradaki q parametresini kendi adresinle değiştir -->
-              <a class="btn contact-btn-ghost" target="_blank" rel="noopener"
-                 href="https://www.google.com/maps?q=Mersin%20Yeni%C5%9Fehir">
-                Yol Tarifi
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-map-wrap" aria-label="Harita">
-            <!-- Google Maps Embed (Placeholder) -->
-            <iframe
-              title="Harita - Berkan Aras Diş Hekimliği"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Mersin%20Yeni%C5%9Fehir&output=embed">
-            </iframe>
-
-            <!-- Alt şerit -->
-            <div class="contact-map-strip">
-              <div class="strip-item">
-                <strong>Telefon</strong>
-                <span>0 (545) 122 33 02</span>
-              </div>
-              <div class="strip-item">
-                <strong>WhatsApp</strong>
-                <span>Hızlı yanıt</span>
-              </div>
-              <div class="strip-item">
-                <strong>Randevu</strong>
-                <span>Aynı gün mümkün</span>
-              </div>
+  </section>
+  <!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
+  <section id="tur360" class="py-5">
+    <div class="container">
+      <div class="row align-items-stretch g-4">
+        <div class="col-lg-7">
+          <!-- 360 Viewer alanı -->
+          <div class="tour360-wrap w-100 h-100">
+            <div id="panorama360" class="tour360-viewer" aria-label="360 klinik turu"></div>
+            <!-- Yükleniyor katmanı -->
+            <div class="tour360-loading" id="tour360Loading">
+              360° tur yükleniyor…
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- SAG: Info + Mini Form -->
-      <div class="col-lg-5 d-flex">
-        <div class="contact-side w-100 h-100 from-right">
-          <div class="contact-info-grid">
-            <div class="info-card">
-              <div class="info-icon" aria-hidden="true">📞</div>
-              <div>
-                <div class="info-label">Telefon</div>
-                <a class="info-value" href="tel:+905451223302">0 (545) 122 33 02</a>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon" aria-hidden="true">💬</div>
-              <div>
-                <div class="info-label">WhatsApp</div>
-                <a class="info-value" target="_blank" rel="noopener"
-                   href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
-                  Mesaj Gönder
-                </a>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon" aria-hidden="true">📍</div>
-              <div>
-                <div class="info-label">Bölge</div>
-                <div class="info-value">Mersin • Yenişehir</div>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon" aria-hidden="true">⏱️</div>
-              <div>
-                <div class="info-label">Çalışma Saatleri</div>
-                <div class="info-value">Hafta içi 09:00–18:00</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-form-card mt-3">
-            <h3 class="h5 mb-2">Kısa Mesaj Bırakın</h3>
-            <p class="mb-3 contact-mini">
-              Formu doldurun, mesajınız WhatsApp üzerinden hazır metin olarak açılır.
+        <div class="col-lg-5 d-flex">
+          <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
+            style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
+            <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
+              360° Klinik Turu
             </p>
-
-            <form id="contactForm" novalidate>
-              <div class="row g-2">
-                <div class="col-12">
-                  <label class="form-label mb-1" for="cName">Ad Soyad *</label>
-                  <input class="form-control contact-input" id="cName" type="text" required placeholder="Ad Soyad">
-                  <div class="invalid-feedback">Ad soyad girin.</div>
+            <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
+            <p class="mb-3" style="color:#334155; line-height:1.6;">
+              Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
+              bekleme bölümü ve çalışma düzenini inceleyin.
+            </p>
+            <!-- Butonları alta sabitle -->
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a href="#randevu" class="btn btn-randevu"
+                style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
+                Randevu Al
+              </a>
+              <button id="tour360Fullscreen" class="btn"
+                style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
+                Tam Ekran
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== 360 KLINIK TURU END ===== -->
+  <section id="hizmetler" class="services-section py-5">
+    <div class="container">
+      <div class="services-head text-center mb-4">
+        <p class="services-kicker mb-2">Hizmetler</p>
+        <h2 class="services-title mb-2">Diş Sağlığınız İçin Kapsamlı Çözümler</h2>
+        <p class="services-subtitle mx-auto">
+          Modern yöntemler ve hasta odaklı yaklaşım ile güvenli, konforlu ve estetik sonuçlar hedefliyoruz.
+        </p>
+      </div>
+      <div class="row g-4">
+        <!-- 1 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">🦷</div>
+            <h3 class="service-name">Genel Diş Muayenesi</h3>
+            <p class="service-desc">
+              Detaylı kontrol, ihtiyaç analizi ve kişiye özel tedavi planlaması ile güvenli başlangıç.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="Genel diş muayenesi için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <!-- 2 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">✨</div>
+            <h3 class="service-name">Estetik Diş Hekimliği</h3>
+            <p class="service-desc">
+              Gülüş tasarımı, bonding ve estetik uygulamalarla doğal ve dengeli görünüm.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="Estetik diş hekimliği için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <!-- 3 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">🦴</div>
+            <h3 class="service-name">İmplant Tedavisi</h3>
+            <p class="service-desc">
+              Eksik dişlerin fonksiyon ve estetiğini geri kazandıran modern implant çözümleri.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="İmplant için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <!-- 4 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">🧩</div>
+            <h3 class="service-name">Zirkonyum & Porselen</h3>
+            <p class="service-desc">
+              Dayanıklı, estetik ve uzun ömürlü kaplama seçenekleriyle gülüşünüzü güçlendirin.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="Zirkonyum ve porselen için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <!-- 5 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">🧼</div>
+            <h3 class="service-name">Diş Taşı Temizliği</h3>
+            <p class="service-desc">
+              Düzenli temizlik ile diş eti sağlığını destekleyin, ağız hijyenini koruyun.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="Diş taşı temizliği için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <!-- 6 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="service-card h-100">
+            <div class="service-icon" aria-hidden="true">🛡️</div>
+            <h3 class="service-name">Kanal Tedavisi</h3>
+            <p class="service-desc">
+              Ağrıyı azaltan, dişi koruyan kanal tedavisi ile güvenli ve kalıcı çözümler.
+            </p>
+            <a class="service-link" href="#randevu" aria-label="Kanal tedavisi için randevu al">
+              Randevu Al <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+      </div>
+      <!-- Alt mini CTA -->
+      <div class="services-cta mt-5">
+        <div class="services-cta-inner">
+          <div>
+            <h3 class="services-cta-title mb-1">Hangi tedavi size uygun?</h3>
+            <p class="services-cta-text mb-0">Hızlı ön görüşme için randevu oluşturun, size en doğru planı çıkaralım.
+            </p>
+          </div>
+          <div class="services-cta-actions">
+            <a class="btn services-btn-primary" href="#randevu">Randevu Al</a>
+            <a class="btn services-btn-outline" href="#iletisim">İletişim</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="randevu" class="appointment-section py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <p class="appt-kicker mb-2">Randevu</p>
+        <h2 class="appt-title mb-2">Hızlı Randevu Oluşturun</h2>
+        <p class="appt-subtitle mx-auto">
+          Formu doldurun, randevu talebiniz WhatsApp üzerinden iletilsin. En kısa sürede dönüş yapalım.
+        </p>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <!-- Sol: Bilgi kartı -->
+        <div class="col-lg-5 d-flex">
+          <div class="appt-info h-100 w-100">
+            <h3 class="h5 mb-3">İletişim Bilgileri</h3>
+            <div class="appt-item">
+              <span class="appt-label">Telefon</span>
+              <a class="appt-value" href="tel:+905451223302">0 (545) 122 33 02</a>
+            </div>
+            <div class="appt-item">
+              <span class="appt-label">WhatsApp</span>
+              <a class="appt-value" target="_blank" rel="noopener"
+                href="https://wa.me/905451223302?text=Merhaba%20randevu%20almak%20istiyorum.">Mesaj Gönder</a>
+            </div>
+            <div class="appt-item">
+              <span class="appt-label">Adres</span>
+              <span class="appt-value">Mersin, Yenişehir</span>
+            </div>
+            <hr class="appt-hr">
+            <ul class="appt-bullets mb-0">
+              <li>Randevu onayı WhatsApp/telefon ile yapılır.</li>
+              <li>Gerekirse uygun saat alternatifleri sunulur.</li>
+              <li>Form gönderimi sadece talep oluşturur.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Sağ: Form -->
+        <div class="col-lg-7 d-flex">
+          <div class="appt-card h-100 w-100">
+            <form id="apptForm" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="apptName">Ad Soyad *</label>
+                  <input class="form-control appt-input" id="apptName" name="name" type="text" required
+                    placeholder="Örn: Berkan Aras">
+                  <div class="invalid-feedback">Lütfen ad soyad girin.</div>
                 </div>
-
-                <div class="col-12">
-                  <label class="form-label mb-1" for="cPhone">Telefon</label>
-                  <input class="form-control contact-input" id="cPhone" type="tel" inputmode="tel" placeholder="05XX...">
+                <div class="col-md-6">
+                  <label class="form-label" for="apptPhone">Telefon *</label>
+                  <input class="form-control appt-input" id="apptPhone" name="phone" type="tel" required inputmode="tel"
+                    placeholder="05XX XXX XX XX">
+                  <div class="invalid-feedback">Lütfen geçerli telefon girin.</div>
                 </div>
-
-                <div class="col-12">
-                  <label class="form-label mb-1" for="cMsg">Mesaj *</label>
-                  <textarea class="form-control contact-input" id="cMsg" rows="4" required
-                            placeholder="Örn: Yarın için muayene randevusu almak istiyorum."></textarea>
-                  <div class="invalid-feedback">Mesaj yazın.</div>
+                <div class="col-md-6">
+                  <label class="form-label" for="apptDate">Tarih *</label>
+                  <input class="form-control appt-input" id="apptDate" name="date" type="date" required>
+                  <div class="invalid-feedback">Lütfen tarih seçin.</div>
                 </div>
-
+                <div class="col-md-6">
+                  <label class="form-label" for="apptTime">Saat</label>
+                  <input class="form-control appt-input" id="apptTime" name="time" type="time">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="apptService">Hizmet</label>
+                  <select class="form-select appt-input" id="apptService" name="service">
+                    <option value="">Seçiniz</option>
+                    <option>Genel Muayene</option>
+                    <option>İmplant</option>
+                    <option>Zirkonyum / Kaplama</option>
+                    <option>Kanal Tedavisi</option>
+                    <option>Diş Taşı Temizliği</option>
+                    <option>Estetik Diş Hekimliği</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="apptContact">Tercih Edilen İletişim</label>
+                  <select class="form-select appt-input" id="apptContact" name="contact">
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Telefon">Telefon</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="apptNote">Not</label>
+                  <textarea class="form-control appt-input" id="apptNote" name="note" rows="4"
+                    placeholder="Örn: Akşam saatleri uygunum."></textarea>
+                </div>
                 <div class="col-12 d-flex flex-wrap gap-2 mt-2">
-                  <button type="submit" class="btn contact-btn-primary w-100">
-                    WhatsApp’tan Gönder
+                  <button type="submit" class="btn appt-btn-primary" id="apptSubmit">
+                    WhatsApp’tan Randevu Al
                   </button>
-                  <small class="text-muted w-100 text-center">* Zorunlu alanlar</small>
+                  <a class="btn appt-btn-outline" href="tel:+905451223302">Hemen Ara</a>
+                  <span class="appt-small text-muted">* Zorunlu alanlar</span>
                 </div>
               </div>
             </form>
-
-            <div class="contact-success mt-3" id="contactSuccess" hidden>
-              Hazır! WhatsApp ekranı açılıyor…
+            <div class="appt-success" id="apptSuccess" hidden>
+              <strong>Hazır!</strong> WhatsApp ekranına yönlendiriliyorsunuz…
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Alt bant: extra profesyonel dokunuş -->
-    <div class="contact-bottom mt-4">
-      <div class="contact-bottom-inner">
-        <div class="bottom-item">
-          <strong>Otopark / Ulaşım</strong>
-          <span>Yakın çevrede ulaşım kolaylığı</span>
+  </section>
+  <section id="nedenbiz" class="why-section py-5">
+    <div class="container">
+      <!-- Başlık -->
+      <div class="text-center mb-5">
+        <p class="why-kicker mb-2">Neden Biz?</p>
+        <h2 class="why-title mb-2">Güven, Konfor ve Modern Yaklaşım</h2>
+        <p class="why-subtitle mx-auto">
+          Tedavi sürecinizi sadece sonuç odaklı değil, konforlu ve şeffaf bir deneyim olarak ele alıyoruz.
+        </p>
+      </div>
+      <!-- Kartlar -->
+      <div class="row g-4">
+        <!-- 1 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="why-card from-left">
+            <div class="why-icon">🦷</div>
+            <h3 class="why-name">Uzman Yaklaşım</h3>
+            <p class="why-desc">
+              Güncel tedavi protokolleri ve kişiye özel planlama ile güvenli çözümler sunarız.
+            </p>
+          </article>
         </div>
-        <div class="bottom-item">
-          <strong>Ön Bilgilendirme</strong>
-          <span>Muayene öncesi kısa bilgilendirme yapılır</span>
+        <!-- 2 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="why-card from-bottom">
+            <div class="why-icon">🧼</div>
+            <h3 class="why-name">Hijyen & Sterilizasyon</h3>
+            <p class="why-desc">
+              Uluslararası standartlara uygun sterilizasyon ve hijyen protokolleri uygularız.
+            </p>
+          </article>
         </div>
-        <div class="bottom-item">
-          <strong>Şeffaf Süreç</strong>
-          <span>Plan, süre ve seçenekler net paylaşılır</span>
+        <!-- 3 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="why-card from-bottom">
+            <div class="why-icon">⏱️</div>
+            <h3 class="why-name">Hızlı Randevu</h3>
+            <p class="why-desc">
+              Online randevu ve WhatsApp iletişim ile zaman kaybetmeden hizmet alırsınız.
+            </p>
+          </article>
+        </div>
+        <!-- 4 -->
+        <div class="col-md-6 col-lg-3">
+          <article class="why-card from-right">
+            <div class="why-icon">😊</div>
+            <h3 class="why-name">Hasta Memnuniyeti</h3>
+            <p class="why-desc">
+              Tedavi sürecinin her aşamasında açık iletişim ve memnuniyet odaklı yaklaşım.
+            </p>
+          </article>
         </div>
       </div>
-    </div>
-
-  </div>
-</section>
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-top">
-      <!-- Özet -->
-      <div class="footer-brand">
-        <div class="footer-logo" aria-hidden="true">BA</div>
-        <div>
-          <div class="footer-name">Berkan Aras Diş Hekimliği</div>
-          <div class="footer-desc">
-            Mersin Yenişehir’de modern, konforlu ve şeffaf tedavi yaklaşımı.
+      <!-- Alt güven bandı -->
+      <div class="why-strip mt-5">
+        <div class="why-strip-inner">
+          <div class="why-strip-item">
+            <strong>✔ Modern Klinik</strong>
+            <span>Teknoloji destekli tedavi</span>
+          </div>
+          <div class="why-strip-item">
+            <strong>✔ Şeffaf Süreç</strong>
+            <span>Net bilgilendirme</span>
+          </div>
+          <div class="why-strip-item">
+            <strong>✔ Konforlu Deneyim</strong>
+            <span>Hasta odaklı yaklaşım</span>
           </div>
         </div>
       </div>
-
-      <!-- Linkler -->
-      <nav class="footer-nav" aria-label="Footer Menü">
-        <a href="#anasayfa">Anasayfa</a>
-        <a href="#hizmetler">Hizmetler</a>
-        <a href="#tur360">360° Klinik Turu</a>
-        <a href="#nedenbiz">Neden Biz</a>
-        <a href="#sss">SSS</a>
-        <a href="#iletisim">İletişim</a>
-      </nav>
-
-      <!-- İletişim -->
-      <div class="footer-contact">
-        <div class="footer-contact-title">İletişim</div>
-        <a href="tel:+905451223302">0 (545) 122 33 02</a>
-        <a target="_blank" rel="noopener"
-           href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
-          WhatsApp’tan Yaz
-        </a>
-        <span class="footer-mini">Mersin • Yenişehir</span>
+    </div>
+  </section>
+  <section id="sss" class="faq-section py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <p class="faq-kicker mb-2">SSS</p>
+        <h2 class="faq-title mb-2">Sık Sorulan Sorular</h2>
+        <p class="faq-subtitle mx-auto">
+          Randevu, tedavi süreci ve klinik deneyimiyle ilgili en çok merak edilenleri burada cevapladık.
+        </p>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <!-- Sol: Accordion -->
+        <div class="col-lg-8 d-flex">
+          <div class="faq-card w-100 h-100">
+            <div class="accordion faq-accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1"
+                    aria-expanded="true" aria-controls="a1">
+                    Randevu nasıl alabilirim?
+                  </button>
+                </h3>
+                <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <strong>Randevu</strong> bölümündeki formu doldurup WhatsApp üzerinden talebinizi gönderebilirsiniz.
+                    Dilerseniz telefonla arayarak da hızlıca randevu oluşturabilirsiniz.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+                    İlk muayenede neler yapılır?
+                  </button>
+                </h3>
+                <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Şikâyetiniz dinlenir, ağız içi muayene yapılır ve ihtiyaç görülürse görüntüleme ile değerlendirilir.
+                    Ardından size uygun <strong>tedavi planı</strong> ve süreç bilgisi paylaşılır.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+                    İmplant tedavisi ne kadar sürer?
+                  </button>
+                </h3>
+                <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Süre; kemik yapısı, ek işlemler ve planlanan tedaviye göre değişir. İlk muayenede
+                    size özel süreç ve tahmini zaman planı netleştirilir.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+                    Zirkonyum kaplama mı porselen mi?
+                  </button>
+                </h3>
+                <div id="a4" class="accordion-collapse collapse" aria-labelledby="q4" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Seçim; estetik beklenti, diş yapısı ve kapanış ilişkisine göre yapılır.
+                    Muayenede avantaj–dezavantajları anlatarak en uygun seçeneği belirleriz.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
+                    Kanal tedavisi ağrılı mıdır?
+                  </button>
+                </h3>
+                <div id="a5" class="accordion-collapse collapse" aria-labelledby="q5" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Modern anestezi ve tekniklerle işlem sırasında ağrı minimuma indirilir.
+                    İşlem sonrası kısa süreli hassasiyet görülebilir; hekim yönlendirmeleriyle kontrol altına alınır.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="q6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#a6" aria-expanded="false" aria-controls="a6">
+                    360° klinik turu nasıl çalışır?
+                  </button>
+                </h3>
+                <div id="a6" class="accordion-collapse collapse" aria-labelledby="q6" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    360° fotoğraf üzerinde fareyle sürükleyerek (mobilde parmakla) kliniği gezebilirsiniz.
+                    Görüntüleyici bölüm ekrana gelince yüklenir; bu sayede site hızını korur.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Sağ: mini CTA -->
+        <div class="col-lg-4 d-flex">
+          <div class="faq-side w-100 h-100">
+            <h3 class="h5 mb-2">Sorunuz mu var?</h3>
+            <p class="mb-3" style="color:#334155; line-height:1.6;">
+              Cevabını bulamadığınız bir konu varsa WhatsApp’tan yazın, hızlıca yardımcı olalım.
+            </p>
+            <div class="d-grid gap-2">
+              <a class="btn faq-btn-primary" href="#randevu">Randevu Al</a>
+              <a class="btn faq-btn-outline" target="_blank" rel="noopener"
+                href="https://wa.me/905451223302?text=Merhaba%2C%20bir%20sorum%20olacakt%C4%B1.">
+                WhatsApp’tan Sor
+              </a>
+            </div>
+            <hr style="border-color: rgba(55,66,97,.18);" class="my-4">
+            <div class="faq-mini">
+              <div><strong>Çalışma Saatleri</strong></div>
+              <div style="color:#334155;">Hafta içi: 09:00 – 18:00</div>
+              <div style="color:#334155;">Cumartesi: 10:00 – 16:00</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="footer-bottom">
-      <div class="footer-copy">
-        © <span id="footerYear"></span> Berkan Aras Diş Hekimliği. Tüm hakları saklıdır.
+  </section>
+  <section id="iletisim" class="contact-section py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <p class="contact-kicker mb-2">İletişim</p>
+        <h2 class="contact-title mb-2">Bize Ulaşın</h2>
+        <p class="contact-subtitle mx-auto">
+          Randevu ve sorularınız için hızlıca arayın, WhatsApp’tan yazın veya konumdan yol tarifi alın.
+        </p>
       </div>
-
-      <div class="footer-legal">
-        <a href="#kvkk" class="footer-legal-link">KVKK</a>
-        <span class="footer-dot">•</span>
-        <a href="#gizlilik" class="footer-legal-link">Gizlilik</a>
-        <span class="footer-dot">•</span>
-        <a href="#cerez" class="footer-legal-link">Çerezler</a>
+      <div class="row g-4 align-items-stretch">
+        <!-- SOL: Map + Quick Actions -->
+        <div class="col-lg-7 d-flex">
+          <div class="contact-map-card w-100 h-100 from-left">
+            <div class="contact-map-top">
+              <div>
+                <h3 class="h5 mb-1">Klinik Konumu</h3>
+                <p class="mb-0 contact-mini">Mersin, Yenişehir (adres alanını seninle netleştiririz)</p>
+              </div>
+              <div class="contact-actions">
+                <a class="btn contact-btn-primary" href="tel:+905451223302">Hemen Ara</a>
+                <a class="btn contact-btn-outline" target="_blank" rel="noopener"
+                  href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
+                  WhatsApp
+                </a>
+                <!-- Yol tarifi: buradaki q parametresini kendi adresinle değiştir -->
+                <a class="btn contact-btn-ghost" target="_blank" rel="noopener"
+                  href="https://www.google.com/maps?q=Mersin%20Yeni%C5%9Fehir">
+                  Yol Tarifi
+                </a>
+              </div>
+            </div>
+            <div class="contact-map-wrap" aria-label="Harita">
+              <!-- Google Maps Embed (Placeholder) -->
+              <iframe title="Harita - Berkan Aras Diş Hekimliği" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Mersin%20Yeni%C5%9Fehir&output=embed">
+              </iframe>
+              <!-- Alt şerit -->
+              <div class="contact-map-strip">
+                <div class="strip-item">
+                  <strong>Telefon</strong>
+                  <span>0 (545) 122 33 02</span>
+                </div>
+                <div class="strip-item">
+                  <strong>WhatsApp</strong>
+                  <span>Hızlı yanıt</span>
+                </div>
+                <div class="strip-item">
+                  <strong>Randevu</strong>
+                  <span>Aynı gün mümkün</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SAG: Info + Mini Form -->
+        <div class="col-lg-5 d-flex">
+          <div class="contact-side w-100 h-100 from-right">
+            <div class="contact-info-grid">
+              <div class="info-card">
+                <div class="info-icon" aria-hidden="true">📞</div>
+                <div>
+                  <div class="info-label">Telefon</div>
+                  <a class="info-value" href="tel:+905451223302">0 (545) 122 33 02</a>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-icon" aria-hidden="true">💬</div>
+                <div>
+                  <div class="info-label">WhatsApp</div>
+                  <a class="info-value" target="_blank" rel="noopener"
+                    href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
+                    Mesaj Gönder
+                  </a>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-icon" aria-hidden="true">📍</div>
+                <div>
+                  <div class="info-label">Bölge</div>
+                  <div class="info-value">Mersin • Yenişehir</div>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-icon" aria-hidden="true">⏱️</div>
+                <div>
+                  <div class="info-label">Çalışma Saatleri</div>
+                  <div class="info-value">Hafta içi 09:00–18:00</div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form-card mt-3">
+              <h3 class="h5 mb-2">Kısa Mesaj Bırakın</h3>
+              <p class="mb-3 contact-mini">
+                Formu doldurun, mesajınız WhatsApp üzerinden hazır metin olarak açılır.
+              </p>
+              <form id="contactForm" novalidate>
+                <div class="row g-2">
+                  <div class="col-12">
+                    <label class="form-label mb-1" for="cName">Ad Soyad *</label>
+                    <input class="form-control contact-input" id="cName" type="text" required placeholder="Ad Soyad">
+                    <div class="invalid-feedback">Ad soyad girin.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label mb-1" for="cPhone">Telefon</label>
+                    <input class="form-control contact-input" id="cPhone" type="tel" inputmode="tel"
+                      placeholder="05XX...">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label mb-1" for="cMsg">Mesaj *</label>
+                    <textarea class="form-control contact-input" id="cMsg" rows="4" required
+                      placeholder="Örn: Yarın için muayene randevusu almak istiyorum."></textarea>
+                    <div class="invalid-feedback">Mesaj yazın.</div>
+                  </div>
+                  <div class="col-12 d-flex flex-wrap gap-2 mt-2">
+                    <button type="submit" class="btn contact-btn-primary w-100">
+                      WhatsApp’tan Gönder
+                    </button>
+                    <small class="text-muted w-100 text-center">* Zorunlu alanlar</small>
+                  </div>
+                </div>
+              </form>
+              <div class="contact-success mt-3" id="contactSuccess" hidden>
+                Hazır! WhatsApp ekranı açılıyor…
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- lt bant: extra profesyonel dokunuş -->
+      <div class="contact-bottom mt-4">
+        <div class="contact-bottom-inner">
+          <div class="bottom-item">
+            <strong>Otopark / Ulaşım</strong>
+            <span>Yakın çevrede ulaşım kolaylığı</span>
+          </div>
+          <div class="bottom-item">
+            <strong>Ön Bilgilendirme</strong>
+            <span>Muayene öncesi kısa bilgilendirme yapılır</span>
+          </div>
+          <div class="bottom-item">
+            <strong>Şeffaf Süreç</strong>
+            <span>Plan, süre ve seçenekler net paylaşılır</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-<script>
-/* ANA VIDEO AÇILMAZSA FALLBACK VIDEOYU ÇALIŞTIR */
-(function(){
-  const mainVideo = document.getElementById('heroVideo');
-  const fallbackWrap = document.querySelector('.hero-fallback');
-  const fallbackVideo = document.querySelector('.hero-video-fallback');
+  </section>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Özet -->
+        <div class="footer-brand">
+          <div class="footer-logo" aria-hidden="true">BA</div>
+          <div>
+            <div class="footer-name">Berkan Aras Diş Hekimliği</div>
+            <div class="footer-desc">
+              Mersin Yenişehir’de modern, konforlu ve şeffaf tedavi yaklaşımı.
+            </div>
+          </div>
+        </div>
+        <!-- Linkler -->
+        <nav class="footer-nav" aria-label="Footer Menü">
+          <a href="#anasayfa">Anasayfa</a>
+          <a href="#hizmetler">Hizmetler</a>
+          <a href="#tur360">360° Klinik Turu</a>
+          <a href="#nedenbiz">Neden Biz</a>
+          <a href="#sss">SSS</a>
+          <a href="#iletisim">İletişim</a>
+        </nav>
+        <!-- İletişim -->
+        <div class="footer-contact">
+          <div class="footer-contact-title">İletişim</div>
+          <a href="tel:+905451223302">0 (545) 122 33 02</a>
+          <a target="_blank" rel="noopener"
+            href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
+            WhatsApp’tan Yaz
+          </a>
+          <span class="footer-mini">Mersin • Yenişehir</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © <span id="footerYear"></span> Berkan Aras Diş Hekimliği. Tüm hakları saklıdır.
+        </div>
+        <div class="footer-legal">
+          <a href="#kvkk" class="footer-legal-link">KVKK</a>
+          <span class="footer-dot">•</span>
+          <a href="#gizlilik" class="footer-legal-link">Gizlilik</a>
+          <span class="footer-dot">•</span>
+          <a href="#cerez" class="footer-legal-link">Çerezler</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    /* ANA VIDEO AÇILMAZSA FALLBACK VIDEOYU ÇALIŞTIR */
+    (function () {
+      const mainVideo = document.getElementById('heroVideo');
+      const fallbackWrap = document.querySelector('.hero-fallback');
+      const fallbackVideo = document.querySelector('.hero-video-fallback');
 
-  function showFallback(){
-    fallbackWrap.style.opacity = '1';
+      function showFallback() {
+        fallbackWrap.style.opacity = '1';
 
-    const src = fallbackVideo.querySelector('source[data-src]');
-    if(src){
-      src.src = src.dataset.src;
-      src.removeAttribute('data-src');
-      fallbackVideo.load();
-      fallbackVideo.play().catch(()=>{});
-    }
-  }
+        const src = fallbackVideo.querySelector('source[data-src]');
+        if (src) {
+          src.src = src.dataset.src;
+          src.removeAttribute('data-src');
+          fallbackVideo.load();
+          fallbackVideo.play().catch(() => { });
+        }
+      }
 
-  mainVideo.addEventListener('error', showFallback);
+      mainVideo.addEventListener('error', showFallback);
 
-  setTimeout(() => {
-    if(mainVideo.readyState < 2){
-      showFallback();
-    }
-  }, 2000);
-})();
-</script>
-<script>
-$(function () {
-  // 1) Buraya GERÇEK 360 (equirectangular) fotoğraf URL'ni koy
-  // Örn: "assets/img/klinik-360.jpg"
-  const PANORAMA_IMAGE_URL = "2025-06-30.webp";
+      setTimeout(() => {
+        if (mainVideo.readyState < 2) {
+          showFallback();
+        }
+      }, 2000);
+    })();
+  </script>
+  <script>
+    $(function () {
+      // 1) Buraya GERÇEK 360 (equirectangular) fotoğraf URL'ni koy
+      // Örn: "assets/img/klinik-360.jpg"
+      const PANORAMA_IMAGE_URL = "img/2025-06-30.webp";
 
-  // Pannellum dosyalarını sadece ihtiyaç olunca yükle (performans)
-  function loadPannellumAssets() {
-    return new Promise((resolve, reject) => {
-      if (window.pannellum) return resolve();
+      // Pannellum dosyalarını sadece ihtiyaç olunca yükle (performans)
+      function loadPannellumAssets() {
+        return new Promise((resolve, reject) => {
+          if (window.pannellum) return resolve();
 
-      // CSS
-      const css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.href = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css";
-      document.head.appendChild(css);
+          // CSS
+          const css = document.createElement("link");
+          css.rel = "stylesheet";
+          css.href = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css";
+          document.head.appendChild(css);
 
-      // JS
-      const js = document.createElement("script");
-      js.src = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js";
-      js.onload = () => resolve();
-      js.onerror = () => reject(new Error("Pannellum yüklenemedi"));
-      document.body.appendChild(js);
+          // JS
+          const js = document.createElement("script");
+          js.src = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js";
+          js.onload = () => resolve();
+          js.onerror = () => reject(new Error("Pannellum yüklenemedi"));
+          document.body.appendChild(js);
+        });
+      }
+
+      let viewer = null;
+      function initViewer() {
+        if (viewer) return;
+
+        $("#tour360Loading").show();
+
+        viewer = pannellum.viewer('panorama360', {
+          type: "equirectangular",
+          panorama: PANORAMA_IMAGE_URL,
+
+          autoLoad: true,
+          showControls: true,
+          showFullscreenCtrl: true,
+
+          hfov: 180,        // 🔥 başlangıçta GERİDEN gözüksün
+          minHfov: 70,      // kullanıcı daha fazla yakınlaşamasın
+          maxHfov: 130,     // çok da uzaklaşamasın
+
+          pitch: 0,
+          yaw: 0
+        });
+
+        // Fotoğraf yüklenince loading'i kapat
+        viewer.on('load', function () {
+          $("#tour360Loading").fadeOut(150);
+        });
+      }
+
+      // Lazy init: bölüm ekrana yaklaşınca başlat
+      const el = document.getElementById("tur360");
+      const io = new IntersectionObserver(async (entries) => {
+        const entry = entries[0];
+        if (!entry.isIntersecting) return;
+
+        try {
+          await loadPannellumAssets();
+          initViewer();
+          io.disconnect();
+        } catch (e) {
+          $("#tour360Loading").text("360° tur yüklenemedi (bağlantıyı kontrol edin).");
+        }
+      }, { root: null, threshold: 0.15 });
+
+      io.observe(el);
+
+      // Tam ekran butonu (opsiyonel)
+      $("#tour360Fullscreen").on("click", function () {
+        if (!viewer) return;
+        // Pannellum'da fullscreen ctrl var; ama butonla da tetikleyebiliriz:
+        const fsBtn = document.querySelector("#panorama360 .pnlm-fullscreen-toggle-button");
+        if (fsBtn) fsBtn.click();
+      });
     });
-  }
+  </script>
+  <script>
+    // (Opsiyonel) Scroll ile section görünürken hafif animasyon (çok hafif, performans dostu)
+    (function () {
+      const cards = document.querySelectorAll('.service-card');
+      if (!('IntersectionObserver' in window)) return;
 
-  let viewer = null;
-  function initViewer() {
-    if (viewer) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.opacity = '1';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-    $("#tour360Loading").show();
+      cards.forEach((c) => {
+        c.style.opacity = '0';
+        c.style.transform = 'translateY(10px)';
+        c.style.transition = 'opacity 240ms ease, transform 240ms ease, box-shadow 180ms ease, border-color 180ms ease';
+        io.observe(c);
+      });
+    })();
+  </script>
+  <script>
+    $(function () {
+      const WHATSAPP_NUMBER = "905451223302"; // başında 0 yok, ülke kodlu
 
-    viewer = pannellum.viewer('panorama360', {
-  type: "equirectangular",
-  panorama: PANORAMA_IMAGE_URL,
+      // Telefon input: sadece rakam bırak
+      $("#apptPhone").on("input", function () {
+        this.value = this.value.replace(/[^\d]/g, "").slice(0, 11);
+      });
 
-  autoLoad: true,
-  showControls: true,
-  showFullscreenCtrl: true,
+      // Bugünden önce tarih seçilmesin
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      $("#apptDate").attr("min", `${yyyy}-${mm}-${dd}`);
 
-  hfov: 180,        // 🔥 başlangıçta GERİDEN gözüksün
-  minHfov: 70,      // kullanıcı daha fazla yakınlaşamasın
-  maxHfov: 130,     // çok da uzaklaşamasın
+      $("#apptForm").on("submit", function (e) {
+        e.preventDefault();
 
-  pitch: 0,
-  yaw: 0
+        // Basit doğrulama
+        const name = $("#apptName").val().trim();
+        const phone = $("#apptPhone").val().trim();
+        const date = $("#apptDate").val().trim();
+        const time = $("#apptTime").val().trim();
+        const service = $("#apptService").val().trim();
+        const contact = $("#apptContact").val().trim();
+        const note = $("#apptNote").val().trim();
+
+        // Bootstrap validation görünümü
+        let ok = true;
+        if (!name) { $("#apptName").addClass("is-invalid"); ok = false; } else { $("#apptName").removeClass("is-invalid"); }
+        if (phone.length < 10) { $("#apptPhone").addClass("is-invalid"); ok = false; } else { $("#apptPhone").removeClass("is-invalid"); }
+        if (!date) { $("#apptDate").addClass("is-invalid"); ok = false; } else { $("#apptDate").removeClass("is-invalid"); }
+
+        if (!ok) return;
+
+        // Mesaj oluştur
+        const msgLines = [
+          "Merhaba, randevu talep ediyorum.",
+          "",
+          `Ad Soyad: ${name}`,
+          `Telefon: ${phone}`,
+          `Tarih: ${date}`,
+          time ? `Saat: ${time}` : null,
+          service ? `Hizmet: ${service}` : null,
+          contact ? `İletişim Tercihi: ${contact}` : null,
+          note ? `Not: ${note}` : null
+        ].filter(Boolean);
+
+        const text = encodeURIComponent(msgLines.join("\n"));
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+
+        $("#apptSuccess").prop("hidden", false);
+
+        // Yeni sekmede aç (kullanıcı deneyimi iyi)
+        window.open(waUrl, "_blank", "noopener");
+      });
     });
+  </script>
+  <script>
+    /* === Neden Biz scroll animasyonu === */
+    (function () {
+      const cards = document.querySelectorAll('.why-card');
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(c => c.classList.add('is-visible'));
+        return;
+      }
 
-    // Fotoğraf yüklenince loading'i kapat
-    viewer.on('load', function(){
-      $("#tour360Loading").fadeOut(150);
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      cards.forEach(c => io.observe(c));
+    })();
+  </script>
+  <script>
+    /* FAQ kartına hafif scroll animasyonu (opsiyonel) */
+    (function () {
+      const el = document.querySelector('.faq-card');
+      const side = document.querySelector('.faq-side');
+      if (!el || !('IntersectionObserver' in window)) return;
+
+      [el, side].forEach((node, i) => {
+        node.style.opacity = '0';
+        node.style.transform = i === 0 ? 'translateX(-40px)' : 'translateX(40px)';
+        node.style.transition = 'opacity 700ms ease, transform 700ms cubic-bezier(.22,.61,.36,1)';
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateX(0)';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+
+      io.observe(el);
+      io.observe(side);
+    })();
+  </script>
+  <script>
+    $(function () {
+      const WHATSAPP_NUMBER = "905451223302";
+
+      // Mini form -> WhatsApp
+      $("#cPhone").on("input", function () {
+        this.value = this.value.replace(/[^\d]/g, "").slice(0, 11);
+      });
+
+      $("#contactForm").on("submit", function (e) {
+        e.preventDefault();
+
+        const name = $("#cName").val().trim();
+        const phone = $("#cPhone").val().trim();
+        const msg = $("#cMsg").val().trim();
+
+        let ok = true;
+        if (!name) { $("#cName").addClass("is-invalid"); ok = false; } else $("#cName").removeClass("is-invalid");
+        if (!msg) { $("#cMsg").addClass("is-invalid"); ok = false; } else $("#cMsg").removeClass("is-invalid");
+        if (!ok) return;
+
+        const lines = [
+          "Merhaba, iletişim formundan yazıyorum.",
+          "",
+          `Ad Soyad: ${name}`,
+          phone ? `Telefon: ${phone}` : null,
+          "",
+          `Mesaj: ${msg}`
+        ].filter(Boolean);
+
+        const text = encodeURIComponent(lines.join("\n"));
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+
+        $("#contactSuccess").prop("hidden", false);
+        window.open(waUrl, "_blank", "noopener");
+      });
+
+      // Scroll animasyon
+      const nodes = document.querySelectorAll(".contact-map-card.from-left, .contact-side.from-right");
+      if (!("IntersectionObserver" in window)) {
+        nodes.forEach(n => n.classList.add("is-visible"));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+
+      nodes.forEach(n => io.observe(n));
     });
-  }
+  </script>
+  <script>
+    // Yılı otomatik yaz
+    (function () {
+      const y = new Date().getFullYear();
+      const el = document.getElementById("footerYear");
+      if (el) el.textContent = y;
+    })();
+  </script>
+  <script>
+    (function () {
+      const links = document.querySelectorAll('.navbar-nav .nav-link');
+      const path = location.pathname.split('/').pop() || 'index.html';
 
-  // Lazy init: bölüm ekrana yaklaşınca başlat
-  const el = document.getElementById("tur360");
-  const io = new IntersectionObserver(async (entries) => {
-    const entry = entries[0];
-    if (!entry.isIntersecting) return;
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href) return;
 
-    try{
-      await loadPannellumAssets();
-      initViewer();
-      io.disconnect();
-    }catch(e){
-      $("#tour360Loading").text("360° tur yüklenemedi (bağlantıyı kontrol edin).");
-    }
-  }, { root: null, threshold: 0.15 });
+        // sadece sayfa linkleri için (http, tel, # vs değil)
+        const cleanHref = href.split('#')[0];
 
-  io.observe(el);
-
-  // Tam ekran butonu (opsiyonel)
-  $("#tour360Fullscreen").on("click", function(){
-    if (!viewer) return;
-    // Pannellum'da fullscreen ctrl var; ama butonla da tetikleyebiliriz:
-    const fsBtn = document.querySelector("#panorama360 .pnlm-fullscreen-toggle-button");
-    if (fsBtn) fsBtn.click();
-  });
-});
-</script>
-<script>
-  // (Opsiyonel) Scroll ile section görünürken hafif animasyon (çok hafif, performans dostu)
-  (function(){
-    const cards = document.querySelectorAll('.service-card');
-    if(!('IntersectionObserver' in window)) return;
-
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.style.transform = 'translateY(0)';
-          e.target.style.opacity = '1';
-          io.unobserve(e.target);
+        if (cleanHref === path) {
+          a.classList.add('active');
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.classList.remove('active');
+          a.removeAttribute('aria-current');
         }
       });
-    }, { threshold: 0.15 });
+    })();
+  </script>
+  <script>
+    // Videoyu hız için "lazy" başlat: kaynakları sayfa yüklendikten sonra ekle
+    (function () {
+      const v = document.getElementById('heroVideo');
+      if (!v) return;
 
-    cards.forEach((c)=>{
-      c.style.opacity = '0';
-      c.style.transform = 'translateY(10px)';
-      c.style.transition = 'opacity 240ms ease, transform 240ms ease, box-shadow 180ms ease, border-color 180ms ease';
-      io.observe(c);
-    });
-  })();
-</script>
-<script>
-$(function(){
-  const WHATSAPP_NUMBER = "905451223302"; // başında 0 yok, ülke kodlu
+      const showFallback = () => {
+        const fb = document.querySelector('.hero-fallback');
+        if (fb) fb.style.opacity = '1';
+      };
 
-  // Telefon input: sadece rakam bırak
-  $("#apptPhone").on("input", function(){
-    this.value = this.value.replace(/[^\d]/g, "").slice(0, 11);
-  });
+      // Reduced motion ise fallback
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) { showFallback(); return; }
 
-  // Bugünden önce tarih seçilmesin
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth()+1).padStart(2,'0');
-  const dd = String(today.getDate()).padStart(2,'0');
-  $("#apptDate").attr("min", `${yyyy}-${mm}-${dd}`);
+      // Mobil data saver / düşük bağlantı varsa video yükleme
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const saveData = conn && conn.saveData;
+      const slow = conn && (conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g');
+      if (saveData || slow) { showFallback(); return; }
 
-  $("#apptForm").on("submit", function(e){
-    e.preventDefault();
+      // Kaynakları sonradan set et
+      const sources = v.querySelectorAll('source[data-src]');
+      sources.forEach(s => { s.src = s.getAttribute('data-src'); s.removeAttribute('data-src'); });
 
-    // Basit doğrulama
-    const name = $("#apptName").val().trim();
-    const phone = $("#apptPhone").val().trim();
-    const date = $("#apptDate").val().trim();
-    const time = $("#apptTime").val().trim();
-    const service = $("#apptService").val().trim();
-    const contact = $("#apptContact").val().trim();
-    const note = $("#apptNote").val().trim();
+      // Metadata yükle, oynatmayı dene
+      v.preload = 'metadata';
+      v.load();
 
-    // Bootstrap validation görünümü
-    let ok = true;
-    if(!name){ $("#apptName").addClass("is-invalid"); ok=false; } else { $("#apptName").removeClass("is-invalid"); }
-    if(phone.length < 10){ $("#apptPhone").addClass("is-invalid"); ok=false; } else { $("#apptPhone").removeClass("is-invalid"); }
-    if(!date){ $("#apptDate").addClass("is-invalid"); ok=false; } else { $("#apptDate").removeClass("is-invalid"); }
+      const tryPlay = () => v.play().catch(() => showFallback());
+      v.addEventListener('canplay', tryPlay, { once: true });
 
-    if(!ok) return;
+      // Eğer 2 saniyede video açılmazsa fallback
+      setTimeout(() => {
+        if (v.readyState < 2) showFallback();
+      }, 2000);
 
-    // Mesaj oluştur
-    const msgLines = [
-      "Merhaba, randevu talep ediyorum.",
-      "",
-      `Ad Soyad: ${name}`,
-      `Telefon: ${phone}`,
-      `Tarih: ${date}`,
-      time ? `Saat: ${time}` : null,
-      service ? `Hizmet: ${service}` : null,
-      contact ? `İletişim Tercihi: ${contact}` : null,
-      note ? `Not: ${note}` : null
-    ].filter(Boolean);
+      // Video hata verirse fallback
+      v.addEventListener('error', showFallback, { once: true });
+    })();
+  </script>
+  <script>
+    // jQuery ile aktif link + mobil menü tıklandıktan sonra kapanma
+    $(function () {
+      // Navbar linklerine tıklanınca mobil menüyü kapat
+      $('.dent-navbar .nav-link, #btnRandevu').on('click', function () {
+        const $navbar = $('#mainNavbar');
+        if ($navbar.hasClass('show')) {
+          const bsCollapse = bootstrap.Collapse.getOrCreateInstance($navbar[0]);
+          bsCollapse.hide();
+        }
+      });
 
-    const text = encodeURIComponent(msgLines.join("\n"));
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+      // Scroll'a göre aktif link (basit)
+      const sections = ['top', 'hizmetler', 'tur360', 'nedenbiz', 'sss', 'iletisim', 'randevu']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
 
-    $("#apptSuccess").prop("hidden", false);
-
-    // Yeni sekmede aç (kullanıcı deneyimi iyi)
-    window.open(waUrl, "_blank", "noopener");
-  });
-});
-</script>
-<script>
-/* === Neden Biz scroll animasyonu === */
-(function(){
-  const cards = document.querySelectorAll('.why-card');
-  if(!('IntersectionObserver' in window)){
-    cards.forEach(c => c.classList.add('is-visible'));
-    return;
-  }
-
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
+      function setActive() {
+        let currentId = 'top';
+        const y = window.scrollY + 130;
+        for (const sec of sections) {
+          if (sec.offsetTop <= y) currentId = sec.id;
+        }
+        $('.dent-navbar .nav-link').removeClass('active');
+        $('.dent-navbar .nav-link[href="#' + currentId + '"]').addClass('active');
+        if (currentId === 'top') $('.dent-navbar .nav-link[href="#top"]').addClass('active');
       }
+
+      $(window).on('scroll', setActive);
+      setActive();
     });
-  }, { threshold: 0.2 });
-
-  cards.forEach(c => io.observe(c));
-})();
-</script>
-<script>
-/* FAQ kartına hafif scroll animasyonu (opsiyonel) */
-(function(){
-  const el = document.querySelector('.faq-card');
-  const side = document.querySelector('.faq-side');
-  if(!el || !('IntersectionObserver' in window)) return;
-
-  [el, side].forEach((node, i)=>{
-    node.style.opacity = '0';
-    node.style.transform = i === 0 ? 'translateX(-40px)' : 'translateX(40px)';
-    node.style.transition = 'opacity 700ms ease, transform 700ms cubic-bezier(.22,.61,.36,1)';
-  });
-
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateX(0)';
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.18 });
-
-  io.observe(el);
-  io.observe(side);
-})();
-</script>
-<script>
-$(function(){
-  const WHATSAPP_NUMBER = "905451223302";
-
-  // Mini form -> WhatsApp
-  $("#cPhone").on("input", function(){
-    this.value = this.value.replace(/[^\d]/g, "").slice(0, 11);
-  });
-
-  $("#contactForm").on("submit", function(e){
-    e.preventDefault();
-
-    const name = $("#cName").val().trim();
-    const phone = $("#cPhone").val().trim();
-    const msg = $("#cMsg").val().trim();
-
-    let ok = true;
-    if(!name){ $("#cName").addClass("is-invalid"); ok=false; } else $("#cName").removeClass("is-invalid");
-    if(!msg){ $("#cMsg").addClass("is-invalid"); ok=false; } else $("#cMsg").removeClass("is-invalid");
-    if(!ok) return;
-
-    const lines = [
-      "Merhaba, iletişim formundan yazıyorum.",
-      "",
-      `Ad Soyad: ${name}`,
-      phone ? `Telefon: ${phone}` : null,
-      "",
-      `Mesaj: ${msg}`
-    ].filter(Boolean);
-
-    const text = encodeURIComponent(lines.join("\n"));
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-
-    $("#contactSuccess").prop("hidden", false);
-    window.open(waUrl, "_blank", "noopener");
-  });
-
-  // Scroll animasyon
-  const nodes = document.querySelectorAll(".contact-map-card.from-left, .contact-side.from-right");
-  if(!("IntersectionObserver" in window)){
-    nodes.forEach(n=>n.classList.add("is-visible"));
-    return;
-  }
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add("is-visible");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.18 });
-
-  nodes.forEach(n=>io.observe(n));
-});
-</script>
-<script>
-  // Yılı otomatik yaz
-  (function(){
-    const y = new Date().getFullYear();
-    const el = document.getElementById("footerYear");
-    if(el) el.textContent = y;
-  })();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 </body>
 
 </html>
