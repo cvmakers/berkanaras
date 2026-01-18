@@ -1335,3 +1335,70 @@ html, body{
     .services-cta-inner{ flex-direction: column; align-items: stretch; }
     .services-cta-actions .btn{ width: 100%; text-align:center; }
   }
+/* ===== MOBILE ACTIONS (ANASAYFA) ===== */
+.mobile-actions{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 9998;
+
+  display: none;
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(55,66,97,.18);
+  box-shadow: 0 14px 34px rgba(0,0,0,.16);
+}
+
+/* sadece mobil */
+@media (max-width: 768px){
+  .mobile-actions{ display: flex; }
+}
+
+/* Butonlar */
+.mact{
+  flex: 1 1 0;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 8px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(55,66,97,.14);
+  background: rgba(55,66,97,.06);
+
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.mact:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.mact-ico{
+  font-size: 18px;
+}
+
+.mact-txt{
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #374261;
+}
+
+/* Mobilde içerik barın altına girmesin */
+@media (max-width: 768px){
+  body.home-page{
+    padding-bottom: 96px;
+  }
+}

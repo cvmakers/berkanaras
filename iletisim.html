@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>İletişim & Yol Tarifi | Berkan Aras Diş Hekimliği</title>
+<meta name="description"
+content="Berkan Aras Diş Hekimliği iletişim bilgileri. Telefon, WhatsApp, adres ve yol tarifi. Hızlı randevu için ulaşın.">
+  <meta name="description" content="Berkan Aras Diş Hekimliği iletişim bilgileri. Telefon, WhatsApp, konum ve online randevu için hızlıca ulaşın.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="canonical" href="https://www.siteadresin.com/SAYFA-ADI.html">
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<meta name="theme-color" content="#374261">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Berkan Aras Diş Hekimliği">
+<meta property="og:image" content="https://www.siteadresin.com/img/og-cover.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+
+  <style>
+    :root{
+      --brand:#374261;
+      --ink:#0f172a;
+      --muted:#334155;
+      --line: rgba(55,66,97,.18);
+      --card: rgba(255,255,255,.78);
+      --soft: rgba(55,66,97,.06);
+    }
+    body{ background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%); }
+
+
+
+    /* Hero */
+    .contact-hero{
+      position: relative;
+      padding: 64px 0 22px;
+      overflow:hidden;
+    }
+    .contact-hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(900px 320px at 18% 0%, rgba(55,66,97,.22), transparent 60%),
+        radial-gradient(700px 260px at 85% 15%, rgba(55,66,97,.14), transparent 62%);
+      pointer-events:none;
+    }
+    .contact-hero .container{ position:relative; z-index:2; }
+
+    .kicker{
+      display:inline-block;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      color: var(--brand);
+      background: rgba(55,66,97,.10);
+      border: 1px solid rgba(55,66,97,.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+    .contact-title{
+      color: var(--ink);
+      font-weight: 950;
+      letter-spacing:.2px;
+      font-size: clamp(30px, 4.2vw, 46px);
+      margin: 10px 0 10px;
+    }
+    .contact-sub{
+      color: var(--muted);
+      line-height:1.7;
+      max-width: 860px;
+      margin: 0;
+    }
+
+    /* Cards */
+    .card-glass{
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+    .card-pad{ padding: 18px; }
+
+    .btn-primary-soft{
+      background: var(--brand);
+      color:#fff;
+      border-radius: 14px;
+      font-weight: 900;
+      padding: .72rem 1.05rem;
+      border: 1px solid rgba(55,66,97,.25);
+    }
+    .btn-outline-soft{
+      background:#fff;
+      color: var(--brand);
+      border-radius: 14px;
+      font-weight: 900;
+      padding: .72rem 1.05rem;
+      border: 1px solid rgba(55,66,97,.25);
+    }
+    .btn-ghost{
+      background: rgba(55,66,97,.08);
+      color: var(--brand);
+      border-radius: 14px;
+      font-weight: 900;
+      padding: .72rem 1.05rem;
+      border: 1px solid rgba(55,66,97,.18);
+    }
+
+    /* Contact info list */
+    .info-item{
+      display:flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(55,66,97,.14);
+    }
+    .info-item:last-child{ border-bottom:0; }
+    .info-ico{
+      width: 42px; height: 42px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: rgba(55,66,97,.10);
+      border: 1px solid rgba(55,66,97,.18);
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+    .info-item strong{ display:block; color: var(--ink); font-weight: 950; }
+    .info-item span, .info-item a{
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .info-item a:hover{ text-decoration: underline; }
+
+    /* Form */
+    .form-label{ font-weight: 900; color: var(--ink); }
+    .form-control, .form-select{
+      border-radius: 14px;
+      border: 1px solid rgba(55,66,97,.18);
+      padding: .72rem .85rem;
+    }
+    .form-control:focus, .form-select:focus{
+      border-color: rgba(55,66,97,.32);
+      box-shadow: 0 0 0 .2rem rgba(55,66,97,.12);
+    }
+    .form-note{
+      font-size: 12px;
+      color: rgba(51,65,85,.85);
+      line-height: 1.55;
+    }
+
+    /* Map */
+    .map-wrap{
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border-radius: 26px;
+      overflow:hidden;
+      border: 1px solid rgba(55,66,97,.18);
+      background: #e2e8f0;
+    }
+    .map-wrap iframe{ width:100%; height:100%; border:0; }
+
+    /* FAQ mini */
+    .mini-faq .q{
+      font-weight: 950;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+    .mini-faq .a{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 14px;
+    }
+    .mini-faq .row > div{
+      border-top: 1px solid rgba(55,66,97,.14);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    /* Footer */
+    .site-footer{ background:#374261; color: rgba(255,255,255,.85); padding: 22px 0; margin-top: 22px; }
+    .footer-bottom{ display:flex; justify-content: space-between; align-items:center; flex-wrap:wrap; gap: 10px; }
+    .footer-copy{ font-size: 12px; font-weight: 700; }
+    .footer-legal{ display:flex; gap: 10px; align-items:center; }
+    .footer-legal-link{ color: rgba(255,255,255,.78); text-decoration:none; font-size: 12px; font-weight: 800; }
+    .footer-legal-link:hover{ color:#fff; text-decoration: underline; }
+    .footer-dot{ opacity: .6; }
+
+    @media (max-width:576px){
+      .map-wrap{ min-height: 320px; }
+      .footer-bottom{ flex-direction: column; align-items:flex-start; }
+    }
+    /* ===== Floating Route Balloon ===== */
+.route-float{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: #374261;
+  text-decoration: none;
+  font-weight: 950;
+
+  border: 1px solid rgba(55,66,97,.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+
+  transform: translateY(0);
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.route-float:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
+
+.route-ico{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(55,66,97,.10);
+  border: 1px solid rgba(55,66,97,.18);
+  font-size: 16px;
+}
+
+.route-text{
+  font-size: 14px;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+/* Mobilde balon yukarı çıksın (alttaki barla çakışmasın) */
+@media (max-width: 768px){
+  .route-float{ bottom: 84px; }
+}
+
+/* ===== Mobile Sticky Action Bar ===== */
+.mobile-actions{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 9998;
+
+  display: none; /* sadece mobil */
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(55,66,97,.18);
+  box-shadow: 0 14px 34px rgba(0,0,0,.16);
+}
+
+@media (max-width: 768px){
+  .mobile-actions{ display: flex; }
+}
+
+.mact{
+  flex: 1 1 0;
+  text-decoration: none;
+  color: #0f172a;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 8px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(55,66,97,.14);
+  background: rgba(55,66,97,.06);
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.mact:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
+
+.mact-ico{ font-size: 18px; }
+.mact-txt{
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 950;
+  color: #374261;
+}
+
+/* Mobilde sayfa içeriği barın altına girmesin */
+@media (max-width: 768px){
+  body{ padding-bottom: 98px; }
+}
+
+/* ===== Mini Toast ===== */
+.mini-toast{
+  position: fixed;
+  left: 50%;
+  bottom: 110px;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  background: rgba(15,23,42,.92);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.mini-toast.show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+  </style>
+</head>
+
+<body>
+
+<header class="dent-header" id="top">
+  <nav class="navbar navbar-expand-lg dent-navbar">
+    <div class="container">
+      <!-- LOGO -->
+      <a class="navbar-brand" href="index.html">
+        <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Berkan Aras Diş Hekimliği" width="100"
+          height="50">
+      </a>
+      <!-- TOGGLER -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- NAV -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+          <li class="nav-item"><a class="nav-link" href="klinik-turu.html">360° Klinik Turu</a></li>
+          <li class="nav-item"><a class="nav-link" href="whyus.html">Neden Biz</a></li>
+          <li class="nav-item"><a class="nav-link" href="sss.html">SSS</a></li>
+          <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+        </ul>
+        <!-- CTA -->
+        <!-- CTA -->
+        <div class="d-flex align-items-center gap-2">
+          <a class="btn btn-randevu" href="index.html#randevu">
+            Randevu Al
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="contact-hero">
+  <div class="container">
+    <span class="kicker">İletişim</span>
+    <h1 class="contact-title">Hızlıca Ulaşın, Randevunuzu Oluşturalım</h1>
+    <p class="contact-sub">
+      Telefon veya WhatsApp ile hızlı yanıt. Konum ve yol tarifi için haritayı kullanabilirsiniz.
+      İsterseniz formu doldurun; mesajınız WhatsApp’a hazır şekilde oluşturulur.
+    </p>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<section class="pb-5">
+  <div class="container">
+
+    <div class="row g-4 align-items-stretch">
+
+      <!-- LEFT: INFO -->
+      <div class="col-lg-4 d-flex">
+        <div class="card-glass w-100">
+          <div class="card-pad">
+            <h2 class="h5 mb-2" style="font-weight:950;color:var(--ink);">İletişim Bilgileri</h2>
+            <p class="mb-3" style="color:var(--muted);line-height:1.65;">
+              En hızlı dönüş için WhatsApp veya telefon ile ulaşabilirsiniz.
+            </p>
+
+            <div class="info-item">
+              <div class="info-ico">📞</div>
+              <div>
+                <strong>Telefon</strong>
+      <a href="tel:+905451223302" data-copy="+905451223302" class="copyable">+90 545 122 33 02</a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-ico">💬</div>
+              <div>
+                <strong>WhatsApp</strong>
+                <a target="_blank" rel="noopener"
+                   href="https://wa.me/905451223302?text=Merhaba%2C%20randevu%20almak%20istiyorum.">
+                  Hemen yazın
+                </a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-ico">📍</div>
+              <div>
+                <strong>Adres</strong>
+         <span data-copy="Mersin Yenişehir (Adresinizi buraya yazın)" class="copyable">
+  Mersin Yenişehir (Adresinizi buraya yazın)
+</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-ico">🕘</div>
+              <div>
+                <strong>Çalışma Saatleri</strong>
+                <span>Pzt–Cmt: 09:00–18:30 (örnek)</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-3">
+              <a class="btn btn-primary-soft" href="tel:+905451223302">Hemen Ara</a>
+              <a class="btn btn-outline-soft" target="_blank" rel="noopener"
+                 href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
+                WhatsApp’tan Yaz
+              </a>
+              <a class="btn btn-ghost" target="_blank" rel="noopener"
+                 href="https://www.google.com/maps?q=Mersin+Yeni%C5%9Fehir">
+                Konum / Yol Tarifi
+              </a>
+            </div>
+
+            <p class="form-note mt-3 mb-0">
+              * Acil ağrı durumunda “Acil” yazarak WhatsApp’tan mesaj atmanız hızlı öncelik sağlar.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MID: FORM (WhatsApp’a yönlendirir) -->
+      <div class="col-lg-4 d-flex">
+        <div class="card-glass w-100">
+          <div class="card-pad">
+            <h2 class="h5 mb-2" style="font-weight:950;color:var(--ink);">Mesaj Gönder</h2>
+            <p class="mb-3" style="color:var(--muted);line-height:1.65;">
+              Formu doldurun, mesajınız WhatsApp’ta otomatik hazırlanıp açılacak.
+            </p>
+
+            <form id="contactForm" novalidate>
+              <div class="mb-3">
+                <label class="form-label" for="name">Ad Soyad</label>
+                <input class="form-control" id="name" name="name" type="text" placeholder="Örn: Ahmet Yılmaz" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="phone">Telefon (opsiyonel)</label>
+                <input class="form-control" id="phone" name="phone" type="tel" placeholder="05xx xxx xx xx">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="topic">Konu</label>
+                <select class="form-select" id="topic" name="topic" required>
+                  <option value="" selected disabled>Seçiniz</option>
+                  <option>Randevu</option>
+                  <option>İmplant</option>
+                  <option>Zirkonyum / Kaplama</option>
+                  <option>Kanal Tedavisi</option>
+                  <option>Diş Taşı Temizliği</option>
+                  <option>Fiyat / Bilgi</option>
+                  <option>Acil</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="message">Mesajınız</label>
+                <textarea class="form-control" id="message" name="message" rows="4"
+                          placeholder="Kısaca anlatın: şikayetiniz, istediğiniz tarih/saat vb." required></textarea>
+              </div>
+
+              <button class="btn btn-primary-soft w-100" type="submit">WhatsApp’ta Gönder</button>
+
+              <p class="form-note mt-3 mb-0">
+                * Gönder butonu sizi WhatsApp’a yönlendirir. Mesaj hazır gelir; sadece gönderirsiniz.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: MAP -->
+      <div class="col-lg-4 d-flex">
+        <div class="map-wrap w-100">
+          <!-- ✅ Buraya gerçek Google Maps embed linkini yapıştır -->
+          <iframe
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Mersin%20Yeni%C5%9Fehir&output=embed"
+            title="Berkan Aras Diş Hekimliği Konum">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MINI FAQ / TRUST -->
+    <div class="card-glass card-pad mt-4 mini-faq">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h3 class="h5 mb-2" style="font-weight:950;color:var(--ink);">Hızlı Bilgi</h3>
+          <p class="mb-0" style="color:var(--muted);line-height:1.7;">
+            Randevu, fiyat ve süreç hakkında en çok sorulanları burada kısa yanıtladık.
+          </p>
+        </div>
+        <div class="col-lg-8">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <p class="q">Aynı gün randevu mümkün mü?</p>
+              <p class="a">Uygunluk durumuna göre planlanabilir. En hızlı yöntem WhatsApp veya telefon.</p>
+            </div>
+            <div class="col-md-6">
+              <p class="q">Tedavi ücretleri nasıl belirlenir?</p>
+              <p class="a">İşlemin kapsamı ve ihtiyaçlara göre muayene sonrası netleşir, şeffaf bilgi verilir.</p>
+            </div>
+            <div class="col-md-6">
+              <p class="q">Konuma nasıl ulaşabilirim?</p>
+              <p class="a">Harita üzerinden yol tarifi alabilir veya WhatsApp’tan konum isteyebilirsiniz.</p>
+            </div>
+            <div class="col-md-6">
+              <p class="q">Acil ağrıda ne yapmalıyım?</p>
+              <p class="a">WhatsApp’tan “Acil” yazarak mesaj atın; hızlı yönlendirme sağlanır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta mt-4">
+        <div>
+          <h3>Hızlı randevu için bir tık</h3>
+          <p>Uygun saatleri birlikte planlayalım.</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <a class="btn btn-primary-soft" href="tel:+905451223302">Ara</a>
+          <a class="btn btn-outline-soft" target="_blank" rel="noopener"
+             href="https://wa.me/905451223302?text=Merhaba%2C%20randevu%20almak%20istiyorum.">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Özet -->
+        <div class="footer-brand">
+          <div class="footer-logo" aria-hidden="true">BA</div>
+          <div>
+            <div class="footer-name">Berkan Aras Diş Hekimliği</div>
+            <div class="footer-desc">
+              Mersin Yenişehir’de modern, konforlu ve şeffaf tedavi yaklaşımı.
+            </div>
+          </div>
+        </div>
+        <!-- Linkler -->
+        <nav class="footer-nav" aria-label="Footer Menü">
+          <a href="#anasayfa">Anasayfa</a>
+          <a href="#hizmetler">Hizmetler</a>
+          <a href="#tur360">360° Klinik Turu</a>
+          <a href="#nedenbiz">Neden Biz</a>
+          <a href="#sss">SSS</a>
+          <a href="#iletisim">İletişim</a>
+        </nav>
+        <!-- İletişim -->
+        <div class="footer-contact">
+          <div class="footer-contact-title">İletişim</div>
+          <a href="tel:+905451223302">0 (545) 122 33 02</a>
+          <a target="_blank" rel="noopener"
+            href="https://wa.me/905451223302?text=Merhaba%2C%20bilgi%20almak%20istiyorum.">
+            WhatsApp’tan Yaz
+          </a>
+          <span class="footer-mini">Mersin • Yenişehir</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © <span id="footerYear"></span> Berkan Aras Diş Hekimliği. Tüm hakları saklıdır.
+        </div>
+        <div class="footer-legal">
+          <a href="kvkk.html" class="footer-legal-link">KVKK</a>
+          <span class="footer-dot">•</span>
+          <a href="gizlilik.html" class="footer-legal-link">Gizlilik</a>
+          <span class="footer-dot">•</span>
+          <a href="cerezler.html" class="footer-legal-link">Çerezler</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Footer year
+  (function(){
+    const el = document.getElementById('footerYear');
+    if(el) el.textContent = new Date().getFullYear();
+  })();
+
+  // Active menu
+  (function(){
+    const links = document.querySelectorAll('.navbar-nav .nav-link');
+    const path = location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a=>{
+      const cleanHref = (a.getAttribute('href') || '').split('#')[0];
+      if(cleanHref === path){
+        a.classList.add('active');
+        a.setAttribute('aria-current','page');
+      }
+    });
+  })();
+
+  // Form -> WhatsApp
+  (function(){
+    const form = document.getElementById('contactForm');
+    if(!form) return;
+
+    const WA = "905451223302";
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const name = (document.getElementById('name').value || '').trim();
+      const phone = (document.getElementById('phone').value || '').trim();
+      const topic = (document.getElementById('topic').value || '').trim();
+      const message = (document.getElementById('message').value || '').trim();
+
+      if(!name || !topic || !message){
+        alert("Lütfen Ad Soyad, Konu ve Mesaj alanlarını doldurun.");
+        return;
+      }
+
+      const text =
+        "Merhaba, ben " + name + ".\n" +
+        (phone ? ("Telefon: " + phone + "\n") : "") +
+        "Konu: " + topic + "\n" +
+        "Mesaj: " + message;
+
+      const url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(text);
+      window.open(url, "_blank", "noopener");
+    });
+  })();
+</script>
+
+<!-- LocalBusiness Schema (SEO) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Dentist",
+  "name":"Berkan Aras Diş Hekimliği",
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Yenişehir",
+    "addressRegion":"Mersin",
+    "addressCountry":"TR",
+    "streetAddress":"(adresinizi buraya yazın)"
+  },
+  "telephone":"+90 545 122 33 02",
+  "url":"(site url buraya)",
+  "areaServed":"Mersin",
+  "sameAs":[]
+}
+</script>
+<!-- ===== FLOATING ROUTE BALLOON ===== -->
+<a
+  href="https://www.google.com/maps/dir/?api=1&destination=Mersin%20Yeni%C5%9Fehir"
+  target="_blank" rel="noopener"
+  class="route-float"
+  aria-label="Yol tarifi al"
+>
+  <span class="route-ico">📍</span>
+  <span class="route-text">Yol Tarifi Al</span>
+</a>
+
+<!-- ===== MOBILE STICKY ACTION BAR ===== -->
+<div class="mobile-actions" role="navigation" aria-label="Hızlı erişim">
+  <a class="mact" href="tel:+905451223302" aria-label="Ara">
+    <span class="mact-ico">📞</span>
+    <span class="mact-txt">Ara</span>
+  </a>
+  <a class="mact" target="_blank" rel="noopener"
+     href="https://wa.me/905451223302?text=Merhaba%2C%20randevu%20almak%20istiyorum."
+     aria-label="WhatsApp">
+    <span class="mact-ico">💬</span>
+    <span class="mact-txt">WhatsApp</span>
+  </a>
+  <a class="mact" target="_blank" rel="noopener"
+     href="https://www.google.com/maps/dir/?api=1&destination=Mersin%20Yeni%C5%9Fehir"
+     aria-label="Yol tarifi">
+    <span class="mact-ico">🧭</span>
+    <span class="mact-txt">Yol</span>
+  </a>
+</div>
+
+<!-- ===== TOAST (KOPYALANDI) ===== -->
+<div class="mini-toast" id="miniToast" aria-live="polite" aria-atomic="true"></div>
+<script>
+(function(){
+  const toast = document.getElementById('miniToast');
+
+  function showToast(text){
+    if(!toast) return;
+    toast.textContent = text;
+    toast.classList.add('show');
+    setTimeout(()=> toast.classList.remove('show'), 1400);
+  }
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast("Kopyalandı ✅");
+    }catch(e){
+      // Eski tarayıcı fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast("Kopyalandı ✅");
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(el=>{
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', (e)=>{
+      // tel: linkine tıklayınca arama açılmasın diye sadece sağ tık vs değilse kopya
+      e.preventDefault();
+      copyText(el.getAttribute('data-copy'));
+    });
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Dentist",
+ "name":"Berkan Aras Diş Hekimliği",
+ "address":{
+   "@type":"PostalAddress",
+   "addressLocality":"Yenişehir",
+   "addressRegion":"Mersin",
+   "addressCountry":"TR"
+ },
+ "telephone":"+90 545 122 33 02",
+ "areaServed":"Mersin",
+ "url":"https://www.siteadresin.com"
+}
+</script>
+
+</body>
+</html>
