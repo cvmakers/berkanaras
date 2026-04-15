@@ -164,7 +164,7 @@ html, body{
 
   .hero{
     position: relative;
-    min-height: clamp(620px, 100vh, 760px);
+    min-height: clamp(620px, 118vh, 587px);
     display: grid;
     align-items: center;
     overflow: hidden;
@@ -212,13 +212,13 @@ html, body{
 
   .hero-card{
     width: min(620px, 92vw);
-    background: rgba(10,12,16,.42);
-    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(10, 12, 16, -2.58);
+    border: 1px solid rgba(255, 255, 255, .14);
     border-radius: 22px;
     padding: 22px;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 16px 50px rgba(0,0,0,.35);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .35);
   }
 
   .hero-kicker{
