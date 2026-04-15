@@ -1,90 +1,103 @@
 <!doctype html>
 <html lang="tr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sık Sorulan Sorular | Mersin Diş Hekimi</title>
-<meta name="description"
-content="İmplant, kaplama, kanal tedavisi, randevu ve fiyatlar hakkında sık sorulan soruların cevapları.">
-  <meta name="description" content="İmplant, zirkonyum, kanal tedavisi, diş temizliği, randevu, fiyat ve süreç hakkında sık sorulan soruların yanıtları.">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sık Sorulan Sorular | Mersin Diş Hekimi</title>
+  <meta name="description"
+    content="İmplant, kaplama, kanal tedavisi, randevu ve fiyatlar hakkında sık sorulan soruların cevapları.">
+  <meta name="description"
+    content="İmplant, zirkonyum, kanal tedavisi, diş temizliği, randevu, fiyat ve süreç hakkında sık sorulan soruların yanıtları.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="canonical" href="https://www.siteadresin.com/SAYFA-ADI.html">
+  <link rel="canonical" href="https://www.siteadresin.com/SAYFA-ADI.html">
 
-<meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
 
-<meta name="theme-color" content="#374261">
+  <meta name="theme-color" content="#374261">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Berkan Aras Diş Hekimliği">
-<meta property="og:image" content="https://www.siteadresin.com/img/og-cover.jpg">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Berkan Aras Diş Hekimliği">
+  <meta property="og:image" content="https://www.siteadresin.com/img/og-cover.jpg">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="canonical" href="https://www.berkanaras.com/">
   <!-- Ortak CSS -->
   <link rel="stylesheet" href="css/index.css">
 
   <style>
-    :root{
-      --brand:#374261;
-      --ink:#0f172a;
-      --muted:#334155;
-      --line: rgba(55,66,97,.18);
-      --card: rgba(255,255,255,.78);
-      --soft: rgba(55,66,97,.06);
+    :root {
+      --brand: #374261;
+      --ink: #0f172a;
+      --muted: #334155;
+      --line: rgba(55, 66, 97, .18);
+      --card: rgba(255, 255, 255, .78);
+      --soft: rgba(55, 66, 97, .06);
     }
-    body{ background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%); }
 
-    .faq-hero{
+    body {
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    }
+
+    .faq-hero {
       position: relative;
       padding: 64px 0 28px;
-      overflow:hidden;
+      overflow: hidden;
     }
-    .faq-hero::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(900px 320px at 18% 0%, rgba(55,66,97,.22), transparent 60%),
-        radial-gradient(700px 260px at 85% 15%, rgba(55,66,97,.14), transparent 62%);
-      pointer-events:none;
-    }
-    .faq-hero .container{ position:relative; z-index:2; }
 
-    .kicker{
-      display:inline-block;
+    .faq-hero::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(900px 320px at 18% 0%, rgba(55, 66, 97, .22), transparent 60%),
+        radial-gradient(700px 260px at 85% 15%, rgba(55, 66, 97, .14), transparent 62%);
+      pointer-events: none;
+    }
+
+    .faq-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .kicker {
+      display: inline-block;
       font-weight: 900;
       font-size: 12px;
       letter-spacing: .4px;
       text-transform: uppercase;
       color: var(--brand);
-      background: rgba(55,66,97,.10);
-      border: 1px solid rgba(55,66,97,.18);
+      background: rgba(55, 66, 97, .10);
+      border: 1px solid rgba(55, 66, 97, .18);
       padding: 6px 12px;
       border-radius: 999px;
     }
-    .faq-title{
+
+    .faq-title {
       color: var(--ink);
       font-weight: 950;
-      letter-spacing:.2px;
+      letter-spacing: .2px;
       font-size: clamp(30px, 4.2vw, 46px);
       margin: 10px 0 10px;
     }
-    .faq-sub{
+
+    .faq-sub {
       color: var(--muted);
-      line-height:1.7;
+      line-height: 1.7;
       max-width: 860px;
       margin: 0;
     }
 
-    .faq-wrap{
+    .faq-wrap {
       border-radius: 26px;
       border: 1px solid var(--line);
       background: var(--card);
@@ -92,369 +105,431 @@ content="İmplant, kaplama, kanal tedavisi, randevu ve fiyatlar hakkında sık s
       padding: 16px;
     }
 
-    .faq-section-title{
+    .faq-section-title {
       font-weight: 950;
       color: var(--ink);
-      letter-spacing:.2px;
+      letter-spacing: .2px;
       margin: 22px 0 10px;
     }
-    .faq-section-sub{
+
+    .faq-section-sub {
       color: var(--muted);
       margin: 0 0 14px;
-      line-height:1.65;
+      line-height: 1.65;
     }
 
     /* Accordion look */
-    .accordion-item{
-      border: 1px solid rgba(55,66,97,.14) !important;
+    .accordion-item {
+      border: 1px solid rgba(55, 66, 97, .14) !important;
       border-radius: 18px !important;
-      overflow:hidden;
-      background: rgba(255,255,255,.70);
+      overflow: hidden;
+      background: rgba(255, 255, 255, .70);
       margin-bottom: 10px;
     }
-    .accordion-button{
+
+    .accordion-button {
       font-weight: 950;
       color: var(--ink);
-      background: rgba(255,255,255,.75);
+      background: rgba(255, 255, 255, .75);
     }
-    .accordion-button:not(.collapsed){
+
+    .accordion-button:not(.collapsed) {
       color: var(--brand);
-      background: rgba(55,66,97,.08);
+      background: rgba(55, 66, 97, .08);
       box-shadow: none;
     }
-    .accordion-button:focus{
-      box-shadow: 0 0 0 .2rem rgba(55,66,97,.12);
-      border-color: rgba(55,66,97,.25);
+
+    .accordion-button:focus {
+      box-shadow: 0 0 0 .2rem rgba(55, 66, 97, .12);
+      border-color: rgba(55, 66, 97, .25);
     }
-    .accordion-body{
+
+    .accordion-body {
       color: var(--muted);
       line-height: 1.75;
       font-size: 14px;
     }
 
-    .cta{
+    .cta {
       border-radius: 28px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.74);
+      background: rgba(255, 255, 255, .74);
       backdrop-filter: blur(10px);
       padding: 22px;
-      display:flex;
+      display: flex;
       justify-content: space-between;
-      align-items:center;
+      align-items: center;
       gap: 14px;
       flex-wrap: wrap;
       margin-top: 18px;
     }
-    .cta h3{ margin:0; font-weight: 950; color: var(--ink); }
-    .cta p{ margin: 6px 0 0; color: var(--muted); line-height:1.6; }
 
-    .btn-primary-soft{
+    .cta h3 {
+      margin: 0;
+      font-weight: 950;
+      color: var(--ink);
+    }
+
+    .cta p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .btn-primary-soft {
       background: var(--brand);
-      color:#fff;
+      color: #fff;
       border-radius: 14px;
       font-weight: 900;
       padding: .72rem 1.05rem;
-      border: 1px solid rgba(55,66,97,.25);
+      border: 1px solid rgba(55, 66, 97, .25);
     }
-    .btn-outline-soft{
-      background:#fff;
+
+    .btn-outline-soft {
+      background: #fff;
       color: var(--brand);
       border-radius: 14px;
       font-weight: 900;
       padding: .72rem 1.05rem;
-      border: 1px solid rgba(55,66,97,.25);
+      border: 1px solid rgba(55, 66, 97, .25);
     }
 
     /* Footer mini */
-    .site-footer{ background:#374261; color: rgba(255,255,255,.85); padding: 22px 0; margin-top: 22px; }
-    .footer-bottom{ display:flex; justify-content: space-between; align-items:center; flex-wrap:wrap; gap: 10px; }
-    .footer-copy{ font-size: 12px; font-weight: 700; }
-    .footer-legal{ display:flex; gap: 10px; align-items:center; }
-    .footer-legal-link{ color: rgba(255,255,255,.78); text-decoration:none; font-size: 12px; font-weight: 800; }
-    .footer-legal-link:hover{ color:#fff; text-decoration: underline; }
-    .footer-dot{ opacity: .6; }
+    .site-footer {
+      background: #374261;
+      color: rgba(255, 255, 255, .85);
+      padding: 22px 0;
+      margin-top: 22px;
+    }
 
-    @media (max-width:576px){
-      .footer-bottom{ flex-direction: column; align-items:flex-start; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-legal-link {
+      color: rgba(255, 255, 255, .78);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-legal-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-dot {
+      opacity: .6;
+    }
+
+    @media (max-width:576px) {
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header class="dent-header" id="top">
-  <nav class="navbar navbar-expand-lg dent-navbar">
+  <header class="dent-header" id="top">
+    <nav class="navbar navbar-expand-lg dent-navbar">
+      <div class="container">
+        <!-- LOGO -->
+        <a class="navbar-brand" href="index.html">
+          <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Berkan Aras Diş Hekimliği" width="100"
+            height="50">
+        </a>
+        <!-- TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- NAV -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+            <li class="nav-item"><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+            <li class="nav-item"><a class="nav-link" href="klinik-turu.html">360° Klinik Turu</a></li>
+            <li class="nav-item"><a class="nav-link" href="whyus.html">Neden Biz</a></li>
+            <li class="nav-item"><a class="nav-link" href="sss.html">SSS</a></li>
+            <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+          </ul>
+          <!-- CTA -->
+          <!-- CTA -->
+          <div class="d-flex align-items-center gap-2">
+            <a class="btn btn-randevu" href="index.html#randevu">
+              Randevu Al
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- ===== HERO ===== -->
+  <section class="faq-hero">
     <div class="container">
-      <!-- LOGO -->
-      <a class="navbar-brand" href="index.html">
-        <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Berkan Aras Diş Hekimliği" width="100"
-          height="50">
-      </a>
-      <!-- TOGGLER -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Menüyü aç">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- NAV -->
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
-          <li class="nav-item"><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
-          <li class="nav-item"><a class="nav-link" href="klinik-turu.html">360° Klinik Turu</a></li>
-          <li class="nav-item"><a class="nav-link" href="whyus.html">Neden Biz</a></li>
-          <li class="nav-item"><a class="nav-link" href="sss.html">SSS</a></li>
-          <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
-        </ul>
-        <!-- CTA -->
-        <!-- CTA -->
-        <div class="d-flex align-items-center gap-2">
-          <a class="btn btn-randevu" href="index.html#randevu">
-            Randevu Al
-          </a>
+      <span class="kicker">SSS</span>
+      <h1 class="faq-title">Sık Sorulan Sorular</h1>
+      <p class="faq-sub">
+        İmplant, kaplama, kanal tedavisi, diş temizliği, randevu ve süreç hakkında en çok merak edilen soruları
+        sade ve anlaşılır şekilde yanıtladık.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ CONTENT ===== -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="faq-wrap">
+
+        <!-- GENEL / RANDEVU -->
+        <h2 class="faq-section-title">Randevu ve Süreç</h2>
+        <p class="faq-section-sub">Randevu alma, hazırlık ve muayene süreci ile ilgili sorular.</p>
+
+        <div class="accordion" id="accRandevu">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q1h">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1"
+                aria-expanded="true" aria-controls="q1">
+                Randevu nasıl alınır?
+              </button>
+            </h3>
+            <div id="q1" class="accordion-collapse collapse show" aria-labelledby="q1h" data-bs-parent="#accRandevu">
+              <div class="accordion-body">
+                Randevunuzu telefonla arayarak veya WhatsApp üzerinden mesaj atarak hızlıca oluşturabilirsiniz.
+                Uygun saatleri birlikte planlayıp onayladıktan sonra randevu kaydınız oluşturulur.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q2h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2"
+                aria-expanded="false" aria-controls="q2">
+                İlk muayenede neler yapılır?
+              </button>
+            </h3>
+            <div id="q2" class="accordion-collapse collapse" aria-labelledby="q2h" data-bs-parent="#accRandevu">
+              <div class="accordion-body">
+                Şikayetiniz dinlenir, ağız içi muayene yapılır ve ihtiyaç görülürse gerekli kontroller planlanır.
+                Ardından size uygun tedavi seçenekleri, süreç ve plan hakkında bilgilendirme yapılır.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q3h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3"
+                aria-expanded="false" aria-controls="q3">
+                Tedavi süresi neye göre değişir?
+              </button>
+            </h3>
+            <div id="q3" class="accordion-collapse collapse" aria-labelledby="q3h" data-bs-parent="#accRandevu">
+              <div class="accordion-body">
+                Tedavi süresi; yapılacak işlemin türüne, diş ve diş eti durumuna, gerekli seans sayısına ve kişisel
+                ihtiyaçlara göre değişir.
+                Muayene sonrası plan netleşir ve size yaklaşık bir zaman çizelgesi sunulur.
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- TEDAVİLER -->
+        <h2 class="faq-section-title">İmplant ve Kaplama</h2>
+        <p class="faq-section-sub">En çok aranan tedavilerle ilgili merak edilenler.</p>
+
+        <div class="accordion" id="accImplant">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q4h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4"
+                aria-expanded="false" aria-controls="q4">
+                İmplant tedavisi kimler için uygundur?
+              </button>
+            </h3>
+            <div id="q4" class="accordion-collapse collapse" aria-labelledby="q4h" data-bs-parent="#accImplant">
+              <div class="accordion-body">
+                Genel sağlık durumu uygun olan ve çene kemiği değerlendirmesi sonrası implant için yeterli koşullara
+                sahip kişilerde uygulanabilir.
+                Muayenede ihtiyaçlarınız değerlendirilerek size uygun seçenekler anlatılır.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q5h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5"
+                aria-expanded="false" aria-controls="q5">
+                Zirkonyum kaplama ile porselen kaplama arasındaki fark nedir?
+              </button>
+            </h3>
+            <div id="q5" class="accordion-collapse collapse" aria-labelledby="q5h" data-bs-parent="#accImplant">
+              <div class="accordion-body">
+                Kaplama seçimi; estetik beklenti, dayanıklılık ihtiyacı, diş yapısı ve bütçe gibi faktörlere göre
+                değişir.
+                Muayene sonrası size uygun alternatifler ve artı-eksi yönler net şekilde aktarılır.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q6h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6"
+                aria-expanded="false" aria-controls="q6">
+                Kaplama tedavisi kaç seansta tamamlanır?
+              </button>
+            </h3>
+            <div id="q6" class="accordion-collapse collapse" aria-labelledby="q6h" data-bs-parent="#accImplant">
+              <div class="accordion-body">
+                Tedavi planına göre değişmekle birlikte ölçü, prova ve teslim adımlarıyla birkaç randevuda
+                tamamlanabilir.
+                Süreç muayenede detaylandırılarak size net bilgi verilir.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GENEL DİŞ TEDAVİLERİ -->
+        <h2 class="faq-section-title">Genel Tedaviler</h2>
+        <p class="faq-section-sub">Kanal tedavisi, dolgu ve diş taşı temizliği hakkında sorular.</p>
+
+        <div class="accordion" id="accGenel">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q7h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7"
+                aria-expanded="false" aria-controls="q7">
+                Kanal tedavisi ağrılı mı?
+              </button>
+            </h3>
+            <div id="q7" class="accordion-collapse collapse" aria-labelledby="q7h" data-bs-parent="#accGenel">
+              <div class="accordion-body">
+                Uygun anestezi ile işlem sırasında ağrı hissi minimuma indirilir.
+                İşlem sonrası hassasiyet, kişiye ve dişin durumuna göre değişebilir; bakım önerileriyle kontrol altına
+                alınır.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q8h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q8"
+                aria-expanded="false" aria-controls="q8">
+                Diş taşı temizliği ne sıklıkla yapılmalı?
+              </button>
+            </h3>
+            <div id="q8" class="accordion-collapse collapse" aria-labelledby="q8h" data-bs-parent="#accGenel">
+              <div class="accordion-body">
+                Ağız bakım alışkanlığı ve diş eti durumuna göre değişir. Düzenli kontrol randevularında ihtiyaca göre
+                planlanır.
+                Temizlik sonrası günlük bakım önerileri ile diş eti sağlığı desteklenir.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q9h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q9"
+                aria-expanded="false" aria-controls="q9">
+                Dolgu sonrası nelere dikkat etmek gerekir?
+              </button>
+            </h3>
+            <div id="q9" class="accordion-collapse collapse" aria-labelledby="q9h" data-bs-parent="#accGenel">
+              <div class="accordion-body">
+                İlk saatlerde aşırı sert gıdalardan kaçınmak ve hekim önerilerine uymak önemlidir.
+                Herhangi bir yükseklik hissi veya hassasiyet durumunda kontrol randevusu planlanabilir.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FİYAT / ÖDEME / GÜVEN -->
+        <h2 class="faq-section-title">Fiyat, Ödeme ve Bilgilendirme</h2>
+        <p class="faq-section-sub">Fiyatların neden değiştiği ve süreçte şeffaf bilgilendirme.</p>
+
+        <div class="accordion" id="accFiyat">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q10h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q10"
+                aria-expanded="false" aria-controls="q10">
+                Tedavi ücretleri neye göre belirlenir?
+              </button>
+            </h3>
+            <div id="q10" class="accordion-collapse collapse" aria-labelledby="q10h" data-bs-parent="#accFiyat">
+              <div class="accordion-body">
+                Ücretlendirme; yapılacak işlemin kapsamı, seans sayısı, kullanılacak materyaller ve kişisel ihtiyaçlara
+                göre değişir.
+                Muayene sonrası plan netleşir ve süreç hakkında şeffaf bilgi verilir.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q11h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q11"
+                aria-expanded="false" aria-controls="q11">
+                Muayene sonrası tedavi planı nasıl paylaşılır?
+              </button>
+            </h3>
+            <div id="q11" class="accordion-collapse collapse" aria-labelledby="q11h" data-bs-parent="#accFiyat">
+              <div class="accordion-body">
+                Muayene sonrası ihtiyaçlar belirlenir, uygulanabilecek seçenekler anlatılır ve sizin önceliklerinize
+                göre plan oluşturulur.
+                Böylece hem süreç hem de beklentiler netleşmiş olur.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="q12h">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q12"
+                aria-expanded="false" aria-controls="q12">
+                Acil diş ağrısında aynı gün randevu mümkün mü?
+              </button>
+            </h3>
+            <div id="q12" class="accordion-collapse collapse" aria-labelledby="q12h" data-bs-parent="#accFiyat">
+              <div class="accordion-body">
+                Uygunluk durumuna göre aynı gün randevu planlanabilir. En hızlı yöntem telefonla aramak veya WhatsApp
+                üzerinden yazmaktır.
+                Ağrının şiddeti ve durumun aciliyeti değerlendirilerek yönlendirme yapılır.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+          <div>
+            <h3>Sorunuz kaldı mı?</h3>
+            <p>WhatsApp’tan yazın, hızlıca yardımcı olalım veya randevu oluşturalım.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-primary-soft" href="randevu.html">Randevu Al</a>
+            <a class="btn btn-outline-soft" target="_blank" rel="noopener"
+              href="https://wa.me/905451223302?text=Merhaba%2C%20SSS%20sayfas%C4%B1ndan%20yaz%C4%B1yorum.">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
-  </nav>
-</header>
-<!-- ===== HERO ===== -->
-<section class="faq-hero">
-  <div class="container">
-    <span class="kicker">SSS</span>
-    <h1 class="faq-title">Sık Sorulan Sorular</h1>
-    <p class="faq-sub">
-      İmplant, kaplama, kanal tedavisi, diş temizliği, randevu ve süreç hakkında en çok merak edilen soruları
-      sade ve anlaşılır şekilde yanıtladık.
-    </p>
-  </div>
-</section>
-
-<!-- ===== FAQ CONTENT ===== -->
-<section class="pb-5">
-  <div class="container">
-    <div class="faq-wrap">
-
-      <!-- GENEL / RANDEVU -->
-      <h2 class="faq-section-title">Randevu ve Süreç</h2>
-      <p class="faq-section-sub">Randevu alma, hazırlık ve muayene süreci ile ilgili sorular.</p>
-
-      <div class="accordion" id="accRandevu">
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q1h">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1"
-                    aria-expanded="true" aria-controls="q1">
-              Randevu nasıl alınır?
-            </button>
-          </h3>
-          <div id="q1" class="accordion-collapse collapse show" aria-labelledby="q1h" data-bs-parent="#accRandevu">
-            <div class="accordion-body">
-              Randevunuzu telefonla arayarak veya WhatsApp üzerinden mesaj atarak hızlıca oluşturabilirsiniz.
-              Uygun saatleri birlikte planlayıp onayladıktan sonra randevu kaydınız oluşturulur.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q2h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2"
-                    aria-expanded="false" aria-controls="q2">
-              İlk muayenede neler yapılır?
-            </button>
-          </h3>
-          <div id="q2" class="accordion-collapse collapse" aria-labelledby="q2h" data-bs-parent="#accRandevu">
-            <div class="accordion-body">
-              Şikayetiniz dinlenir, ağız içi muayene yapılır ve ihtiyaç görülürse gerekli kontroller planlanır.
-              Ardından size uygun tedavi seçenekleri, süreç ve plan hakkında bilgilendirme yapılır.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q3h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3"
-                    aria-expanded="false" aria-controls="q3">
-              Tedavi süresi neye göre değişir?
-            </button>
-          </h3>
-          <div id="q3" class="accordion-collapse collapse" aria-labelledby="q3h" data-bs-parent="#accRandevu">
-            <div class="accordion-body">
-              Tedavi süresi; yapılacak işlemin türüne, diş ve diş eti durumuna, gerekli seans sayısına ve kişisel ihtiyaçlara göre değişir.
-              Muayene sonrası plan netleşir ve size yaklaşık bir zaman çizelgesi sunulur.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TEDAVİLER -->
-      <h2 class="faq-section-title">İmplant ve Kaplama</h2>
-      <p class="faq-section-sub">En çok aranan tedavilerle ilgili merak edilenler.</p>
-
-      <div class="accordion" id="accImplant">
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q4h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4"
-                    aria-expanded="false" aria-controls="q4">
-              İmplant tedavisi kimler için uygundur?
-            </button>
-          </h3>
-          <div id="q4" class="accordion-collapse collapse" aria-labelledby="q4h" data-bs-parent="#accImplant">
-            <div class="accordion-body">
-              Genel sağlık durumu uygun olan ve çene kemiği değerlendirmesi sonrası implant için yeterli koşullara sahip kişilerde uygulanabilir.
-              Muayenede ihtiyaçlarınız değerlendirilerek size uygun seçenekler anlatılır.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q5h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5"
-                    aria-expanded="false" aria-controls="q5">
-              Zirkonyum kaplama ile porselen kaplama arasındaki fark nedir?
-            </button>
-          </h3>
-          <div id="q5" class="accordion-collapse collapse" aria-labelledby="q5h" data-bs-parent="#accImplant">
-            <div class="accordion-body">
-              Kaplama seçimi; estetik beklenti, dayanıklılık ihtiyacı, diş yapısı ve bütçe gibi faktörlere göre değişir.
-              Muayene sonrası size uygun alternatifler ve artı-eksi yönler net şekilde aktarılır.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q6h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6"
-                    aria-expanded="false" aria-controls="q6">
-              Kaplama tedavisi kaç seansta tamamlanır?
-            </button>
-          </h3>
-          <div id="q6" class="accordion-collapse collapse" aria-labelledby="q6h" data-bs-parent="#accImplant">
-            <div class="accordion-body">
-              Tedavi planına göre değişmekle birlikte ölçü, prova ve teslim adımlarıyla birkaç randevuda tamamlanabilir.
-              Süreç muayenede detaylandırılarak size net bilgi verilir.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- GENEL DİŞ TEDAVİLERİ -->
-      <h2 class="faq-section-title">Genel Tedaviler</h2>
-      <p class="faq-section-sub">Kanal tedavisi, dolgu ve diş taşı temizliği hakkında sorular.</p>
-
-      <div class="accordion" id="accGenel">
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q7h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7"
-                    aria-expanded="false" aria-controls="q7">
-              Kanal tedavisi ağrılı mı?
-            </button>
-          </h3>
-          <div id="q7" class="accordion-collapse collapse" aria-labelledby="q7h" data-bs-parent="#accGenel">
-            <div class="accordion-body">
-              Uygun anestezi ile işlem sırasında ağrı hissi minimuma indirilir.
-              İşlem sonrası hassasiyet, kişiye ve dişin durumuna göre değişebilir; bakım önerileriyle kontrol altına alınır.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q8h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q8"
-                    aria-expanded="false" aria-controls="q8">
-              Diş taşı temizliği ne sıklıkla yapılmalı?
-            </button>
-          </h3>
-          <div id="q8" class="accordion-collapse collapse" aria-labelledby="q8h" data-bs-parent="#accGenel">
-            <div class="accordion-body">
-              Ağız bakım alışkanlığı ve diş eti durumuna göre değişir. Düzenli kontrol randevularında ihtiyaca göre planlanır.
-              Temizlik sonrası günlük bakım önerileri ile diş eti sağlığı desteklenir.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q9h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q9"
-                    aria-expanded="false" aria-controls="q9">
-              Dolgu sonrası nelere dikkat etmek gerekir?
-            </button>
-          </h3>
-          <div id="q9" class="accordion-collapse collapse" aria-labelledby="q9h" data-bs-parent="#accGenel">
-            <div class="accordion-body">
-              İlk saatlerde aşırı sert gıdalardan kaçınmak ve hekim önerilerine uymak önemlidir.
-              Herhangi bir yükseklik hissi veya hassasiyet durumunda kontrol randevusu planlanabilir.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FİYAT / ÖDEME / GÜVEN -->
-      <h2 class="faq-section-title">Fiyat, Ödeme ve Bilgilendirme</h2>
-      <p class="faq-section-sub">Fiyatların neden değiştiği ve süreçte şeffaf bilgilendirme.</p>
-
-      <div class="accordion" id="accFiyat">
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q10h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q10"
-                    aria-expanded="false" aria-controls="q10">
-              Tedavi ücretleri neye göre belirlenir?
-            </button>
-          </h3>
-          <div id="q10" class="accordion-collapse collapse" aria-labelledby="q10h" data-bs-parent="#accFiyat">
-            <div class="accordion-body">
-              Ücretlendirme; yapılacak işlemin kapsamı, seans sayısı, kullanılacak materyaller ve kişisel ihtiyaçlara göre değişir.
-              Muayene sonrası plan netleşir ve süreç hakkında şeffaf bilgi verilir.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q11h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q11"
-                    aria-expanded="false" aria-controls="q11">
-              Muayene sonrası tedavi planı nasıl paylaşılır?
-            </button>
-          </h3>
-          <div id="q11" class="accordion-collapse collapse" aria-labelledby="q11h" data-bs-parent="#accFiyat">
-            <div class="accordion-body">
-              Muayene sonrası ihtiyaçlar belirlenir, uygulanabilecek seçenekler anlatılır ve sizin önceliklerinize göre plan oluşturulur.
-              Böylece hem süreç hem de beklentiler netleşmiş olur.
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <h3 class="accordion-header" id="q12h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q12"
-                    aria-expanded="false" aria-controls="q12">
-              Acil diş ağrısında aynı gün randevu mümkün mü?
-            </button>
-          </h3>
-          <div id="q12" class="accordion-collapse collapse" aria-labelledby="q12h" data-bs-parent="#accFiyat">
-            <div class="accordion-body">
-              Uygunluk durumuna göre aynı gün randevu planlanabilir. En hızlı yöntem telefonla aramak veya WhatsApp üzerinden yazmaktır.
-              Ağrının şiddeti ve durumun aciliyeti değerlendirilerek yönlendirme yapılır.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta">
-        <div>
-          <h3>Sorunuz kaldı mı?</h3>
-          <p>WhatsApp’tan yazın, hızlıca yardımcı olalım veya randevu oluşturalım.</p>
-        </div>
-        <div class="d-flex gap-2 flex-wrap">
-          <a class="btn btn-primary-soft" href="randevu.html">Randevu Al</a>
-          <a class="btn btn-outline-soft" target="_blank" rel="noopener"
-             href="https://wa.me/905451223302?text=Merhaba%2C%20SSS%20sayfas%C4%B1ndan%20yaz%C4%B1yorum.">
-            WhatsApp
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+  </section>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
@@ -504,31 +579,31 @@ content="İmplant, kaplama, kanal tedavisi, randevu ve fiyatlar hakkında sık s
     </div>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  // Footer year
-  (function(){
-    const el = document.getElementById('footerYear');
-    if(el) el.textContent = new Date().getFullYear();
-  })();
+  <script>
+    // Footer year
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
 
-  // Active menu
-  (function(){
-    const links = document.querySelectorAll('.navbar-nav .nav-link');
-    const path = location.pathname.split('/').pop() || 'index.html';
-    links.forEach(a=>{
-      const cleanHref = (a.getAttribute('href') || '').split('#')[0];
-      if(cleanHref === path){
-        a.classList.add('active');
-        a.setAttribute('aria-current','page');
-      }
-    });
-  })();
-</script>
+    // Active menu
+    (function () {
+      const links = document.querySelectorAll('.navbar-nav .nav-link');
+      const path = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a => {
+        const cleanHref = (a.getAttribute('href') || '').split('#')[0];
+        if (cleanHref === path) {
+          a.classList.add('active');
+          a.setAttribute('aria-current', 'page');
+        }
+      });
+    })();
+  </script>
 
-<!-- ===== SEO: FAQPage Structured Data (JSON-LD) ===== -->
-<script type="application/ld+json">
+  <!-- ===== SEO: FAQPage Structured Data (JSON-LD) ===== -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -634,4 +709,5 @@ content="İmplant, kaplama, kanal tedavisi, randevu ve fiyatlar hakkında sık s
 </script>
 
 </body>
+
 </html>
