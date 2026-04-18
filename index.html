@@ -108,48 +108,58 @@
       <span class="scroll-text">Kaydır</span>
     </div>
   </section>
-  <!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
-  <section id="tur360" class="py-5">
-    <div class="container">
-      <div class="row align-items-stretch g-4">
-        <div class="col-lg-7">
-          <!-- 360 Viewer alanı -->
-          <div class="tour360-wrap w-100 h-100">
-            <div id="panorama360" class="tour360-viewer" aria-label="360 klinik turu"></div>
-            <!-- Yükleniyor katmanı -->
-            <div class="tour360-loading" id="tour360Loading">
-              360° tur yükleniyor…
-            </div>
+<!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
+<section id="tur360" class="py-5">
+  <div class="container">
+    <div class="row align-items-stretch g-4">
+      <div class="col-lg-7">
+        <div class="tour360-wrap w-100 h-100 position-relative overflow-hidden rounded-4">
+          
+          <iframe
+            id="panorama360"
+            class="tour360-viewer"
+            src="https://turlar.panovia360.com/tours/6sUODUS1G"
+            title="360 Klinik Turu"
+            loading="lazy"
+            allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+
+          <div class="tour360-loading d-none" id="tour360Loading">
+            360° tur yükleniyor…
           </div>
         </div>
-        <div class="col-lg-5 d-flex">
-          <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
-            style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
-            <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
-              360° Klinik Turu
-            </p>
-            <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
-            <p class="mb-3" style="color:#334155; line-height:1.6;">
-              Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
-              bekleme bölümü ve çalışma düzenini inceleyin.
-            </p>
-            <!-- Butonları alta sabitle -->
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              <a href="#randevu" class="btn btn-randevu"
-                style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
-                Randevu Al
-              </a>
-              <button id="tour360Fullscreen" class="btn"
-                style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
-                Tam Ekran
-              </button>
-            </div>
+      </div>
+
+      <div class="col-lg-5 d-flex">
+        <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
+          style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
+          <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
+            360° Klinik Turu
+          </p>
+          <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
+          <p class="mb-3" style="color:#334155; line-height:1.6;">
+            Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
+            bekleme bölümü ve çalışma düzenini inceleyin.
+          </p>
+
+          <div class="mt-auto d-flex flex-wrap gap-2">
+            <a href="#randevu" class="btn btn-randevu"
+              style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
+              Randevu Al
+            </a>
+            <button id="tour360Fullscreen" type="button" class="btn"
+              style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
+              Tam Ekran
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- ===== 360 KLINIK TURU END ===== -->
+  </div>
+</section>
+<!-- ===== 360 KLINIK TURU END ===== -->
   <section id="hizmetler" class="services-section py-5">
     <div class="container">
       <div class="services-head text-center mb-4">
