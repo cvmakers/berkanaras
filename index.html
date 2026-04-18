@@ -33,7 +33,7 @@
     <div class="container">
       <!-- LOGO -->
       <a class="navbar-brand" href="index.html">
-        <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Mersin implant tedavisi" width="100" height="50">
+        <img src="img/BERKAN ARAS.png" alt="Mersin implant tedavisi" width="170" height="50">
       </a>
       <!-- TOGGLER -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
@@ -108,58 +108,102 @@
       <span class="scroll-text">Kaydır</span>
     </div>
   </section>
-<!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
-<section id="tur360" class="py-5">
-  <div class="container">
-    <div class="row align-items-stretch g-4">
-      <div class="col-lg-7">
-        <div class="tour360-wrap w-100 h-100 position-relative overflow-hidden rounded-4">
-          
-          <iframe
-            id="panorama360"
-            class="tour360-viewer"
-            src="https://turlar.panovia360.com/tours/6sUODUS1G"
-            title="360 Klinik Turu"
-            loading="lazy"
-            allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
+  <!-- ===== 360 KLINIK TURU (PANORAMA VIEWER) START ===== -->
+  <section id="tur360" class="py-5">
+    <div class="container">
+      <div class="row align-items-stretch g-4">
+        <div class="col-lg-7">
+          <div class="tour360-wrap w-100 h-100 position-relative overflow-hidden rounded-4">
 
-          <div class="tour360-loading d-none" id="tour360Loading">
-            360° tur yükleniyor…
+            <iframe id="panorama360" class="tour360-viewer" src="https://turlar.panovia360.com/tours/6sUODUS1G"
+              title="360 Klinik Turu" loading="lazy" allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
+              allowfullscreen referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+
+            <div class="tour360-loading d-none" id="tour360Loading">
+              360° tur yükleniyor…
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-5 d-flex">
-        <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
-          style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
-          <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
-            360° Klinik Turu
-          </p>
-          <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
-          <p class="mb-3" style="color:#334155; line-height:1.6;">
-            Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
-            bekleme bölümü ve çalışma düzenini inceleyin.
-          </p>
+        <div class="col-lg-5 d-flex">
+          <div class="p-4 rounded-4 border h-100 w-100 d-flex flex-column"
+            style="border-color: rgba(55,66,97,.20); background: rgba(55,66,97,.06);">
+            <p class="mb-2 fw-bold" style="color:#374261; letter-spacing:.2px;">
+              360° Klinik Turu
+            </p>
+            <h2 class="h3 mb-3">Kliniği gelmeden önce keşfedin</h2>
+            <p class="mb-3" style="color:#334155; line-height:1.6;">
+              Kliniğimizin ortamını 360° gezerek görün. Karşılama alanı,
+              bekleme bölümü ve çalışma düzenini inceleyin.
+            </p>
 
-          <div class="mt-auto d-flex flex-wrap gap-2">
-            <a href="#randevu" class="btn btn-randevu"
-              style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
-              Randevu Al
-            </a>
-            <button id="tour360Fullscreen" type="button" class="btn"
-              style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
-              Tam Ekran
-            </button>
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a href="#randevu" class="btn btn-randevu"
+                style="background:#374261;color:#fff;border-radius:14px;font-weight:800;">
+                Randevu Al
+              </a>
+              <button id="tour360Fullscreen" type="button" class="btn"
+                style="background:#fff;color:#374261;border:1px solid rgba(55,66,97,.25);border-radius:14px;font-weight:800;">
+                Tam Ekran
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- ===== 360 KLINIK TURU END ===== -->
+  </section>
+  <!-- ===== 360 KLINIK TURU END ===== -->
+  <!-- ===== ONCESI / SONRASI DIS ESTETIGI START ===== -->
+  <section id="once-sonra" class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-5">
+          <div class="before-after-text p-4 rounded-4 h-100">
+            <p class="section-mini mb-2">Öncesi / Sonrası</p>
+            <h2 class="h3 mb-3">Gülüş tasarımındaki farkı kaydırarak görün</h2>
+            <p class="mb-0">
+              Uygulama öncesi ve sonrası görünümü karşılaştırın. Kaydırma çubuğunu
+              sağa sola hareket ettirerek değişimi inceleyebilirsiniz.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="before-after-card rounded-4 overflow-hidden">
+            <div class="ba-slider" id="baSlider">
+              <!-- Alt görsel = SONRASI -->
+              <img src="img/beyazdıs.jpg" alt="Diş estetiği sonrası görünüm" class="ba-img ba-after">
+
+              <!-- Üst görsel = ÖNCESİ -->
+              <div class="ba-overlay" id="baOverlay">
+                <img src="img/sarıdis.png" alt="Diş estetiği öncesi görünüm" class="ba-img ba-before">
+              </div>
+
+              <!-- Ortadaki çizgi -->
+              <div class="ba-divider" id="baDivider">
+                <span class="ba-handle">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+
+              <!-- Range -->
+              <input type="range" min="0" max="100" value="50" class="ba-range" id="baRange"
+                aria-label="Öncesi sonrası karşılaştırma kaydırıcısı">
+
+              <!-- Etiketler -->
+              <div class="ba-label ba-label-left">Öncesi</div>
+              <div class="ba-label ba-label-right">Sonrası</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== ONCESI / SONRASI DIS ESTETIGI END ===== -->
   <section id="hizmetler" class="services-section py-5">
     <div class="container">
       <div class="services-head text-center mb-4">
@@ -720,8 +764,7 @@
         <!-- Özet -->
         <div class="footer-brand">
           <a class="navbar-brand" href="index.html">
-            <img src="img/DT. BERKAN ARAS (100 x 50 piksel) (1).png" alt="Yenişehir diş kliniği" width="100"
-              height="50">
+            <img src="img/BERKAN ARAS.png" alt="Yenişehir diş kliniği" width="170" height="50">
           </a>
           <div>
             <div class="footer-name">Berkan Aras Diş Hekimliği</div>
@@ -1166,19 +1209,28 @@
   <div class="mobile-actions home-only" role="navigation" aria-label="Hızlı iletişim">
     <a class="mact" href="tel:+905451223302" aria-label="Telefonla ara">
       <span class="mact-ico">📞</span>
-      <span class="mact-txt">Ara</span>
     </a>
 
     <a class="mact" target="_blank" rel="noopener"
       href="https://wa.me/905451223302?text=Merhaba%2C%20randevu%20almak%20istiyorum." aria-label="WhatsApp">
-      <span class="mact-ico">💬</span>
-      <span class="mact-txt">WhatsApp</span>
+      <span class="mact-ico">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path
+            d="M19.11 17.35c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.15.18-.31.2-.58.07-.27-.14-1.12-.41-2.14-1.31-.79-.7-1.33-1.56-1.49-1.82-.15-.27-.02-.42.12-.56.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.45-.45-.6-.46h-.51c-.18 0-.47.07-.71.34-.24.27-.92.9-.92 2.19s.94 2.53 1.07 2.71c.14.18 1.85 2.83 4.49 3.97.63.27 1.12.43 1.5.55.63.2 1.21.17 1.67.1.51-.08 1.58-.65 1.8-1.28.22-.63.22-1.17.15-1.28-.06-.11-.24-.18-.51-.31z" />
+          <path
+            d="M16.01 3.2c-7.08 0-12.8 5.71-12.8 12.76 0 2.25.59 4.45 1.71 6.39L3.1 28.8l6.62-1.73a12.84 12.84 0 0 0 6.29 1.61h.01c7.07 0 12.8-5.72 12.8-12.77 0-3.41-1.33-6.61-3.75-9.02A12.72 12.72 0 0 0 16.01 3.2zm0 23.32h-.01a10.7 10.7 0 0 1-5.45-1.49l-.39-.23-3.93 1.03 1.05-3.82-.25-.39a10.54 10.54 0 0 1-1.64-5.66c0-5.87 4.78-10.65 10.66-10.65 2.84 0 5.51 1.1 7.52 3.11a10.57 10.57 0 0 1 3.13 7.53c0 5.88-4.79 10.66-10.69 10.66z" />
+        </svg>
+      </span>
     </a>
 
     <a class="mact" target="_blank" rel="noopener"
       href="https://www.google.com/maps/dir/?api=1&destination=Mersin%20Yeni%C5%9Fehir" aria-label="Yol tarifi al">
-      <span class="mact-ico">🧭</span>
-      <span class="mact-txt">Yol Tarifi</span>
+      <span class="mact-ico">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
+        </svg>
+      </span>
     </a>
   </div>
   <script type="application/ld+json">
@@ -1197,7 +1249,24 @@
  "url":"https://www.berkanaras.com"
 }
 </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const range = document.getElementById("baRange");
+      const overlay = document.getElementById("baOverlay");
+      const divider = document.getElementById("baDivider");
 
+      function updateBeforeAfter(value) {
+        overlay.style.width = value + "%";
+        divider.style.left = value + "%";
+      }
+
+      updateBeforeAfter(range.value);
+
+      range.addEventListener("input", function () {
+        updateBeforeAfter(this.value);
+      });
+    });
+  </script>
 </body>
 
 </html>
