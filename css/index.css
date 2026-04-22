@@ -1653,3 +1653,14 @@ html, body{
     top: 12px;
   }
 }
+.mact-ico {
+  color: #fff;
+}
+.mact-ico svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.mact-ico {
+  filter: brightness(0) invert(1);
+}
