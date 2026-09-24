@@ -68,6 +68,124 @@
 </header>
 
 <body class="home-page">
+  <!-- ===== SITE ASKIDA EKRANI START ===== -->
+<div id="site-suspended">
+  <div class="suspended-box">
+    <div class="suspended-icon">!</div>
+
+    <h1>Web Sitesi Geçici Olarak Kapalıdır</h1>
+
+    <p>
+      Bu web sitesi, hizmet kapsamında bulunan
+      <strong>ödenmemiş borçlar</strong> nedeniyle
+      geçici olarak yayına kapatılmıştır.
+    </p>
+
+    <div class="suspended-warning">
+      Ödeme işlemlerinin tamamlanmasının ardından
+      web sitesi yeniden aktif hale getirilecektir.
+    </div>
+
+    <div class="suspended-footer">
+      Web hizmet sağlayıcısı tarafından görüntülenmektedir.
+    </div>
+  </div>
+</div>
+
+<style>
+  #site-suspended {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0f0f0f;
+    z-index: 999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .suspended-box {
+    width: 100%;
+    max-width: 650px;
+    background: #181818;
+    border: 1px solid #2c2c2c;
+    border-radius: 18px;
+    padding: 50px 35px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    color: #fff;
+  }
+
+  .suspended-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+  }
+
+  .suspended-box h1 {
+    color: #fff;
+    font-size: 30px;
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+
+  .suspended-box p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #bdbdbd;
+    margin: 0;
+  }
+
+  .suspended-box strong {
+    color: #fff;
+  }
+
+  .suspended-warning {
+    margin-top: 28px;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(220,38,38,.12);
+    border: 1px solid rgba(220,38,38,.35);
+    color: #ff9999;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .suspended-footer {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  body {
+    overflow: hidden !important;
+  }
+
+  @media(max-width:600px) {
+    .suspended-box {
+      padding: 35px 20px;
+    }
+
+    .suspended-box h1 {
+      font-size: 24px;
+    }
+
+    .suspended-box p {
+      font-size: 15px;
+    }
+  }
+</style>
+<!-- ===== SITE ASKIDA EKRANI END ===== -->
   <section class="hero" id="anasayfa" aria-label="Ana banner">
     <div class="hero-media" aria-hidden="true">
       <!-- ANA VIDEO -->
